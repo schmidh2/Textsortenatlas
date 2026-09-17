@@ -424,6 +424,30 @@
   footer{ padding:40px 0 60px; }
   footer p{ font-size:.85rem; color:var(--ink-faint); max-width:60ch; line-height:1.6; }
 
+  /* ---------- Zoom controls ---------- */
+  .zoom-controls{
+    position:fixed; right:18px; bottom:18px; z-index:50;
+    display:flex; align-items:center; gap:2px;
+    background:var(--surface); border:1px solid var(--line); border-radius:999px;
+    box-shadow:var(--shadow); padding:4px;
+  }
+  .zoom-btn{
+    border:none; background:transparent; color:var(--ink); cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    width:34px; height:34px; border-radius:50%;
+    font-family:var(--font-body); font-size:1.15rem; line-height:1;
+  }
+  .zoom-btn:hover{ background:var(--accent-soft); color:var(--accent-strong); }
+  .zoom-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .zoom-btn:disabled{ opacity:.35; cursor:default; }
+  .zoom-btn.zoom-level{
+    width:auto; padding:0 10px; border-radius:999px;
+    font-family:var(--font-mono); font-size:.72rem; color:var(--ink-soft);
+  }
+  @media (max-width:640px){
+    .zoom-controls{ right:12px; bottom:12px; }
+  }
+
   @media (max-width:640px){
     .hero-grid{ grid-template-columns:1fr; gap:32px; }
     .krit-row{ grid-template-columns:1fr 1fr; }
@@ -433,6 +457,7 @@
 </head>
 <body>
 
+<div id="zoomwrap">
 <header class="site">
   <div class="site-bar">
     <div class="logotype"><b>Textsorten</b><i>atlas</i></div>
@@ -566,6 +591,13 @@
     </div>
   </footer>
 </main>
+</div>
+
+<div class="zoom-controls" role="group" aria-label="Ansicht vergrößern oder verkleinern">
+  <button class="zoom-btn" id="zoomOut" aria-label="Verkleinern" type="button">–</button>
+  <button class="zoom-btn zoom-level" id="zoomReset" aria-label="Zoom zurücksetzen" type="button">100%</button>
+  <button class="zoom-btn" id="zoomIn" aria-label="Vergrößern" type="button">+</button>
+</div>
 
 <script>
 const NIVEAUS = [
@@ -1299,6 +1331,39 @@ document.getElementById('stilgrid').innerHTML = STILMITTEL.map((s, i) => `
   }
 
   render();
+})();
+
+// Zoom controls (unabhängig vom Host, z. B. für eingebettete Teams-Tabs ohne Pinch-Zoom)
+(function initZoom(){
+  const wrap = document.getElementById('zoomwrap');
+  const btnOut = document.getElementById('zoomOut');
+  const btnIn = document.getElementById('zoomIn');
+  const btnReset = document.getElementById('zoomReset');
+  if (!wrap || !btnOut || !btnIn || !btnReset) return;
+
+  const levels = [0.7, 0.8, 0.9, 1, 1.1, 1.25, 1.4, 1.6];
+  let idx = levels.indexOf(1);
+  try {
+    const saved = parseFloat(localStorage.getItem('ta_zoom'));
+    if (!isNaN(saved)) {
+      let closest = 0;
+      levels.forEach((l, i) => { if (Math.abs(l - saved) < Math.abs(levels[closest] - saved)) closest = i; });
+      idx = closest;
+    }
+  } catch (e) {}
+
+  function apply(){
+    const z = levels[idx];
+    wrap.style.zoom = z;
+    btnReset.textContent = Math.round(z * 100) + '%';
+    btnOut.disabled = idx === 0;
+    btnIn.disabled = idx === levels.length - 1;
+    try { localStorage.setItem('ta_zoom', String(z)); } catch (e) {}
+  }
+  btnOut.addEventListener('click', () => { if (idx > 0) { idx--; apply(); } });
+  btnIn.addEventListener('click', () => { if (idx < levels.length - 1) { idx++; apply(); } });
+  btnReset.addEventListener('click', () => { idx = levels.indexOf(1); apply(); });
+  apply();
 })();
 </script>
 
