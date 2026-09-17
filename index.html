@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Textsortenatlas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@500;600;700&display=swap');
+
+  :root{
+    --bg:#F2F0E9;
+    --surface:#FFFFFE;
+    --surface-2:#EAE7DD;
+    --ink:#1E2530;
+    --ink-soft:#57616F;
+    --ink-faint:#8B92A0;
+    --line:#DAD5C7;
+    --accent:#2E4C7A;
+    --accent-strong:#1F3557;
+    --accent-soft:#E3EAF3;
+    --red:#A13A3A;
+    --red-soft:#F5E3E1;
+    --red-strong:#7E2C2C;
+    --shadow: 0 1px 2px rgba(30,37,48,.06), 0 8px 24px -12px rgba(30,37,48,.18);
+    --font-display: 'Fraunces', ui-serif, Georgia, serif;
+    --font-body: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+    --font-hand: 'Caveat', cursive;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12161C;
+      --surface:#191E26;
+      --surface-2:#1F2530;
+      --ink:#E9E6DC;
+      --ink-soft:#9CA6B3;
+      --ink-faint:#6B7482;
+      --line:#2B323D;
+      --accent:#8FB0DE;
+      --accent-strong:#B7CDEA;
+      --accent-soft:#20304A;
+      --red:#E08A82;
+      --red-soft:#3A2222;
+      --red-strong:#F2AFA8;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px -14px rgba(0,0,0,.55);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12161C;
+    --surface:#191E26;
+    --surface-2:#1F2530;
+    --ink:#E9E6DC;
+    --ink-soft:#9CA6B3;
+    --ink-faint:#6B7482;
+    --line:#2B323D;
+    --accent:#8FB0DE;
+    --accent-strong:#B7CDEA;
+    --accent-soft:#20304A;
+    --red:#E08A82;
+    --red-soft:#3A2222;
+    --red-strong:#F2AFA8;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px -14px rgba(0,0,0,.55);
+    color-scheme: dark;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:.001ms !important; transition-duration:.001ms !important; }
+  }
+
+  a{ color:var(--accent); }
+  h1,h2,h3,h4{ font-family:var(--font-display); color:var(--ink); margin:0; text-wrap:balance; }
+  p{ margin:0; }
+  ul{ margin:0; padding:0; list-style:none; }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+  .col{ max-width:760px; margin:0 auto; padding:0 24px; }
+
+  /* ---------- Header ---------- */
+  header.site{
+    position:sticky; top:0; z-index:40;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .site-bar{
+    max-width:1180px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:baseline; justify-content:space-between; gap:20px;
+  }
+  .logotype{ display:flex; align-items:baseline; gap:2px; font-family:var(--font-display); font-size:1.35rem; }
+  .logotype b{ font-weight:700; }
+  .logotype i{ font-style:italic; font-weight:500; color:var(--accent); }
+  nav.chips{
+    display:flex; gap:8px; overflow-x:auto; padding:2px;
+    scrollbar-width:none;
+  }
+  nav.chips::-webkit-scrollbar{ display:none; }
+  nav.chips a{
+    flex:none;
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.04em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none;
+    border:1px solid var(--line); border-radius:999px;
+    padding:6px 12px;
+    white-space:nowrap;
+  }
+  nav.chips a:hover{ color:var(--accent); border-color:var(--accent); }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:56px 0 40px; border-bottom:1px solid var(--line); }
+  .hero-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:end; }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:.75rem; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--accent); margin:0 0 14px;
+  }
+  .hero h1{ font-size:clamp(2.1rem, 4.4vw, 3.1rem); font-weight:600; line-height:1.08; }
+  .hero h1 em{ font-style:italic; color:var(--accent); font-weight:500; }
+  .hero p.lede{ margin-top:18px; font-size:1.1rem; color:var(--ink-soft); max-width:52ch; line-height:1.65; }
+  .facts{ display:flex; flex-direction:column; gap:14px; }
+  .fact{
+    display:flex; align-items:baseline; gap:12px;
+    border-bottom:1px solid var(--line); padding-bottom:12px;
+  }
+  .fact .n{ font-family:var(--font-display); font-size:1.7rem; font-weight:600; color:var(--accent); min-width:64px; }
+  .fact .d{ font-size:.88rem; color:var(--ink-soft); line-height:1.4; }
+
+  .intro-note{
+    margin-top:32px; padding-top:28px; border-top:1px dashed var(--line);
+    font-size:.98rem; color:var(--ink-soft); max-width:78ch; line-height:1.7;
+  }
+  .intro-note strong{ color:var(--ink); font-weight:600; }
+
+  /* ---------- Section shell ---------- */
+  section.block{ padding:52px 0; border-bottom:1px solid var(--line); }
+  .block-head{ margin-bottom:28px; max-width:70ch; }
+  .block-head h2{ font-size:1.7rem; font-weight:600; }
+  .block-head p{ margin-top:10px; color:var(--ink-soft); font-size:1rem; }
+
+  /* ---------- Operatoren ---------- */
+  .niveau-block{ margin-top:32px; }
+  .niveau-block:first-child{ margin-top:0; }
+  .niveau-head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 14px; margin-bottom:14px; }
+  .niveau-badge{
+    font-family:var(--font-mono); font-size:.7rem; letter-spacing:.05em; text-transform:uppercase;
+    background:var(--accent-soft); color:var(--accent-strong); padding:4px 11px; border-radius:6px; white-space:nowrap;
+  }
+  .niveau-head h3{ font-size:1.08rem; font-weight:600; }
+  .niveau-head p{ font-size:.85rem; color:var(--ink-soft); flex-basis:100%; }
+  @media (min-width:640px){ .niveau-head p{ flex-basis:auto; margin-left:2px; } }
+
+  .op-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .op-card{ background:var(--surface); padding:16px 18px; display:flex; flex-direction:column; gap:8px; }
+  .op-card .verb{ font-family:var(--font-mono); font-weight:600; font-size:.92rem; color:var(--accent-strong); }
+  .op-card .def{ font-size:.87rem; color:var(--ink-soft); line-height:1.5; }
+  .op-card .beispiel{ font-size:.82rem; font-style:italic; color:var(--ink); background:var(--accent-soft); border-radius:6px; padding:7px 10px; line-height:1.5; }
+
+  /* ---------- Kriterien ---------- */
+  .krit-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .krit{ background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:20px; }
+  .krit .idx{ font-family:var(--font-mono); font-size:.72rem; color:var(--ink-faint); letter-spacing:.06em; }
+  .krit h4{ font-size:1.02rem; margin-top:6px; font-weight:600; }
+  .krit p{ margin-top:8px; font-size:.85rem; color:var(--ink-soft); line-height:1.5; }
+
+  /* ---------- Layout: content + rail ---------- */
+  .stage{ display:grid; grid-template-columns:1fr; position:relative; }
+  .rail{
+    display:none;
+  }
+  @media (min-width:1100px){
+    .stage{ grid-template-columns: 1fr 200px; gap:0; align-items:start; }
+    .rail{
+      display:flex; flex-direction:column; gap:22px;
+      position:sticky; top:88px;
+      padding:8px 0 8px 28px;
+      border-left:1px solid var(--line);
+      margin-left:12px;
+    }
+  }
+  .rail-group{ display:flex; flex-direction:column; gap:6px; }
+  .rail-group .glabel{ font-family:var(--font-mono); font-size:.66rem; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:2px; }
+  .rail a{
+    text-decoration:none; color:var(--ink-soft); font-size:.86rem;
+    padding:5px 0 5px 12px; border-left:2px solid transparent;
+    transition:color .15s, border-color .15s;
+  }
+  .rail a:hover{ color:var(--accent); }
+  .rail a.active{ color:var(--accent-strong); border-left-color:var(--accent); font-weight:600; }
+
+  /* ---------- Textsorten ---------- */
+  #textsorten{ padding-top:52px; }
+  .ts-list{ display:flex; flex-direction:column; gap:18px; }
+
+  details.ts{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    scroll-margin-top:88px;
+  }
+  details.ts > summary{
+    list-style:none; cursor:pointer;
+    padding:22px 26px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+  }
+  details.ts > summary::-webkit-details-marker{ display:none; }
+  .ts-head-l{ display:flex; flex-direction:column; gap:6px; min-width:0; }
+  .ts-tag{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.07em; text-transform:uppercase; color:var(--accent); }
+  .ts-head-l h3{ font-size:1.4rem; font-weight:600; }
+  .ts-kurz{ color:var(--ink-soft); font-size:.92rem; max-width:62ch; }
+  .ts-chevron{
+    flex:none; width:30px; height:30px; border-radius:50%;
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink-soft); font-size:1rem;
+    transition:transform .2s ease;
+  }
+  details.ts[open] .ts-chevron{ transform:rotate(45deg); }
+
+  .ts-body{ padding:0 26px 30px; }
+  .ts-meta{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+  .meta-pill{
+    font-family:var(--font-mono); font-size:.7rem; color:var(--ink-soft);
+    background:var(--surface-2); border:1px solid var(--line); border-radius:6px;
+    padding:4px 9px;
+  }
+
+  .ts-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:760px){ .ts-grid{ grid-template-columns:1fr; } }
+
+  .panel{ border:1px solid var(--line); border-radius:10px; padding:18px 20px; background:var(--surface); }
+  .panel h4{
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--ink-faint); margin-bottom:14px; display:flex; align-items:center; gap:8px;
+  }
+  .panel h4 .dot{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+
+  /* Merkmale & Aufbau panel */
+  .merkmale{ display:flex; flex-direction:column; gap:7px; margin-bottom:16px; }
+  .merkmale li{ font-size:.9rem; color:var(--ink); padding-left:14px; position:relative; line-height:1.5; }
+  .merkmale li::before{ content:"–"; position:absolute; left:0; color:var(--accent); }
+
+  .aufbau{ display:flex; flex-direction:column; }
+  .aufbau li{ display:grid; grid-template-columns:26px 1fr; gap:10px; padding:9px 0; border-top:1px dotted var(--line); }
+  .aufbau li:first-child{ border-top:none; }
+  .aufbau .num{ font-family:var(--font-mono); font-size:.78rem; color:var(--accent); }
+  .aufbau .step b{ font-size:.88rem; font-weight:600; display:block; }
+  .aufbau .step span{ font-size:.85rem; color:var(--ink-soft); line-height:1.45; }
+
+  /* Formulierungshilfen panel */
+  .formgroup{ margin-bottom:14px; }
+  .formgroup:last-child{ margin-bottom:0; }
+  .formgroup .flabel{ font-size:.78rem; font-weight:600; color:var(--accent-strong); margin-bottom:6px; }
+  .formgroup ul{ display:flex; flex-direction:column; gap:6px; }
+  .formgroup li{
+    font-size:.87rem; color:var(--ink); line-height:1.5;
+    background:var(--accent-soft); border-radius:6px; padding:7px 10px;
+    font-style:italic;
+  }
+
+  /* Schreibentwurf panel */
+  .entwurf{
+    background:
+      repeating-linear-gradient(var(--surface), var(--surface) 27px, var(--line) 28px);
+    background-color:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    border-radius:4px;
+    padding:16px 18px;
+    font-family:var(--font-display);
+    font-size:.94rem;
+    line-height:28px;
+    color:var(--ink);
+  }
+  .entwurf p{ margin:0 0 0; }
+  .entwurf .ph{
+    color:var(--accent-strong); font-style:italic; font-weight:500;
+    border-bottom:1px dashed var(--accent);
+  }
+
+  /* Problemfelder panel */
+  .problem-panel{ border-color:var(--red-soft); }
+  .problem-panel h4{ color:var(--red-strong); }
+  .problem-panel h4 .dot{ background:var(--red); }
+  .problems{ display:flex; flex-direction:column; gap:12px; }
+  .problem{ display:flex; gap:10px; align-items:flex-start; }
+  .problem .x{
+    flex:none; width:20px; height:20px; margin-top:2px;
+    color:var(--red); font-family:var(--font-hand); font-size:1.3rem; font-weight:700; line-height:1;
+  }
+  .problem .body b{
+    font-family:var(--font-hand); font-size:1.15rem; font-weight:600; color:var(--red-strong);
+    display:block; line-height:1.1;
+  }
+  .problem .body span{ font-size:.86rem; color:var(--ink-soft); line-height:1.5; }
+
+  /* Übungslinks panel */
+  .linklist{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:10px; }
+  .linkcard{
+    display:flex; flex-direction:column; gap:5px;
+    padding:12px 14px; border:1px solid var(--line); border-radius:8px;
+    background:var(--surface-2); text-decoration:none;
+    transition:border-color .15s ease;
+  }
+  .linkcard:hover{ border-color:var(--accent); }
+  .linkcard:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .linkcard .row1{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .linkcard .quelle{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.05em; text-transform:uppercase; color:var(--accent-strong); }
+  .linkcard .ext{ color:var(--ink-faint); font-size:.8rem; flex:none; }
+  .linkcard .txt{ font-size:.85rem; color:var(--ink); line-height:1.4; }
+  .linkcard .typ{ font-size:.72rem; color:var(--ink-soft); font-style:italic; }
+  .link-note{ font-size:.8rem; color:var(--ink-faint); margin-top:12px; line-height:1.5; }
+
+  .archive-callout{
+    margin-top:26px; padding:16px 20px; border:1px dashed var(--line); border-radius:10px;
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 12px;
+    font-size:.92rem; color:var(--ink-soft);
+  }
+  .archive-callout a{ font-weight:600; }
+
+  /* ---------- Überblick: Vergleichsmatrix ---------- */
+  .subhead{ margin:48px 0 20px; max-width:70ch; }
+  .subhead:first-child{ margin-top:0; }
+  .subhead h3{ font-size:1.25rem; font-weight:600; }
+  .subhead p{ margin-top:8px; color:var(--ink-soft); font-size:.92rem; }
+
+  .matrix-wrap{
+    overflow-x:auto; border:1px solid var(--line); border-radius:10px;
+    box-shadow:var(--shadow);
+  }
+  table.matrix{ border-collapse:separate; border-spacing:0; width:100%; min-width:1080px; background:var(--surface); }
+  table.matrix th, table.matrix td{
+    border-bottom:1px solid var(--line); border-right:1px solid var(--line);
+    padding:12px 14px; vertical-align:top; text-align:left; font-size:.82rem; line-height:1.5;
+  }
+  table.matrix th:last-child, table.matrix td:last-child{ border-right:none; }
+  table.matrix thead th{
+    background:var(--accent-soft); color:var(--accent-strong);
+    font-family:var(--font-mono); font-size:.7rem; letter-spacing:.04em; text-transform:uppercase;
+    position:sticky; top:0; z-index:2; font-weight:600;
+  }
+  table.matrix th:first-child, table.matrix td:first-child{
+    position:sticky; left:0; z-index:1; background:var(--surface-2);
+    font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.04em;
+    color:var(--ink-faint); white-space:nowrap; min-width:110px;
+  }
+  table.matrix thead th:first-child{ z-index:3; background:var(--accent-soft); }
+  table.matrix td{ min-width:220px; }
+  table.matrix ul{ display:flex; flex-direction:column; gap:5px; }
+  table.matrix li{ padding-left:12px; position:relative; }
+  table.matrix li::before{ content:"–"; position:absolute; left:0; color:var(--accent); }
+  table.matrix .cell-empty{ color:var(--ink-faint); font-style:italic; }
+
+  /* ---------- Sprachbaukasten ---------- */
+  .wordbank{ display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:12px; }
+  .wordbank-card{ border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:var(--surface); }
+  .wordbank-card .lbl{ font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.05em; color:var(--accent-strong); margin-bottom:8px; }
+  .wordbank-card .words{ font-size:.86rem; line-height:1.6; color:var(--ink); }
+
+  .chainlist{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chain{ font-family:var(--font-mono); font-size:.76rem; background:var(--surface-2); border:1px solid var(--line); border-radius:6px; padding:5px 10px; color:var(--ink-soft); white-space:nowrap; }
+
+  .checklist{ display:flex; flex-direction:column; gap:9px; }
+  .checklist li{ display:flex; gap:9px; align-items:flex-start; font-size:.88rem; color:var(--ink); line-height:1.5; }
+  .checklist li::before{ content:"✓"; color:var(--accent); font-weight:700; flex:none; }
+
+  /* ---------- Stilmittel ---------- */
+  .stil-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:14px; }
+  .stil-card{ border:1px solid var(--line); border-radius:10px; padding:16px 18px; background:var(--surface); display:flex; flex-direction:column; gap:9px; }
+  .stil-card .head{ display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
+  .stil-card .name{ font-family:var(--font-display); font-size:1.05rem; font-weight:600; }
+  .stil-card .num{ font-family:var(--font-mono); font-size:.68rem; color:var(--ink-faint); }
+  .stil-card .def{ font-size:.85rem; color:var(--ink-soft); line-height:1.5; }
+  .stil-card .beispiel{ font-size:.85rem; font-style:italic; color:var(--ink); background:var(--accent-soft); border-radius:6px; padding:8px 10px; line-height:1.5; }
+  .stil-card .wirkung{ font-size:.81rem; color:var(--ink-soft); line-height:1.5; }
+  .stil-card .wirkung b{ color:var(--accent-strong); font-weight:600; font-style:normal; }
+
+  /* ---------- Stilmittel-Quiz ---------- */
+  .quiz-panel{ border:1px solid var(--line); border-radius:14px; padding:26px 28px; background:var(--surface); box-shadow:var(--shadow); }
+  .quiz-progress{ font-family:var(--font-mono); font-size:.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.04em; display:flex; justify-content:space-between; margin-bottom:16px; }
+  .quiz-sentence{
+    background: repeating-linear-gradient(var(--surface), var(--surface) 27px, var(--line) 28px);
+    background-color:var(--surface);
+    border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px;
+    padding:14px 18px; font-family:var(--font-display); font-size:1.02rem; line-height:28px; color:var(--ink);
+  }
+  .quiz-question{ margin:16px 0 12px; font-size:.9rem; color:var(--ink-soft); }
+  .quiz-options{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  @media (max-width:520px){ .quiz-options{ grid-template-columns:1fr; } }
+  .quiz-option{
+    text-align:left; border:1px solid var(--line); border-radius:8px; padding:10px 14px;
+    background:var(--surface-2); font-size:.88rem; color:var(--ink); cursor:pointer; font-family:var(--font-body);
+  }
+  .quiz-option:hover:not(:disabled){ border-color:var(--accent); }
+  .quiz-option.correct{ border-color:var(--accent); background:var(--accent-soft); color:var(--accent-strong); font-weight:600; }
+  .quiz-option.wrong{ border-color:var(--red); background:var(--red-soft); color:var(--red-strong); }
+  .quiz-option:disabled{ cursor:default; }
+  .quiz-feedback{ margin-top:16px; padding:14px 16px; border-radius:8px; background:var(--surface-2); border-left:3px solid var(--accent); font-size:.87rem; line-height:1.55; color:var(--ink); display:none; }
+  .quiz-feedback.show{ display:block; }
+  .quiz-actions{ display:flex; justify-content:space-between; align-items:center; margin-top:20px; gap:12px; flex-wrap:wrap; }
+  .quiz-score{ font-family:var(--font-mono); font-size:.8rem; color:var(--ink-soft); }
+  .quiz-next{ font-family:var(--font-body); font-weight:600; font-size:.85rem; color:var(--accent-strong); background:var(--accent-soft); border:none; border-radius:8px; padding:9px 18px; cursor:pointer; }
+  .quiz-next:disabled{ opacity:.35; cursor:default; }
+  .quiz-restart{ font-family:var(--font-mono); font-size:.72rem; color:var(--ink-soft); background:none; border:1px solid var(--line); border-radius:6px; padding:6px 12px; cursor:pointer; }
+  .quiz-restart:hover{ border-color:var(--accent); color:var(--accent-strong); }
+  .quiz-done{ text-align:center; padding:12px 0; }
+  .quiz-done .big{ font-family:var(--font-display); font-size:2.2rem; font-weight:600; color:var(--accent); }
+  .quiz-done p{ margin-top:8px; color:var(--ink-soft); font-size:.92rem; }
+
+  /* ---------- Footer ---------- */
+  footer{ padding:40px 0 60px; }
+  footer p{ font-size:.85rem; color:var(--ink-faint); max-width:60ch; line-height:1.6; }
+
+  @media (max-width:640px){
+    .hero-grid{ grid-template-columns:1fr; gap:32px; }
+    .krit-row{ grid-template-columns:1fr 1fr; }
+    .site-bar{ flex-direction:column; align-items:flex-start; gap:10px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="site-bar">
+    <div class="logotype"><b>Textsorten</b><i>atlas</i></div>
+    <nav class="chips" id="chipnav"></nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Schriftliche Reife- und Diplomprüfung Deutsch</p>
+          <h1>7 Textsorten,<br><em>ein</em> Nachschlagewerk.</h1>
+          <p class="lede">Merkmale, Aufbau, Formulierungshilfen, ein ausformulierter Schreibentwurf und die typischen Problemfelder — für jede Textsorte, die bei der österreichischen Matura vorkommen kann.</p>
+        </div>
+        <div class="facts">
+          <div class="fact"><span class="n">7</span><span class="d">Textsorten, gegliedert in appellativ-journalistische, sachliche und literarisch-analytische</span></div>
+          <div class="fact"><span class="n">4</span><span class="d">Beurteilungskriterien, nach denen jede Klausur korrigiert wird</span></div>
+          <div class="fact"><span class="n">300′</span><span class="d">Bearbeitungszeit für den Schreibteil, in der Regel inklusive Lesezeit</span></div>
+        </div>
+      </div>
+      <p class="intro-note">Im Schreibteil der Klausur wählt man ein Thema aus dem vorab bekannten <strong>Themenpool</strong> und bearbeitet dazu eine oder zwei <strong>Schreibaufgaben</strong> auf Basis eines oder mehrerer <strong>Grundlagentexte</strong>. Die Aufgabenstellung legt fest, welche Textsorte zu verfassen ist — deshalb entscheidet die richtige Wahl von Ton, Aufbau und Formulierung oft über die Punkte, noch bevor der Inhalt bewertet wird.</p>
+      <div class="archive-callout">
+        <span>Echte Prüfungsthemen aller bisherigen Termine:</span>
+        <a href="https://www.matura.gv.at/downloads?tx_solr%5Bfilter%5D%5B0%5D=documentType%3A%2FFr%C3%BChere+Pr%C3%BCfungsaufgaben%2FKlausuren%2F&tx_solr%5Bfilter%5D%5B1%5D=subject%3A%2FUnterrichtssprache%2FDeutsch%2F" target="_blank" rel="noopener noreferrer">Offizielles Aufgaben-Archiv auf matura.gv.at ↗</a>
+        <span>— mit den originalen Klausuraufgaben und Grundlagentexten seit 2012/13.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="operatoren">
+    <div class="wrap">
+      <div class="block-head">
+        <h2>Operatoren</h2>
+        <p>Die Verben in der Aufgabenstellung sind Arbeitsanweisungen, keine Stilfrage. Wer „erörtern“ mit „zusammenfassen“ verwechselt, verfehlt die Aufgabe unabhängig von der sprachlichen Qualität. Gegliedert nach den drei Anforderungsniveaus, wie sie im Operatorenkatalog zur Reife- und Diplomprüfung Deutsch verwendet werden.</p>
+      </div>
+      <div id="operatorenList"></div>
+    </div>
+  </section>
+
+  <section class="block" id="kriterien">
+    <div class="wrap">
+      <div class="block-head">
+        <h2>Beurteilungskriterien</h2>
+        <p>Jede Textsorte wird entlang derselben vier Achsen korrigiert — die Formulierungshilfen und Problemfelder auf dieser Seite setzen genau hier an.</p>
+      </div>
+      <div class="krit-row" id="kritrow"></div>
+    </div>
+  </section>
+
+  <section class="block" id="ueberblick">
+    <div class="wrap">
+      <div class="block-head">
+        <h2>Überblick im Vergleich</h2>
+        <p>Alle sieben Textsorten nebeneinander, gegliedert nach denselben Aufbauelementen — bevor es weiter unten für jede einzeln ins Detail geht.</p>
+      </div>
+      <div class="matrix-wrap">
+        <table class="matrix" id="matrix"></table>
+      </div>
+
+      <div class="subhead">
+        <h3>Sprachbaukasten</h3>
+        <p>Verknüpfungswörter und Formulierungsbausteine, die textsortenübergreifend weiterhelfen — besonders beim Argumentieren in Erörterung, Kommentar und Meinungsrede.</p>
+      </div>
+      <div class="wordbank" id="wordbank"></div>
+
+      <div class="ts-grid" style="margin-top:20px;">
+        <div class="panel">
+          <h4><span class="dot"></span>Argumentationsketten strukturieren</h4>
+          <div class="chainlist" id="chainlist"></div>
+        </div>
+        <div class="panel">
+          <h4><span class="dot"></span>Aufgaben des Schlussteils</h4>
+          <ul class="checklist" id="schlussaufgaben"></ul>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:18px;">
+        <h4><span class="dot"></span>Weitere sprachliche Mittel</h4>
+        <div class="wordbank" id="weiteremittel"></div>
+      </div>
+
+      <div class="panel" style="margin-top:18px;">
+        <h4><span class="dot"></span>Fertige Formulierungsbausteine für Einleitung, Hauptteil und Schluss</h4>
+        <div id="phrasebeispiele"></div>
+        <p class="link-note">Als Muster gedacht — mit eigenem Thema füllen, nicht wortwörtlich übernehmen.</p>
+      </div>
+
+      <div class="panel" style="margin-top:18px;">
+        <h4><span class="dot"></span>Grafiken versprachlichen</h4>
+        <div id="grafiken"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="textsorten">
+    <div class="wrap">
+      <div class="stage">
+        <div>
+          <div class="col" style="max-width:100%; padding:0; margin-bottom:28px;">
+            <h2 style="font-size:1.7rem; font-weight:600;">Die Textsorten im Detail</h2>
+            <p style="margin-top:10px; color:var(--ink-soft);">Jede Karte lässt sich aufklappen: links Merkmale und Aufbau, rechts Formulierungshilfen, darunter ein Schreibentwurf zum Weiterschreiben und die roten Anmerkungen zu den häufigsten Fehlern.</p>
+          </div>
+          <div class="ts-list" id="tslist"></div>
+        </div>
+        <aside class="rail" id="rail"></aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="stilmittel">
+    <div class="wrap">
+      <div class="block-head">
+        <h2>15 Stilmittel erkennen</h2>
+        <p>Bei Textanalyse und Textinterpretation reicht es nicht, ein Stilmittel zu benennen — entscheidend ist, seine Wirkung zu erklären. Diese 15 kommen am häufigsten vor.</p>
+      </div>
+      <div class="stil-grid" id="stilgrid"></div>
+
+      <div class="subhead">
+        <h3>Übung: Stilmittel erkennen</h3>
+        <p>Zu jedem Satz eine Antwort wählen — die Erklärung zur Wirkung erscheint sofort danach.</p>
+      </div>
+      <div class="quiz-panel" id="quizPanel"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p>Formulierungshilfen und Schreibentwürfe sind Gerüste, keine Musterlösungen — sie ersetzen weder eigene Beispiele noch das Lesen der konkreten Grundlagentexte in der Prüfung.</p>
+    </div>
+  </footer>
+</main>
+
+<script>
+const NIVEAUS = [
+  {id:"I", titel:"Reproduktion", beschreibung:"Informationen werden erkannt und wiedergegeben."},
+  {id:"II", titel:"Reorganisation & Transfer", beschreibung:"Informationen werden verknüpft, neu geordnet und auf einen anderen Zusammenhang übertragen."},
+  {id:"III", titel:"Reflexion & Problemlösung", beschreibung:"Schließt die beiden anderen Niveaus ein und verlangt zusätzlich eine eigene gedankliche Leistung."},
+];
+
+const OPERATOREN = [
+  // Niveau I — Reproduktion
+  {niveau:"I", verb:"(be)nennen / bestimmen", def:"Eine Information sachlich benennen, ohne sie zu kommentieren oder zu werten.", beispiel:"Nennen Sie den Vorwurf, der im Text gegen die Ministerin erhoben wird."},
+  {niveau:"I", verb:"beschreiben", def:"Eine Textaussage oder einen Sachverhalt strukturiert und in eigenen Worten darstellen.", beispiel:"Beschreiben Sie, wie der Text aufgebaut ist und erzählt wird."},
+  {niveau:"I", verb:"wiedergeben", def:"Inhalte oder Zusammenhänge sachlich und in eigenen, fachsprachlich passenden Worten formulieren.", beispiel:"Geben Sie den Inhalt des Gedichts wieder."},
+  {niveau:"I", verb:"zusammenfassen", def:"Inhalte komprimiert, sinnvoll geordnet und in eigenen Worten wiedergeben.", beispiel:"Fassen Sie die Argumentation des Textes zusammen."},
+  {niveau:"I", verb:"darstellen", def:"Größere, übergeordnete Zusammenhänge strukturiert und nachvollziehbar formulieren.", beispiel:"Stellen Sie dar, welche Haltung die Autorin zum behandelten Problem einnimmt."},
+  // Niveau II — Reorganisation & Transfer
+  {niveau:"II", verb:"untersuchen / erschließen", def:"Aussagen oder Problemstellungen anhand vorgegebener Kriterien gezielt aus dem Material ermitteln.", beispiel:"Untersuchen Sie, an welchen Textstellen die innere Haltung des Erzählers sichtbar wird."},
+  {niveau:"II", verb:"analysieren", def:"Das Zusammenspiel von Inhalt, Form/Sprache und Absicht eines Textes nach bestimmten Kriterien strukturiert darstellen.", beispiel:"Analysieren Sie die Sprache des Textes im Hinblick auf die Absicht der Autorin."},
+  {niveau:"II", verb:"einordnen", def:"Eine Aussage, Deutung oder Problemstellung in einen größeren, selbst gewählten oder vorgegebenen Zusammenhang stellen.", beispiel:"Ordnen Sie das Gedicht literaturgeschichtlich ein."},
+  {niveau:"II", verb:"vergleichen", def:"Zwei oder mehr Texte bzw. Sachverhalte gegenüberstellen und Gemeinsamkeiten sowie Unterschiede herausarbeiten.", beispiel:"Vergleichen Sie die Erzählweise der beiden Parabeln."},
+  {niveau:"II", verb:"erklären / erläutern", def:"Einen Sachverhalt nachvollziehbar machen und mit zusätzlichen Informationen veranschaulichen.", beispiel:"Erläutern Sie, ob und wie das Gedicht auch politisch gelesen werden kann."},
+  {niveau:"II", verb:"in Beziehung setzen", def:"Zwei Sachverhalte, Aussagen oder Textstellen bewertend miteinander verknüpfen.", beispiel:"Setzen Sie die zentrale These der Autorin in Beziehung zum vorliegenden Text."},
+  {niveau:"II", verb:"charakterisieren", def:"Eine Figur anhand direkter und indirekter Textinformationen in ihren äußeren und inneren Merkmalen beschreiben.", beispiel:"Charakterisieren Sie die Hauptfigur der Erzählung."},
+  // Niveau III — Reflexion & Problemlösung
+  {niveau:"III", verb:"interpretieren / deuten", def:"Das Zusammenspiel von Inhalt, Form und Absicht erfassen und zu einer begründeten Gesamtdeutung führen.", beispiel:"Interpretieren Sie das Gedicht im Hinblick auf seinen Titel."},
+  {niveau:"III", verb:"beurteilen", def:"Eine sachlich begründete, an nachvollziehbaren Kriterien orientierte Einschätzung abgeben.", beispiel:"Beurteilen Sie das Verhalten der Figur am Ende der Handlung."},
+  {niveau:"III", verb:"bewerten", def:"Wie beurteilen, jedoch mit offengelegtem eigenem Maßstab, der sich aus allgemein anerkannten Werten ableitet.", beispiel:"Bewerten Sie aus eigener Sicht, wie die Autorin das Medienverhalten Jugendlicher darstellt."},
+  {niveau:"III", verb:"(kritisch) Stellung nehmen / kommentieren", def:"Zu einer Aussage oder Problemstellung eine sachlich fundierte, begründete eigene Position formulieren.", beispiel:"Nehmen Sie kritisch Stellung zur These der Autorin, dass …"},
+  {niveau:"III", verb:"begründen", def:"Eine Meinung oder ein Urteil methodisch korrekt mit Argumenten, Belegen und Beispielen absichern.", beispiel:"Begründen Sie, ob es sich bei dem Text um eine Parabel handelt."},
+  {niveau:"III", verb:"erörtern / diskutieren", def:"Zu einer These eine differenzierte, begründete eigene Position entwickeln und strukturiert darstellen.", beispiel:"Erörtern Sie die im Text vertretene These."},
+  {niveau:"III", verb:"(über)prüfen", def:"Die Gültigkeit einer These oder Aussage anhand vorgegebener Kriterien untersuchen und zu einem Ergebnis kommen.", beispiel:"Überprüfen Sie die Textaussagen anhand der beiliegenden Grafik."},
+  {niveau:"III", verb:"entwerfen", def:"Nach vorheriger Analyse einen eigenen Text zu einer Vorlage planen und die eigenen Entscheidungen dabei offenlegen.", beispiel:"Entwerfen Sie einen alternativen Schluss zum Drama."},
+  {niveau:"III", verb:"gestalten", def:"Auf Basis einer Textvorlage und konkreter Vorgaben einen eigenen Text nach bestimmten Kriterien verfassen.", beispiel:"Gestalten Sie auf Grundlage der Materialien einen Artikel für die Schülerzeitung."},
+  {niveau:"III", verb:"appellieren", def:"Sich mit einer begründeten Bitte an eine zuständige Person oder Institution wenden.", beispiel:"Appellieren Sie an die zuständige Behörde, sich für eine Lösung im Sinne junger Menschen einzusetzen."},
+];
+
+const KRITERIEN = [
+  {idx:"01", titel:"Inhalt & Aufgabenerfüllung", text:"Werden Thema, Schreibauftrag und Textsorten-Vorgabe vollständig erfüllt?"},
+  {idx:"02", titel:"Textstruktur & Textsorte", text:"Ist der Aufbau erkennbar, logisch und passend zur geforderten Textsorte?"},
+  {idx:"03", titel:"Ausdruck & Stil", text:"Passt der Sprachstil zu Adressat und Textsorte, ist der Wortschatz treffend und variabel?"},
+  {idx:"04", titel:"Sprachrichtigkeit", text:"Stimmen Grammatik, Rechtschreibung und Zeichensetzung durchgehend?"},
+];
+
+const MATRIX_ROWS = ["Allgemeines","Einleitung","Hauptteil","Schluss","Sprache"];
+
+const VERGLEICH = {
+  zusammenfassung:{
+    Allgemeines:["Wesentliche Inhalte eines Textes verständlich wiedergeben","Kurze, prägnante und sachliche Information","Rascher Überblick über einen Text","Keine Wertungen","Dreiteilig nur, wenn in der Angabe formuliert als „Benennen Sie die Intention des Verfassers“","Keine direkten Reden"],
+    Einleitung:["Angabe von Textsorte, Titel, Verfasser:in, Erscheinungsdatum, Zeitung/Zeitschrift, Verlag und Thema"],
+    Hauptteil:["Chronologisch: an die Reihenfolge der Information halten","Sachlogisch: Informationen sachthematisch zusammenfassen"],
+    Schluss:["Aufgabenstellung beachten: Beurteilen/Benennen Sie, ob der Text als Grundlage für eine Diskussion dienen kann"],
+    Sprache:["Präsens, sachlich, objektiv — nicht in die Sprache der Textvorlage fallen"],
+  },
+  meinungsrede:{
+    Allgemeines:["Rede aus einem konkreten Anlass","Festgelegte Zuhörerschaft","Vorgegebenes Thema","Richtige Anrede verwenden","Die Zuhörer:innen dazu bewegen, neue Einstellungen zu übernehmen und bestimmte Handlungen zu setzen","Publikum mehrmals ansprechen","Rhetorische Fragen","5-Satz, LUZMA"],
+    Einleitung:["Anrede und Thema ansprechen — die Textgrundlage muss nicht genannt werden, nur das Thema","Unmittelbarer Einstieg mit Beispiel möglich"],
+    Hauptteil:["Argumentation der Rede — Gegenargumente entkräften","Partnertaktik einsetzen"],
+    Schluss:["Wichtigstes zusammenfassen und darauf den Appell aufbauen — oder ein mögliches Zukunftsszenario entwerfen"],
+    Sprache:["Aktiv formulieren, kein Passiv","Keine langen verschachtelten Sätze","Rhetorische Figuren wie rhetorische Fragen, Metaphern — in Maßen"],
+  },
+  kommentar:{
+    Allgemeines:["Greift ein aktuelles gesellschaftliches oder politisches Thema auf","Setzt sich mit wichtigen Argumenten und Meinungen zum Thema auseinander","Regt Leser:innen zum Überdenken ihres Standpunktes an — nicht direkt „liebe Leser“ ansprechen","Will in den Meinungsbildungsprozess eingreifen","Kein Anführen des Grundlagentextes, aber Thema aufarbeiten","Beginn mit eigener Meinung möglich — aber kein „Ich“","5-Satz, LUZMA"],
+    Einleitung:["Knappe Darstellung des Problems — Frage oder These am Ende aufstellen"],
+    Hauptteil:["Standpunkte durch Argumente und Beispiele veranschaulichen","5-Satz-Schema"],
+    Schluss:["Schlussfolgerung, Fazit, Appell aufbauend auf die vorherige Argumentation — kann auch mit provokanter Frage enden, um Leser:innen zum Nachdenken anzuregen"],
+    Sprache:["Ich- und Wir-Perspektive vermeiden, stattdessen man, es, Passiv und Infinitiv verwenden","Leser:innen nicht direkt ansprechen","Rhetorische Mittel einsetzen","Keine zu langen Sätze","Gliederung durch Verbindungen wie „dadurch“, „deshalb“, „daraus erkennt man …“"],
+  },
+  leserbrief:{
+    Allgemeines:["Reaktion auf einen veröffentlichten Text","Richtet sich an den Verfasser des Textes oder an Herausgeber:in/Chefredaktion des Mediums","Argumentiert die eigene Sicht der Dinge","Stellungnahme zu einzelnen Aussagen oder zum Thema des Textes","Briefform einhalten: Ort, Datum · Betreffzeile mit Titel · Anrede · Einleitung · Hauptteil (5-Satz oder LUZMA) · Schluss mit Appell/Forderung · Grußformel, Unterschrift"],
+    Einleitung:["Bezugnahme auf den Ausgangstext: welcher Artikel, welches Thema, wer/wann verfasst, wo veröffentlicht, welcher strittige Punkt — bildet die Überleitung zum Hauptteil"],
+    Hauptteil:["Ausführung der eigenen Ansichten: kritisieren, kommentieren, beurteilen der Aussagen des Textes, Stellung nehmen, aus eigener Sicht schildern, andere Perspektive einnehmen"],
+    Schluss:["Schlussfolgerung, Fazit, Mahnung, Resümee, Appell"],
+    Sprache:["Keine langen Sätze","Knappe, präzise Sprache","Zugespitzte und pointierte Äußerungen"],
+  },
+  eroerterung:{
+    Allgemeines:["Konfrontation mit einem Problem oder Sachverhalt","Darlegung der Argumente pro und contra","Abwägen und bewerten","Fazit am Schluss — auch ein Kompromiss ist möglich","Themen aus den Lebensbereichen","Textgebundene Erörterung: Grundlagentext muss genannt werden, damit der thematische Zusammenhang klar ist","Keine explizite Ich-Form, außer im zweiten Schlussteil","Fragestellung beachten: W-Fragen → linear, offene Fragen → dialektisch","5-Satz, LUZMA"],
+    Einleitung:["Hinführung zum Thema — bei textgebundener Erörterung mit Angabe des Grundlagentextes","Varianten: Definition, historischer/geografischer Vergleich, aktuelles Ereignis mit Textbezug, persönliches Erlebnis, Statistik, These — Frage als Überleitung"],
+    Hauptteil:["Linear: nur Argumente, die die Frage/These belegen","Dialektisch: Pro- und Contra-Argumente","Textbezogen: unter Zuhilfenahme von Argumenten aus der Textbeilage — Blocksystem oder Reißverschlusssystem"],
+    Schluss:["Wichtige Gedanken, Ausblick auf die Zukunft, eigene Meinung = Ich"],
+    Sprache:["Sachlicher Stil","Verknüpfungswörter wichtig, z. B. „einerseits – andererseits …“","Wortschatz themenabhängig"],
+  },
+  textanalyse:{
+    Allgemeines:["Beschreibt sachlich und in eigenen Worten den Sinn eines Textes","Text verstehen — sprachliche Strategien der Autor:innen durchschauen und Strukturen begreifen"],
+    Einleitung:["Eckdaten zum Text: Titel, Autor:in, Gattungsform, Erscheinungsjahr, Thema","Alternativ: Einstieg mit einem aussagekräftigen Textzitat, dann die Eckdaten liefern"],
+    Hauptteil:["Inhaltsangabe","Charakteristik der Hauptfiguren und Verhältnis der Figuren zueinander","Formale Analyse","Sprachliche Analyse"],
+    Schluss:[],
+    Sprache:["Bei einer Textanalyse geht es darum, einen Text und seinen Aufbau genau zu beschreiben — im Hinblick auf Inhalt, Sprache und Gestaltung. „Analyse“ (altgriechisch: auflösen) heißt: ein Ganzes in einzelne Teile zerlegen und diese genau betrachten"],
+  },
+  textinterpretation:{
+    Allgemeines:["Beschreibt sachlich und in eigenen Worten den Sinn eines Textes","Durchschaut die Textstruktur und nimmt begründet Stellung","Den Schluss bildet eine Bewertung"],
+    Einleitung:["Informationen zu Titel, Autor:in, Erscheinungsjahr und Thema"],
+    Hauptteil:["Erschließung der Textsorte","Aufbau und Gliederung","Motive zum Verfassen des Textes","Sprache und Stil","Interpretation anhand aller Elemente (z. B. sensibilisieren, aufmerksam machen, Betroffenheit erzeugen, erschüttern …)"],
+    Schluss:["Bewertung und Interpretation"],
+    Sprache:["Die Textinterpretation baut auf den Ergebnissen der Analyse auf, geht aber einen Schritt weiter: Der Fokus liegt darauf, den Text im Hinblick auf einen bestimmten Aspekt zu deuten — aufzuzeigen, was der Autor/die Autorin sagen möchte oder warum der Text verfasst wurde, und die Analyseergebnisse in einen größeren Zusammenhang zu stellen"],
+  },
+};
+
+const WORDBANK = [
+  {l:"Einen Grund ausdrücken", w:"weil, deswegen, denn, deshalb, aus diesem Grund"},
+  {l:"Eine Absicht ausdrücken", w:"damit, um … zu, mit dem Ziel, eine Person möchte"},
+  {l:"Eine Einschränkung ausdrücken", w:"obwohl, obgleich, trotzdem, zwar … aber …, zu hinterfragen ist allerdings, der oben genannten Aussage kann nur teilweise zugestimmt werden, weil …"},
+  {l:"Eine Bedingung ausdrücken", w:"wenn, falls, sofern, unter der Bedingung, dass …, sonst, andernfalls"},
+  {l:"Eine Folge ausdrücken", w:"sodass, folglich, daraus folgt, also, infolgedessen"},
+  {l:"Argumente aufzählen", w:"zunächst, an erster Stelle, dann, ferner, weiterhin, des Weiteren, außerdem, ebenso, davon abgesehen, zweitens, drittens …, zusätzlich, darüber hinaus, hinzu kommt, dass …, ein weiteres Argument, schließlich, zuletzt"},
+  {l:"Argumente steigern", w:"besonders betonen/unterstreichen sollte man …, noch wichtiger/überzeugender erscheint Folgendes, weitaus schwerer wiegt …, viel bedenklicher ist …, klarer erkennbar ist Folgendes"},
+  {l:"Gegensätze bilden", w:"auf der einen … auf der anderen Seite, im Gegensatz dazu, jedoch, hingegen, allerdings, demgegenüber, während bisher … soll nun …, dagegen lässt sich einwenden, neben den positiven ergeben sich auch negative Aspekte"},
+  {l:"Schlussformeln", w:"schlussendlich zeigt sich, dass …; zusammenfassend erkennt man, dass …; zusammenfassend lässt sich sagen, dass …; alles in allem verweist … auf …; abschließend soll betont werden, dass …; letztendlich soll darauf hingewiesen werden, dass …"},
+];
+
+const CHAINS = [
+  "einerseits – andererseits – somit","in erster Linie – des Weiteren – schlussendlich",
+  "zum einen – zum anderen – am wichtigsten","einerseits – außerdem – das Allerwichtigste",
+  "zum einen – zum anderen – schließlich","denn – außerdem – letztlich",
+  "denn – außerdem – deshalb","erstens – zweitens – vor allem",
+  "dann – weiters – letztlich","erstens – zweitens – dadurch",
+  "einerseits – andererseits – das Beste","einerseits – andererseits – hauptsächlich",
+  "erstens – zweitens – drittens","früher – heute – morgen",
+  "früher – heute – leider","gestern – heute – schlussendlich",
+];
+
+const SCHLUSSAUFGABEN = [
+  "Kurze Zusammenfassung der wichtigsten Gesichtspunkte",
+  "Persönliche Meinung — nicht nur nennen, dass einem etwas gefällt, sondern auch begründen, warum",
+  "Ausblick auf eine künftige Entwicklung",
+  "Gedanken oder Frage aus der Einleitung abrunden bzw. beantworten",
+  "Auf Widersprüche hinweisen und differenzieren",
+];
+
+const WEITEREMITTEL = [
+  {l:"(Teilweise) Zustimmung ausdrücken", w:"zugestehen, zugeben, bestätigen, einräumen, anerkennen, billigen, nur bedingt richtig, teilweise nachvollziehbar, vorausgesetzt, man muss auch berücksichtigen/einkalkulieren, dass …, eingestehen, zwar … aber"},
+  {l:"Vergleiche & Annäherungen einbauen", w:"im Vergleich zu, vorausgesetzt, dass …, demgegenüber, einerseits … andererseits, allerdings, unter Berücksichtigung von …, wenn auch … so doch, im Unterschied zu …, im Gegensatz zu …"},
+  {l:"Begründungen & Schlussfolgerungen formulieren", w:"weil, da, denn, das zeigt sich daran, der Grund dafür ist, darum, deshalb, also, demnach, infolge, bekanntlich, beweisend, belegbar, daher ergibt sich, dass …"},
+  {l:"Ablehnung ausdrücken", w:"es ist falsch, dass …, diesem Argument ist nicht zuzustimmen, weil …, ablehnen, zurückweisen, bezweifeln, in Frage stellen, kritisieren, bestreiten, entgegenhalten, korrigieren, widersprechen, dagegen spricht, dass …"},
+];
+
+const PHRASEBEISPIELE = [
+  {l:"Einleitung", p:[
+    "Und schon wieder ist es passiert: Um das alljährliche [Sommerloch] zu füllen, wird wieder einmal die Diskussion um [Thema] aufgerollt. — lebendig und originell formulieren",
+    "Gerade ist [Ort/Institution] heftig über [Thema] diskutiert worden. Das Thema [Thema] ist ein Dauerbrenner, nicht nur in [Ort]. — Thema klar und kurz vorstellen",
+    "Doch wer kann sich schon für [Thema/Person], die/der sich [Eigenschaft] auf die Fahnen heftet, entscheiden? Mal ehrlich, hätten Sie gerne, dass …? Wenn ja, geht es Ihnen wie dem überwiegenden Teil der [Bevölkerung]. — eigene Meinung zum Thema deutlich machen",
+  ]},
+  {l:"Hauptteil", p:[
+    "Noch einmal soll erwähnt werden, dass … — Wiederholung des Gesagten mit anderen Worten",
+    "Was ist, wenn sich niemand dieser [Personengruppe] annimmt? — direkte, rhetorische Frage an das Lesepublikum",
+    "Einfacher ist es sicher, den bereits vorgegebenen Weg weiterzugehen, aber … Dabei darf nicht vergessen werden, dass … — Hauptteil mit Gegenargumenten, die entkräftet werden",
+  ]},
+  {l:"Schluss", p:[
+    "Wenn der Kurs, den [Akteur:innen] jetzt eingeschlagen haben, so weitergeht, dann bedeutet das … — Leser:innen zum Nachdenken bringen",
+    "Liegt Ihnen nicht auch [Thema] am Herzen? Wegschauen mag zwar eine Lösung sein, aber ist sie auch die richtige? — Appell an das Publikum richten",
+  ]},
+];
+
+const GRAFIKEN = [
+  {l:"Thema & Titel benennen", p:["Die Grafik behandelt das Thema …","Das Kreisdiagramm setzt sich mit … auseinander.","Das Diagramm hat den Titel …, die Grafik ist mit „…“ betitelt."]},
+  {l:"Aufbau beschreiben", p:["Dieses Balkendiagramm stellt … dar.","Dieses Säulendiagramm gibt … wieder.","Die x- und die y-Achse sind mit … beschriftet.","In der Legende sind folgende Einträge vorhanden: …"]},
+  {l:"Aussage herausarbeiten", p:["Das Diagramm arbeitet … heraus.","Diese Grafik betont/hebt … hervor und stellt … in den Mittelpunkt."]},
+];
+
+const STILMITTEL = [
+  {name:"Metapher", def:"Bildhafte Übertragung: Ein Ausdruck wird ohne Vergleichswort in einen neuen Bedeutungszusammenhang gesetzt.", beispiel:"„In seinen Augen brannte pures Feuer.“", wirkung:"Verdichtet einen Sachverhalt zu einem einprägsamen Bild und weckt Assoziationen."},
+  {name:"Vergleich", def:"Zwei Sachverhalte werden mit „wie“ oder „als“ einander gegenübergestellt.", beispiel:"„Er kämpfte wie ein Löwe.“", wirkung:"Veranschaulicht durch Bekanntes, macht abstrakte Eigenschaften greifbar."},
+  {name:"Personifikation", def:"Unbelebten Dingen oder Abstrakta werden menschliche Eigenschaften oder Handlungen zugeschrieben.", beispiel:"„Der Wind flüsterte durch die Bäume.“", wirkung:"Belebt die Darstellung, schafft Nähe, Stimmung oder Atmosphäre."},
+  {name:"Symbol", def:"Ein konkretes Bild steht stellvertretend für eine abstrakte Idee oder einen größeren Sinnzusammenhang.", beispiel:"Die Taube als Bild für den Frieden.", wirkung:"Verdichtet Bedeutung und verlangt von den Lesenden eine eigene Deutungsleistung."},
+  {name:"Rhetorische Frage", def:"Eine Frage, auf die keine Antwort erwartet wird, weil sie bereits in sich enthalten ist.", beispiel:"„Wollen wir wirklich tatenlos zusehen?“", wirkung:"Aktiviert und involviert das Publikum, suggeriert eine Antwort, ohne sie zu behaupten."},
+  {name:"Anapher", def:"Wiederholung desselben Wortes oder derselben Wortgruppe am Anfang aufeinanderfolgender Sätze oder Verse.", beispiel:"„Wir werden kämpfen. Wir werden nicht aufgeben.“", wirkung:"Erzeugt Nachdruck und einen eindringlichen Rhythmus, bleibt im Gedächtnis."},
+  {name:"Trikolon", def:"Drei Wörter, Wortgruppen oder Sätze mit ähnlicher Struktur werden aneinandergereiht.", beispiel:"„Veni, vidi, vici.“", wirkung:"Wirkt geschlossen und überzeugend — die Dreierstruktur klingt besonders rund."},
+  {name:"Klimax", def:"Steigerung von Begriffen oder Aussagen in aufsteigender Reihenfolge ihrer Bedeutung oder Intensität.", beispiel:"„Ärgerlich, dann besorgniserregend, schließlich existenzbedrohend.“", wirkung:"Verstärkt eine Aussage schrittweise und führt sie zu einem Höhepunkt."},
+  {name:"Antithese", def:"Zwei gegensätzliche Begriffe oder Gedanken werden einander bewusst gegenübergestellt.", beispiel:"„Der eine spart, der andere verschwendet.“", wirkung:"Schärft Gegensätze und macht Positionen klar erkennbar."},
+  {name:"Hyperbel", def:"Bewusst starke Übertreibung eines Sachverhalts.", beispiel:"„Das habe ich schon tausendmal gesagt.“", wirkung:"Verleiht Nachdruck, kann auch komisch oder ironisch wirken."},
+  {name:"Ironie", def:"Es wird das Gegenteil dessen gesagt, was tatsächlich gemeint ist — erkennbar am Kontext oder Tonfall.", beispiel:"„Na, das hast du ja wieder toll hinbekommen“, bei einem Missgeschick gesagt.", wirkung:"Übt indirekt Kritik, schafft Distanz oder Komik."},
+  {name:"Euphemismus", def:"Beschönigende, verharmlosende Umschreibung eines unangenehmen Sachverhalts.", beispiel:"„Freisetzung von Mitarbeitern“ statt „Kündigung“.", wirkung:"Mildert, verschleiert oder relativiert eine unangenehme Wahrheit."},
+  {name:"Alliteration", def:"Aufeinanderfolgende, meist betonte Wörter beginnen mit demselben Laut.", beispiel:"„Milch macht müde Männer munter.“", wirkung:"Erzeugt Klangwirkung, macht eine Aussage eingängig und einprägsam."},
+  {name:"Ellipse", def:"Auslassung von Satzteilen, die sich aus dem Kontext erschließen lassen.", beispiel:"„Je mehr, desto besser.“", wirkung:"Wirkt knapp und prägnant, oft dynamisch oder umgangssprachlich."},
+  {name:"Paradoxon", def:"Eine scheinbar widersprüchliche Aussage, die bei genauerem Nachdenken einen tieferen Sinn offenbart.", beispiel:"„Weniger ist mehr.“", wirkung:"Irritiert bewusst und regt zum Nachdenken an — bleibt dadurch im Gedächtnis."},
+];
+
+const QUIZ = [
+  {satz:"In seinen Augen brannte pures Feuer.", antwort:"Metapher", erklaerung:"„Feuer in den Augen“ überträgt eine emotionale Intensität bildhaft, ohne sie beim Namen zu nennen — die Lesenden füllen das Bild selbst mit Bedeutung."},
+  {satz:"Er rannte so schnell wie der Wind.", antwort:"Vergleich", erklaerung:"Das Vergleichswort „wie“ stellt die Geschwindigkeit dem Wind gegenüber und macht sie dadurch besonders anschaulich."},
+  {satz:"Der Herbstwind flüsterte traurige Geschichten durch die leeren Straßen.", antwort:"Personifikation", erklaerung:"Dem Wind werden menschliche Fähigkeiten — Flüstern, Erzählen — zugeschrieben. Das erzeugt eine melancholische, fast unheimliche Atmosphäre."},
+  {satz:"Wollen wir wirklich tatenlos zusehen, wie das geschieht?", antwort:"Rhetorische Frage", erklaerung:"Die Frage verlangt keine Antwort, sondern suggeriert bereits: Nein, wir dürfen nicht zusehen. Sie bindet die Lesenden emotional ein."},
+  {satz:"Niemand hat uns gefragt. Niemand hat uns gewarnt. Niemand hat uns geholfen.", antwort:"Anapher", erklaerung:"Die dreifache Wiederholung von „Niemand hat …“ am Satzanfang erzeugt Nachdruck und einen eindringlichen Rhythmus."},
+  {satz:"Schnell, entschlossen und ohne zu zögern traf sie ihre Wahl.", antwort:"Trikolon", erklaerung:"Drei gleichrangige Glieder reihen sich aneinander — das wirkt geschlossen und entschlossen, ohne dass dabei eine Steigerung vorliegt."},
+  {satz:"Das Problem war ärgerlich, dann besorgniserregend, schließlich existenzbedrohend.", antwort:"Klimax", erklaerung:"Die Begriffe steigern sich in ihrer Intensität und führen die Aussage zu einem Höhepunkt."},
+  {satz:"Die einen hungern, die anderen verschwenden.", antwort:"Antithese", erklaerung:"Die Gegenüberstellung von „hungern“ und „verschwenden“ macht den sozialen Gegensatz besonders scharf sichtbar."},
+  {satz:"Ich habe dir das jetzt schon hundertmal erklärt.", antwort:"Hyperbel", erklaerung:"Die Zahl „hundertmal“ ist offensichtlich übertrieben — sie unterstreicht den Frust, nicht die tatsächliche Häufigkeit."},
+  {satz:"„Das hast du ja wirklich elegant gelöst“, sagte sie, während die Scherben am Boden lagen.", antwort:"Ironie", erklaerung:"Gesagt wird das Gegenteil dessen, was gemeint ist — der Kontext (die Scherben) macht die eigentlich kritische Absicht erkennbar."},
+];
+
+const TEXTSORTEN = [
+  {
+    id:"zusammenfassung", gruppe:"Sachlich & informativ", tag:"Sachtext · informativ",
+    name:"Zusammenfassung", kurz:"Den Inhalt eines Textes objektiv, vollständig und in eigenen Worten wiedergeben.",
+    meta:["Perspektive: neutral","Zeit: Präsens","Länge: ca. ¼ des Originals"],
+    merkmale:[
+      "Sachlich und neutral — keine eigene Meinung oder Wertung",
+      "Präsens, auch wenn der Ausgangstext in der Vergangenheit steht",
+      "Redewiedergabe indirekt (Konjunktiv I), keine wörtlichen Zitate",
+      "Eigene Formulierungen statt übernommener Satzstrukturen",
+      "Deutlich kürzer als der Originaltext, keine Nebensächlichkeiten"
+    ],
+    aufbau:[
+      {b:"Einleitungssatz", t:"Textsorte, Autor:in, Titel, Erscheinungsort und -datum, Thema und Kernaussage in einem Satz."},
+      {b:"Hauptteil", t:"Zentrale Gedankengänge in logischer Reihenfolge, nicht zwingend chronologisch zum Original."},
+      {b:"Gewichtung", t:"Nur die tragenden Argumente und Fakten, keine Beispiele im Detail."},
+      {b:"Kein Schluss mit Wertung", t:"Die Zusammenfassung endet mit dem letzten inhaltlichen Punkt, nicht mit einem eigenen Fazit."}
+    ],
+    formulierung:[
+      {l:"Einleitung", p:["Der vorliegende [Textsorte] „[Titel]“ von [Autor:in], erschienen am [Datum] in [Quelle], behandelt …","Im [Textsorte] „[Titel]“ setzt sich [Autor:in] mit … auseinander."]},
+      {l:"Textverlauf", p:["Zu Beginn wird … dargelegt.","Im weiteren Verlauf geht [Autor:in] auf … ein.","Anschließend wird erläutert, dass …","Abschließend hält [Autor:in] fest, dass …"]},
+      {l:"Redewiedergabe", p:["Laut [Autor:in] …","Dem Text zufolge …","Wie im Text dargestellt wird, …"]}
+    ],
+    entwurf:[
+      "Der vorliegende [Textsorte] „[Titel]“ von [Autor:in], erschienen am [Datum] in [Quelle], thematisiert [Thema].",
+      "Zu Beginn erklärt [Autor:in], dass [erster zentraler Gedanke]. Im weiteren Verlauf wird dargelegt, dass [zweiter zentraler Gedanke], wobei besonders [Beleg/Fakt] hervorgehoben wird.",
+      "Abschließend hält [Autor:in] fest, dass [Kernaussage/Schlussgedanke des Originaltexts]."
+    ],
+    problemfelder:[
+      {t:"Meinung eingeschmuggelt", x:"Wertende Adjektive oder ein eigenes Fazit verraten die Haltung — in der Zusammenfassung ist dafür kein Platz."},
+      {t:"Zu nah am Original", x:"Ganze Satzteile werden übernommen statt in eigenen Worten wiedergegeben."},
+      {t:"Zu viele Details", x:"Beispiele und Nebensätze werden mitgenommen, die Zusammenfassung wird kaum kürzer als der Text."},
+      {t:"Falsche Zeitform", x:"Vergangenheit statt Präsens, obwohl der Text selbst im Präsens referiert wird."}
+    ],
+    uebung:[
+      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/zusammenfassung/zusammenfassung-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel", text:"Ausformuliertes Beispiel einer Zusammenfassung mit Kommentar"},
+      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/zusammenfassung/zusammenfassung-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übung", text:"Interaktive Übungsaufgaben zur Zusammenfassung"},
+      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-zusammenfassung-download-978-3-7101-3522-4", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgaben mit vollständigen Lösungstexten"}
+    ]
+  },
+  {
+    id:"meinungsrede", gruppe:"Meinungsbildend & appellativ", tag:"Appellativ · mündlich konzipiert",
+    name:"Meinungsrede", kurz:"Eine mündlich vorgetragene, pointierte Stellungnahme, die das Publikum überzeugen soll.",
+    meta:["Perspektive: ich, direkte Anrede","Zeit: variabel","Ziel: Überzeugung + Appell"],
+    merkmale:[
+      "Direkte Zuhöreransprache zu Beginn und im Verlauf",
+      "Rhetorische Mittel: rhetorische Fragen, Wiederholung, Dreierfiguren",
+      "Ich-Perspektive, sachliche und emotionale Argumente kombiniert",
+      "Kurze, sprechbare Sätze statt verschachtelter Schriftsprache",
+      "Klare These, die durch die ganze Rede getragen wird"
+    ],
+    aufbau:[
+      {b:"Redeeinstieg", t:"Anrede plus Aufhänger — Frage, Anekdote, aktueller Bezug, Zitat."},
+      {b:"These", t:"Der eigene Standpunkt wird klar benannt."},
+      {b:"Argumentation", t:"Argumente vom schwächeren zum stärksten, jeweils mit Beispiel oder Beleg."},
+      {b:"Gegenposition", t:"Ein Einwand wird kurz aufgegriffen und entkräftet."},
+      {b:"Schluss", t:"Appell, Handlungsaufforderung, einprägsamer Schlusssatz."}
+    ],
+    formulierung:[
+      {l:"Einstieg", p:["Stellen Sie sich vor, …","Wussten Sie, dass …?","Ich möchte mit einer Frage beginnen: …"]},
+      {l:"These & Argument", p:["Ich bin fest davon überzeugt, dass …","Ein wesentlicher Grund dafür ist …","Hinzu kommt, dass …"]},
+      {l:"Gegenargument entkräften", p:["Manche mögen einwenden, dass … Dem ist jedoch entgegenzuhalten, dass …"]},
+      {l:"Schluss", p:["Ich appelliere an Sie: …","Lassen Sie uns gemeinsam …","Danke für Ihre Aufmerksamkeit."]}
+    ],
+    entwurf:[
+      "Sehr geehrte Damen und Herren, liebe [Zuhörerschaft]! Stellen Sie sich vor, [einprägsames Bild oder Frage zum Thema].",
+      "Ich bin der festen Überzeugung, dass [These]. Ein erster Grund dafür ist [Argument 1] — [Beispiel]. Noch schwerer wiegt jedoch, dass [Argument 2, stärkstes Argument] — man denke nur an [Beleg].",
+      "Natürlich lässt sich einwenden, dass [Gegenargument]. Doch [Entkräftung]. Deshalb: [Appell an das Publikum]. Ich danke Ihnen für Ihre Aufmerksamkeit."
+    ],
+    problemfelder:[
+      {t:"Schriftsprache statt Redesprache", x:"Lange Schachtelsätze, die man laut vorgelesen kaum verstehen würde."},
+      {t:"Keine Zuhöreransprache", x:"Die Rede liest sich wie ein Aufsatz, das Publikum wird nie direkt adressiert."},
+      {t:"Nur Aufzählung", x:"Argumente stehen nebeneinander ohne rhetorische Zuspitzung oder Emotion."},
+      {t:"Fehlender Appell", x:"Die Rede endet inhaltlich, ohne zu einer konkreten Handlung aufzurufen."}
+    ],
+    uebung:[
+      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/meinungsrede/meinungsrede-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel", text:"Ausformulierte Beispiel-Meinungsrede mit Kommentar"},
+      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/meinungsrede/meinungsrede-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übung", text:"Übungsaufgaben zur Meinungsrede"},
+      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-meinungsrede-download-978-3-7101-3526-2", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgabe mit zwei vollständigen Lösungstexten"}
+    ]
+  },
+  {
+    id:"kommentar", gruppe:"Meinungsbildend & appellativ", tag:"Journalistisch · meinungsbildend",
+    name:"Kommentar", kurz:"Pointierte, subjektive Stellungnahme zu einem aktuellen Ereignis für ein Zeitungspublikum.",
+    meta:["Perspektive: ich / man","Zeit: Präsens","Ton: zugespitzt, meinungsstark"],
+    merkmale:[
+      "Klare, oft zugespitzte Meinung — aber sachlich fundiert",
+      "Konkreter Bezug zu einem aktuellen Ereignis oder Anlass",
+      "Ironie und Pointierung als zulässige Stilmittel",
+      "Prägnanter, oft meinungsstarker Titel",
+      "Deutlich kürzer und dichter als eine Erörterung"
+    ],
+    aufbau:[
+      {b:"Einstieg", t:"Konkreter aktueller Anlass, der den Kommentar auslöst."},
+      {b:"Einordnung", t:"Kurzer Hintergrund, damit auch Unbeteiligte folgen können."},
+      {b:"Position", t:"Die eigene These wird unmissverständlich formuliert."},
+      {b:"Zuspitzung", t:"Argumentation mit pointierten Formulierungen, Gegenposition kurz genannt und entkräftet."},
+      {b:"Schluss", t:"Zuspitzung, Appell oder Ausblick — bewusst kein sanftes Verlaufen."}
+    ],
+    formulierung:[
+      {l:"Einstieg", p:["Es ist wieder soweit: …","Kaum ein Thema wird derzeit so kontrovers diskutiert wie …"]},
+      {l:"Position", p:["Fest steht: …","Es ist höchste Zeit, dass …","Man muss sich ernsthaft fragen, ob …"]},
+      {l:"Zuspitzung", p:["Was wie … klingt, entpuppt sich bei genauerem Hinsehen als …","Nicht mehr, aber auch nicht weniger als …"]},
+      {l:"Schluss", p:["Es bleibt zu hoffen, dass …","Die Zeit wird zeigen, ob …"]}
+    ],
+    entwurf:[
+      "[Aktueller Anlass] — und wieder einmal zeigt sich, dass [Einordnung des Problems].",
+      "Fest steht: [eigene These]. Wer genauer hinsieht, erkennt, dass [Hauptargument, zugespitzt formuliert]. Zwar wird gerne eingewendet, [Gegenposition], doch das greift zu kurz, denn [Entkräftung].",
+      "Es bleibt zu hoffen, dass [Ausblick] — andernfalls [pointierte Konsequenz]."
+    ],
+    problemfelder:[
+      {t:"Zu vorsichtig", x:"Keine klare Position bezogen — wirkt wie eine Erörterung, nicht wie ein Kommentar."},
+      {t:"Fehlender Aufhänger", x:"Kein konkreter aktueller Anlass, das Thema bleibt abstrakt."},
+      {t:"Polemik statt Pointe", x:"Beschimpfung ohne Argumentation ist nicht dasselbe wie eine zugespitzte Meinung."},
+      {t:"Zu behäbig", x:"Lange, unpointierte Sätze nehmen dem Kommentar die Schärfe."}
+    ],
+    uebung:[
+      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/kommentar/kommentar-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel", text:"Ausformulierter Beispiel-Kommentar mit Kommentar zum Aufbau"},
+      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/kommentar/kommentar-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übung", text:"Übungsaufgaben zum Kommentar"},
+      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-kommentar-download-978-3-7101-3521-7", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgaben mit vollständigen Lösungstexten"}
+    ]
+  },
+  {
+    id:"leserbrief", gruppe:"Meinungsbildend & appellativ", tag:"Appellativ · Zeitung",
+    name:"Leserbrief", kurz:"Reaktion einer Privatperson auf einen Artikel, veröffentlicht in der Leserbriefspalte.",
+    meta:["Perspektive: ich","Adressat: Redaktion, öffentlich","Länge: kurz"],
+    merkmale:[
+      "Konkreter Bezug auf einen Artikel — Titel, Datum, Ausgabe",
+      "Persönliche, aber begründete Meinung",
+      "Formal an die Redaktion gerichtet, inhaltlich an die Leserschaft",
+      "Anrede und Grußformel wie im Brief",
+      "Kurz und prägnant, meist nicht länger als eine Seite"
+    ],
+    aufbau:[
+      {b:"Anrede", t:"Sehr geehrte Redaktion / Sehr geehrte Damen und Herren."},
+      {b:"Bezugnahme", t:"Titel, Erscheinungsdatum und Kurzinhalt des Artikels nennen."},
+      {b:"Stellungnahme", t:"Zustimmung, Widerspruch oder Ergänzung klar benennen."},
+      {b:"Begründung", t:"Zwei bis drei Argumente oder Beispiele."},
+      {b:"Schluss", t:"Forderung oder Schlussgedanke, dann Grußformel."}
+    ],
+    formulierung:[
+      {l:"Bezug", p:["Mit großem Interesse habe ich Ihren Artikel „…“ vom [Datum] gelesen."]},
+      {l:"Zustimmung", p:["Ich kann [Autor:in] nur zustimmen, wenn …"]},
+      {l:"Widerspruch", p:["Dem im Artikel dargestellten Standpunkt möchte ich widersprechen, denn …"]},
+      {l:"Forderung & Schluss", p:["Ich fordere daher, dass …","Es wäre wünschenswert, wenn …","Mit freundlichen Grüßen"]}
+    ],
+    entwurf:[
+      "Sehr geehrte Damen und Herren, mit großem Interesse habe ich Ihren Artikel „[Titel]“ vom [Datum] gelesen.",
+      "Dem darin vertretenen Standpunkt, [zusammengefasste Position des Artikels], möchte ich [zustimmen / widersprechen], denn [Argument 1]. Auch [Argument 2] spricht dafür.",
+      "Ich würde mir wünschen, dass [Forderung]. Mit freundlichen Grüßen, [Name]."
+    ],
+    problemfelder:[
+      {t:"Kein Artikelbezug", x:"Titel, Datum oder Kernaussage des Artikels fehlen — der Anlass bleibt unklar."},
+      {t:"Zu lang", x:"Leserbriefe sind kurz; ausufernde Ausführungen sprengen die Textsorte."},
+      {t:"Falscher Ton", x:"Zu förmlich-distanziert oder zu locker für ein Zeitungsformat."},
+      {t:"Meinung ohne Begründung", x:"Position wird behauptet, aber nicht mit Argumenten unterlegt."}
+    ],
+    uebung:[
+      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/leserbrief/leserbrief-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel", text:"Ausformulierter Beispiel-Leserbrief mit Kommentar"},
+      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/leserbrief/leserbrief-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übung", text:"Übungsaufgaben zum Leserbrief"},
+      {href:"https://wissenplus.westermann.at/wissenplus-leserbrief-ueben-fuer-die-zentralmatura/", quelle:"WissenPlus Westermann", typ:"kostenlos · Übung mit Musterlösung", text:"Leserbrief üben für die Zentralmatura, mit kommentierter Musterlösung"},
+      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-leserbrief-download-978-3-7101-3523-1", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgaben mit vollständigen Lösungstexten"}
+    ]
+  },
+  {
+    id:"eroerterung", gruppe:"Meinungsbildend & appellativ", tag:"Argumentativ · sachlich-analytisch",
+    name:"Erörterung", kurz:"Ein Thema von mehreren Seiten beleuchten und Argumente zu einem begründeten Urteil abwägen.",
+    meta:["Form: dialektisch oder linear","Perspektive: meist neutral bis zum Schluss","Zeit: Präsens"],
+    merkmale:[
+      "Sachlich-distanzierter Stil, dialektisch meist ohne durchgehendes Ich",
+      "Abwägen mehrerer Positionen statt einseitiger Meinung",
+      "Logischer Aufbau mit Ober- und Unterargumenten samt Beispielen",
+      "Dialektisch: eigene Position erst im Schluss; linear: durchgehend zielgerichtet",
+      "Jedes Argument braucht ein Beispiel oder einen Beleg"
+    ],
+    aufbau:[
+      {b:"Einleitung", t:"Thema, Fragestellung, Relevanz, zentrale Begriffe definieren."},
+      {b:"Erster Block (dialektisch: Kontra)", t:"Argumente gegen die These, mit Beispielen."},
+      {b:"Zweiter Block (dialektisch: Pro)", t:"Argumente für die These, meist gewichtiger, mit Beispielen."},
+      {b:"Linear: aufsteigende Argumentation", t:"Argumente vom schwächsten zum stärksten, jeweils belegt."},
+      {b:"Schluss", t:"Abwägung/Synthese, begründete eigene Position, Ausblick."}
+    ],
+    formulierung:[
+      {l:"Einleitung", p:["Immer wieder wird diskutiert, ob …","Die Frage, ob …, beschäftigt …"]},
+      {l:"Argument einführen", p:["Ein gewichtiges Argument für/gegen … ist …","Dafür spricht, dass …"]},
+      {l:"Beispiel", p:["Dies zeigt sich beispielsweise an …","So belegt etwa …"]},
+      {l:"Überleitung & Schluss", p:["Dem gegenüber steht jedoch …","Abwägend lässt sich festhalten, dass …"]}
+    ],
+    entwurf:[
+      "Immer wieder wird diskutiert, ob [Fragestellung]. Um diese Frage zu klären, lohnt sich ein Blick auf beide Seiten.",
+      "Gegen [These] spricht zunächst, dass [Kontra-Argument] — [Beispiel]. Dem gegenüber steht jedoch, dass [Pro-Argument 1] und vor allem, dass [Pro-Argument 2, stärkstes Argument] — dies zeigt sich etwa an [Beleg].",
+      "Abwägend lässt sich festhalten, dass [begründete eigene Position]. Für die Zukunft bedeutet das, dass [Ausblick]."
+    ],
+    problemfelder:[
+      {t:"Meinung zu früh", x:"Die eigene Position steht schon in der Einleitung, statt sich aus der Abwägung zu ergeben."},
+      {t:"Unausgewogen", x:"Eine Seite wird nur pflichtschuldig erwähnt, nicht ernsthaft durchdacht."},
+      {t:"Argument ohne Beispiel", x:"Behauptungen bleiben unbelegt und damit angreifbar."},
+      {t:"Keine Gewichtung", x:"Alle Argumente stehen gleich wichtig nebeneinander, ohne Steigerung."}
+    ],
+    uebung:[
+      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/erörterung/erörterung-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel", text:"Ausformulierte Beispiel-Erörterung mit Kommentar"},
+      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/erörterung/erörterung-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übung", text:"Übungsaufgaben zur Erörterung"},
+      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-eroerterung-download-978-3-7101-3524-8", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgaben mit vollständigen Lösungstexten"}
+    ]
+  },
+  {
+    id:"textanalyse", gruppe:"Literarisch & analytisch", tag:"Analytisch · Sachtext",
+    name:"Textanalyse", kurz:"Sachliche Untersuchung eines meist nicht-fiktionalen Textes hinsichtlich Inhalt, Struktur, Sprache und Wirkung.",
+    meta:["Perspektive: analytisch-distanziert","Zeit: Präsens","Belegpflicht: mit Zeilenangabe"],
+    merkmale:[
+      "Sachlich-distanzierter Stil im Präsens",
+      "Jede Aussage wird mit Zitat und Zeilenangabe belegt",
+      "Klare Trennung von Beschreibung (was steht da) und Deutung (was bewirkt das)",
+      "Fachbegriffe der Sprach- und Rhetorikanalyse werden korrekt verwendet",
+      "Stilmittel werden nie nur benannt, sondern immer in ihrer Wirkung erklärt"
+    ],
+    aufbau:[
+      {b:"Einleitungssatz", t:"Autor:in, Titel, Textsorte, Erscheinungsort/-datum, Thema, Intention."},
+      {b:"Inhaltliche Kurzdarstellung", t:"Knapp — die Analyse steht im Zentrum, nicht die Nacherzählung."},
+      {b:"Formal-strukturelle Analyse", t:"Aufbau, Argumentationsstruktur, Textsortenmerkmale."},
+      {b:"Sprachlich-stilistische Analyse", t:"Satzbau, Wortwahl, rhetorische Mittel — jeweils mit Wirkung verknüpft."},
+      {b:"Sender, Adressat, Intention", t:"Wer spricht zu wem, mit welchem Ziel."},
+      {b:"Fazit", t:"Zusammenfassende Einschätzung der Gesamtwirkung."}
+    ],
+    formulierung:[
+      {l:"Einleitung", p:["Der vorliegende [Textsorte] „…“ von …, erschienen am … in …, thematisiert …"]},
+      {l:"Beleg", p:["Dies zeigt sich in Zeile …, in der …","Der Autor/Die Autorin verwendet …, um … zu verdeutlichen (Z. …)."]},
+      {l:"Wirkung", p:["Dadurch wird beim Leser/bei der Leserin der Eindruck erweckt, dass …","Diese Metapher unterstreicht …"]},
+      {l:"Fazit", p:["Zusammenfassend lässt sich sagen, dass … mit … das Ziel verfolgt, …"]}
+    ],
+    entwurf:[
+      "Der vorliegende [Textsorte] „[Titel]“ von [Autor:in], erschienen am [Datum] in [Quelle], thematisiert [Thema] und verfolgt das Ziel, [vermutete Intention].",
+      "Inhaltlich lässt sich der Text in [Anzahl] Abschnitte gliedern: [knappe Kurzdarstellung]. Sprachlich fällt auf, dass [Autor:in] [Stilmittel/Wortwahl] einsetzt (Z. [Zeile]), um [Wirkung auf die Leserschaft] zu erzielen.",
+      "Zusammenfassend lässt sich festhalten, dass [Autor:in] mit [zentrales Mittel] das Ziel verfolgt, [Gesamtintention]."
+    ],
+    problemfelder:[
+      {t:"Nacherzählung statt Analyse", x:"Der Inhalt wird ausführlich wiedergegeben, die eigentliche Untersuchung bleibt aus."},
+      {t:"Stilmittel ohne Wirkung", x:"„Der Autor verwendet eine Metapher.“ — und weiter passiert nichts."},
+      {t:"Fehlende Zeilenbelege", x:"Behauptungen ohne Textstelle sind nicht überprüfbar."},
+      {t:"Wertung statt Beschreibung", x:"Eigene Meinung zum Thema vermischt sich mit der Analyse des Textes."}
+    ],
+    uebung:[
+      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/textanalyse/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übersicht + PDF-Übungen", text:"Erklärung, Kriterien und downloadbare Übungsaufgaben zur Textanalyse"},
+      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-textanalyse-download-978-3-7101-3525-5", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgaben mit vollständigen Lösungstexten"}
+    ]
+  },
+  {
+    id:"textinterpretation", gruppe:"Literarisch & analytisch", tag:"Literarisch-analytisch",
+    name:"Textinterpretation", kurz:"Analyse und Deutung eines literarischen Textes hinsichtlich Inhalt, Form und Bedeutung.",
+    meta:["Perspektive: analytisch, deutend","Zeit: Präsens","Belegpflicht: Zeilen-/Versangabe"],
+    merkmale:[
+      "Präsens, sachlich-distanzierter Grundton — Deutung ist ausdrücklich gefordert",
+      "Zitate mit Zeilen- oder Versangabe als Beleg",
+      "Verbindung von Inhalt, Form und Deutung statt getrennter Blöcke",
+      "Bei Gedichten: Aufbau, Metrum, Reimschema, Sprachbilder einbeziehen",
+      "Klare Trennung von Autor:in, Erzähler:in und lyrischem Ich"
+    ],
+    aufbau:[
+      {b:"Einleitungssatz", t:"Autor:in, Titel, Gattung, Erscheinungsjahr, Thema."},
+      {b:"Kurze Inhaltsangabe", t:"Knapp, im Präsens — nicht der Schwerpunkt der Arbeit."},
+      {b:"Formale Analyse", t:"Erzählperspektive bzw. lyrisches Ich, Aufbau, Sprache, Stilmittel."},
+      {b:"Interpretation", t:"Deutung im Hinblick auf Thema, Symbolik, Figurenkonstellation."},
+      {b:"Einordnung", t:"Literaturgeschichtlich oder thematisch, falls gefordert."},
+      {b:"Schluss", t:"Zusammenfassende Deutung und Einschätzung der Wirkung."}
+    ],
+    formulierung:[
+      {l:"Einleitung", p:["Die vorliegende Kurzgeschichte/das Gedicht „…“ von …, erschienen …, behandelt …"]},
+      {l:"Deutung", p:["Dies lässt sich als … deuten.","Die Wortwahl … verweist auf …","Das lyrische Ich bringt … zum Ausdruck."]},
+      {l:"Beleg", p:["…, wie die Formulierung „…“ (Z./V. …) zeigt."]},
+      {l:"Schluss", p:["Insgesamt lässt sich der Text als … lesen, der …"]}
+    ],
+    entwurf:[
+      "Die vorliegende [Kurzgeschichte/das Gedicht] „[Titel]“ von [Autor:in], erschienen [Jahr], behandelt [Thema].",
+      "Formal fällt auf, dass [Erzählperspektive/Aufbau/Stilmittel], was sich etwa an „[Zitat]“ (Z./V. [Zeile]) zeigt. Dies lässt sich als [Deutung] lesen, da [Begründung der Deutung].",
+      "Insgesamt lässt sich der Text als [zusammenfassende Deutung] lesen, der [Aussage/Wirkung über das Werk hinaus]."
+    ],
+    problemfelder:[
+      {t:"Nur Nacherzählung", x:"Der Inhalt wird wiedergegeben, eine eigenständige Deutung fehlt."},
+      {t:"Deutung ohne Beleg", x:"Interpretation wirkt frei erfunden, weil kein Zitat sie stützt."},
+      {t:"Ich-Verwechslung", x:"Autor:in, Erzähler:in und lyrisches Ich werden gleichgesetzt."},
+      {t:"Form ohne Deutung", x:"Reim oder Metrum werden benannt, aber ihre Bedeutung nicht erschlossen."}
+    ],
+    uebung:[
+      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/textinterpretation/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übersicht + PDF-Übungen", text:"Erklärung, Kriterien und downloadbare Übungsaufgaben zur Textinterpretation"},
+      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-textinterpretation-download-978-3-7101-3520-0", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgaben mit vollständigen Lösungstexten"}
+    ]
+  },
+];
+
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function withPlaceholders(s){
+  return esc(s).replace(/\[([^\]]+)\]/g, '<span class="ph">$1</span>');
+}
+
+// Operatoren, gruppiert nach Anforderungsniveau
+document.getElementById('operatorenList').innerHTML = NIVEAUS.map(n => `
+  <div class="niveau-block">
+    <div class="niveau-head">
+      <span class="niveau-badge">Niveau ${esc(n.id)}</span>
+      <h3>${esc(n.titel)}</h3>
+      <p>${esc(n.beschreibung)}</p>
+    </div>
+    <div class="op-grid">
+      ${OPERATOREN.filter(o => o.niveau === n.id).map(o => `
+        <div class="op-card">
+          <div class="verb">${esc(o.verb)}</div>
+          <div class="def">${esc(o.def)}</div>
+          <div class="beispiel">${esc(o.beispiel)}</div>
+        </div>`).join('')}
+    </div>
+  </div>
+`).join('');
+
+// Kriterien
+document.getElementById('kritrow').innerHTML = KRITERIEN.map(k => `
+  <div class="krit">
+    <div class="idx">${k.idx}</div>
+    <h4>${esc(k.titel)}</h4>
+    <p>${esc(k.text)}</p>
+  </div>
+`).join('');
+
+// Vergleichsmatrix
+(function renderMatrix(){
+  const cols = TEXTSORTEN.map(t => ({id:t.id, name:t.name}));
+  const thead = `<thead><tr><th>Kategorie</th>${cols.map(c => `<th>${esc(c.name)}</th>`).join('')}</tr></thead>`;
+  const tbody = `<tbody>${MATRIX_ROWS.map(row => `
+    <tr>
+      <td>${esc(row)}</td>
+      ${cols.map(c => {
+        const items = (VERGLEICH[c.id] && VERGLEICH[c.id][row]) || [];
+        return `<td>${items.length ? `<ul>${items.map(i => `<li>${esc(i)}</li>`).join('')}</ul>` : `<span class="cell-empty">— im Vergleich nicht gesondert angeführt</span>`}</td>`;
+      }).join('')}
+    </tr>`).join('')}</tbody>`;
+  document.getElementById('matrix').innerHTML = thead + tbody;
+})();
+
+// Sprachbaukasten
+document.getElementById('wordbank').innerHTML = WORDBANK.map(w => `
+  <div class="wordbank-card"><div class="lbl">${esc(w.l)}</div><div class="words">${esc(w.w)}</div></div>
+`).join('');
+
+document.getElementById('chainlist').innerHTML = CHAINS.map(c => `<span class="chain">${esc(c)}</span>`).join('');
+
+document.getElementById('schlussaufgaben').innerHTML = SCHLUSSAUFGABEN.map(s => `<li>${esc(s)}</li>`).join('');
+
+document.getElementById('weiteremittel').innerHTML = WEITEREMITTEL.map(w => `
+  <div class="wordbank-card"><div class="lbl">${esc(w.l)}</div><div class="words">${esc(w.w)}</div></div>
+`).join('');
+
+document.getElementById('phrasebeispiele').innerHTML = PHRASEBEISPIELE.map(f => `
+  <div class="formgroup">
+    <div class="flabel">${esc(f.l)}</div>
+    <ul>${f.p.map(p => `<li>${withPlaceholders(p)}</li>`).join('')}</ul>
+  </div>
+`).join('');
+
+document.getElementById('grafiken').innerHTML = GRAFIKEN.map(f => `
+  <div class="formgroup">
+    <div class="flabel">${esc(f.l)}</div>
+    <ul>${f.p.map(p => `<li>${withPlaceholders(p)}</li>`).join('')}</ul>
+  </div>
+`).join('');
+
+// Chip nav (header)
+document.getElementById('chipnav').innerHTML = `<a href="#ueberblick" style="font-weight:700;">Überblick</a>`
+  + TEXTSORTEN.map(t => `<a href="#${t.id}">${esc(t.name)}</a>`).join('')
+  + `<a href="#stilmittel" style="font-weight:700;">Stilmittel</a>`;
+
+// Rail nav grouped
+const groups = [...new Set(TEXTSORTEN.map(t => t.gruppe))];
+document.getElementById('rail').innerHTML = groups.map(g => `
+  <div class="rail-group">
+    <div class="glabel">${esc(g)}</div>
+    ${TEXTSORTEN.filter(t => t.gruppe === g).map(t => `<a href="#${t.id}" data-id="${t.id}">${esc(t.name)}</a>`).join('')}
+  </div>
+`).join('');
+
+// Textsorten cards
+document.getElementById('tslist').innerHTML = TEXTSORTEN.map((t, i) => `
+  <details class="ts" id="${t.id}" ${i === 0 ? 'open' : ''}>
+    <summary>
+      <div class="ts-head-l">
+        <div class="ts-tag">${esc(t.tag)}</div>
+        <h3>${esc(t.name)}</h3>
+        <p class="ts-kurz">${esc(t.kurz)}</p>
+      </div>
+      <div class="ts-chevron">+</div>
+    </summary>
+    <div class="ts-body">
+      <div class="ts-meta">${t.meta.map(m => `<span class="meta-pill">${esc(m)}</span>`).join('')}</div>
+      <div class="ts-grid">
+        <div class="panel">
+          <h4><span class="dot"></span>Merkmale &amp; Aufbau</h4>
+          <ul class="merkmale">${t.merkmale.map(m => `<li>${esc(m)}</li>`).join('')}</ul>
+          <ol class="aufbau">${t.aufbau.map((a, idx) => `
+            <li>
+              <span class="num">${String(idx+1).padStart(2,'0')}</span>
+              <span class="step"><b>${esc(a.b)}</b><span>${esc(a.t)}</span></span>
+            </li>`).join('')}</ol>
+        </div>
+        <div class="panel">
+          <h4><span class="dot"></span>Formulierungshilfen</h4>
+          ${t.formulierung.map(f => `
+            <div class="formgroup">
+              <div class="flabel">${esc(f.l)}</div>
+              <ul>${f.p.map(p => `<li>${withPlaceholders(p)}</li>`).join('')}</ul>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="panel" style="margin-top:18px;">
+        <h4><span class="dot"></span>Schreibentwurf</h4>
+        <div class="entwurf">${t.entwurf.map(p => `<p>${withPlaceholders(p)}</p>`).join('')}</div>
+      </div>
+      <div class="panel problem-panel" style="margin-top:18px;">
+        <h4><span class="dot"></span>Problemfelder</h4>
+        <div class="problems">
+          ${t.problemfelder.map(p => `
+            <div class="problem">
+              <span class="x">×</span>
+              <div class="body"><b>${esc(p.t)}</b><span>${esc(p.x)}</span></div>
+            </div>`).join('')}
+        </div>
+      </div>
+      <div class="panel" style="margin-top:18px;">
+        <h4><span class="dot"></span>Übungsbeispiele &amp; Musterlösungen</h4>
+        <div class="linklist">
+          ${t.uebung.map(u => `
+            <a class="linkcard" href="${u.href}" target="_blank" rel="noopener noreferrer">
+              <span class="row1"><span class="quelle">${esc(u.quelle)}</span><span class="ext">↗</span></span>
+              <span class="txt">${esc(u.text)}</span>
+              <span class="typ">${esc(u.typ)}</span>
+            </a>`).join('')}
+        </div>
+        ${t.uebungNote ? `<p class="link-note">${esc(t.uebungNote)}</p>` : ''}
+      </div>
+    </div>
+  </details>
+`).join('');
+
+// Rail active state + auto-open on click
+const railLinks = document.querySelectorAll('.rail a');
+document.querySelectorAll('.rail a, nav.chips a').forEach(a => {
+  a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el && !el.open) el.open = true;
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const link = document.querySelector(`.rail a[data-id="${entry.target.id}"]`);
+    if (!link) return;
+    if (entry.isIntersecting) {
+      railLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    }
+  });
+}, { rootMargin: "-15% 0px -70% 0px" });
+
+document.querySelectorAll('details.ts').forEach(el => observer.observe(el));
+
+// Stilmittel-Glossar
+document.getElementById('stilgrid').innerHTML = STILMITTEL.map((s, i) => `
+  <div class="stil-card">
+    <div class="head"><span class="name">${esc(s.name)}</span><span class="num">${String(i+1).padStart(2,'0')}/15</span></div>
+    <div class="def">${esc(s.def)}</div>
+    <div class="beispiel">${esc(s.beispiel)}</div>
+    <div class="wirkung"><b>Wirkung: </b>${esc(s.wirkung)}</div>
+  </div>
+`).join('');
+
+// Stilmittel-Quiz
+(function initQuiz(){
+  const panel = document.getElementById('quizPanel');
+  const names = STILMITTEL.map(s => s.name);
+  function shuffle(arr){
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+  let order = shuffle(QUIZ.map((_, i) => i));
+  let qi = 0, score = 0, answered = false;
+
+  function optionsFor(correct){
+    const distractors = shuffle(names.filter(n => n !== correct)).slice(0, 3);
+    return shuffle([correct, ...distractors]);
+  }
+
+  function render(){
+    if (qi >= order.length){
+      panel.innerHTML = `
+        <div class="quiz-done">
+          <div class="big">${score} / ${order.length}</div>
+          <p>richtig erkannt.</p>
+          <button class="quiz-restart" id="quizRestart" style="margin-top:14px;">Nochmal üben</button>
+        </div>`;
+      document.getElementById('quizRestart').addEventListener('click', () => {
+        order = shuffle(QUIZ.map((_, i) => i)); qi = 0; score = 0; render();
+      });
+      return;
+    }
+    const item = QUIZ[order[qi]];
+    answered = false;
+    const opts = optionsFor(item.antwort);
+    panel.innerHTML = `
+      <div class="quiz-progress"><span>Frage ${qi + 1} von ${order.length}</span><span class="quiz-score">${score} richtig bisher</span></div>
+      <div class="quiz-sentence">„${esc(item.satz)}“</div>
+      <p class="quiz-question">Welches Stilmittel liegt hier vor?</p>
+      <div class="quiz-options">${opts.map(o => `<button class="quiz-option" data-name="${esc(o)}">${esc(o)}</button>`).join('')}</div>
+      <div class="quiz-feedback" id="quizFeedback"></div>
+      <div class="quiz-actions">
+        <button class="quiz-restart" id="quizRestart">Von vorn</button>
+        <button class="quiz-next" id="quizNext" disabled>Weiter →</button>
+      </div>`;
+
+    const buttons = Array.from(panel.querySelectorAll('.quiz-option'));
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+      if (answered) return;
+      answered = true;
+      const chosen = btn.dataset.name;
+      buttons.forEach(b => {
+        b.disabled = true;
+        if (b.dataset.name === item.antwort) b.classList.add('correct');
+      });
+      if (chosen !== item.antwort) btn.classList.add('wrong');
+      else score++;
+      const fb = document.getElementById('quizFeedback');
+      fb.innerHTML = `<b>${chosen === item.antwort ? 'Richtig' : 'Richtige Antwort: ' + esc(item.antwort)}.</b> ${esc(item.erklaerung)}`;
+      fb.classList.add('show');
+      document.getElementById('quizNext').disabled = false;
+      panel.querySelector('.quiz-score').textContent = `${score} richtig bisher`;
+    }));
+    document.getElementById('quizNext').addEventListener('click', () => { qi++; render(); });
+    document.getElementById('quizRestart').addEventListener('click', () => {
+      order = shuffle(QUIZ.map((_, i) => i)); qi = 0; score = 0; render();
+    });
+  }
+
+  render();
+})();
+</script>
+
+</body>
+</html>
