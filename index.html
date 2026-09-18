@@ -69,7 +69,6 @@
   html{ scroll-behavior:smooth; }
   body{
     margin:0;
-    overflow-wrap:anywhere;
     background:var(--bg);
     color:var(--ink);
     font-family:var(--font-body);
@@ -88,6 +87,7 @@
   ul{ margin:0; padding:0; list-style:none; }
 
   .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+  main{ overflow-wrap:anywhere; min-width:0; }
   .col{ max-width:760px; margin:0 auto; padding:0 24px; }
 
   /* ---------- Header ---------- */
@@ -101,7 +101,7 @@
     max-width:1180px; margin:0 auto; padding:14px 24px;
     display:flex; align-items:baseline; justify-content:space-between; gap:20px;
   }
-  .logotype{ display:flex; align-items:baseline; gap:2px; font-family:var(--font-display); font-size:1.35rem; }
+  .logotype{ display:flex; align-items:baseline; gap:2px; font-family:var(--font-display); font-size:1.35rem; flex-shrink:0; white-space:nowrap; }
   .logotype b{ font-weight:700; }
   .logotype i{ font-style:italic; font-weight:500; color:var(--accent); }
   nav.chips{
@@ -180,7 +180,7 @@
     display:none;
   }
   @media (min-width:1100px){
-    .stage{ grid-template-columns: 1fr 200px; gap:0; align-items:start; }
+    .stage{ grid-template-columns: minmax(0,1fr) 200px; gap:0; align-items:start; }
     .rail{
       display:flex; flex-direction:column; gap:22px;
       position:sticky; top:88px;
