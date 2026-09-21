@@ -489,6 +489,48 @@
   .tt-row.bad{ border-color:var(--red); background:var(--red-soft); }
   .tt-row.bad .tt-fb b{ color:var(--red-strong); }
 
+  /* ---------- Übungsbeispiele & Musterlösungen ---------- */
+  .train-block{ margin-top:22px; }
+  .train-block:first-of-type{ margin-top:0; }
+  .train-block h5{ font-family:var(--font-display); font-size:1rem; font-weight:600; margin:0 0 10px; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px; }
+  .train-block h5 small{ font-family:var(--font-mono); font-size:.66rem; letter-spacing:.03em; color:var(--ink-faint); font-weight:400; }
+  .auftraege{ display:flex; flex-direction:column; gap:10px; }
+  .auftraege li{ border:1px solid var(--line); border-radius:8px; padding:11px 14px; background:var(--surface-2); display:flex; flex-direction:column; gap:3px; }
+  .auftraege li b{ font-size:.9rem; color:var(--accent-strong); font-weight:600; }
+  .auftraege li span{ font-size:.86rem; color:var(--ink); line-height:1.55; }
+
+  details.muster{ border:1px solid var(--line); border-radius:10px; background:var(--surface); }
+  details.muster > summary{ cursor:pointer; padding:12px 16px; font-weight:600; font-size:.9rem; color:var(--accent-strong); list-style:none; }
+  details.muster > summary::-webkit-details-marker{ display:none; }
+  details.muster > summary::before{ content:"+"; display:inline-block; width:1.1em; font-family:var(--font-mono); color:var(--accent); }
+  details.muster[open] > summary::before{ content:"–"; }
+  details.muster > summary:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; border-radius:8px; }
+  .muster-body{ padding:4px 16px 18px; display:flex; flex-direction:column; gap:14px; }
+  .g-label{ display:block; font-family:var(--font-mono); font-size:.64rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:4px; }
+  .m-aufgabe{ font-size:.9rem; line-height:1.55; padding:10px 14px; border-left:3px solid var(--accent); background:var(--accent-soft); border-radius:0 6px 6px 0; }
+  .grundlage{ border:1px dashed var(--line); border-radius:8px; padding:12px 14px; font-size:.87rem; line-height:1.6; }
+  .grundlage .g-head{ display:flex; flex-direction:column; gap:1px; margin-bottom:8px; }
+  .grundlage .g-head span{ font-size:.75rem; color:var(--ink-faint); }
+  .g-text{ color:var(--ink); }
+  .g-lines{ display:flex; flex-direction:column; gap:2px; }
+  .g-lines li{ display:grid; grid-template-columns:2.6rem minmax(0,1fr); gap:6px; }
+  .g-lines li.strophe{ margin-top:10px; }
+  .g-lines .zn{ font-family:var(--font-mono); font-size:.68rem; color:var(--ink-faint); padding-top:.25em; }
+  .muster-title{ font-family:var(--font-display); font-weight:600; font-size:1.1rem; margin-bottom:6px; }
+  .muster-text p{ margin:0 0 .8em; }
+  .muster-text p:last-child{ margin-bottom:0; }
+  .m-count{ font-family:var(--font-mono); font-size:.7rem; color:var(--ink-faint); margin-top:6px; }
+  .notes{ display:flex; flex-direction:column; gap:8px; }
+  .notes li{ display:grid; grid-template-columns:1.6rem minmax(0,1fr); gap:6px; font-size:.84rem; line-height:1.5; color:var(--ink-soft); }
+  .notes .nn{ font-family:var(--font-mono); font-size:.72rem; color:var(--accent-strong); background:var(--accent-soft); border-radius:50%; width:1.4rem; height:1.4rem; display:flex; align-items:center; justify-content:center; }
+
+  .selfcheck{ display:flex; flex-direction:column; gap:7px; }
+  .selfcheck label{ display:flex; gap:10px; align-items:flex-start; font-size:.87rem; line-height:1.5; cursor:pointer; }
+  .selfcheck input{ margin-top:.3em; accent-color:var(--accent); flex:none; }
+  .selfcheck input:checked + span{ color:var(--ink-faint); text-decoration:line-through; text-decoration-color:var(--line); }
+  .sc-progress{ margin-top:8px; font-family:var(--font-mono); font-size:.72rem; color:var(--ink-soft); }
+  .sc-progress.done{ color:var(--accent-strong); font-weight:600; }
+
   /* ---------- Footer ---------- */
   footer{ padding:40px 0 60px; }
   footer p{ font-size:.85rem; color:var(--ink-faint); max-width:60ch; line-height:1.6; }
@@ -547,14 +589,15 @@
         <div class="facts">
           <div class="fact"><span class="n">7</span><span class="d">Textsorten, gegliedert in appellativ-journalistische, sachliche und literarisch-analytische</span></div>
           <div class="fact"><span class="n">4</span><span class="d">Beurteilungskriterien, nach denen jede Klausur korrigiert wird</span></div>
-          <div class="fact"><span class="n">300′</span><span class="d">Bearbeitungszeit für den Schreibteil, in der Regel inklusive Lesezeit</span></div>
+          <div class="fact"><span class="n">300</span><span class="d">Minuten Arbeitszeit für zwei Texte aus einem der drei Aufgabenpakete</span></div>
         </div>
       </div>
-      <p class="intro-note">Im Schreibteil der Klausur wählt man ein Thema aus dem vorab bekannten <strong>Themenpool</strong> und bearbeitet dazu eine oder zwei <strong>Schreibaufgaben</strong> auf Basis eines oder mehrerer <strong>Grundlagentexte</strong>. Die Aufgabenstellung legt fest, welche Textsorte zu verfassen ist — deshalb entscheidet die richtige Wahl von Ton, Aufbau und Formulierung oft über die Punkte, noch bevor der Inhalt bewertet wird.</p>
+      <p class="intro-note">In der Klausur wählt man eines von <strong>drei Aufgabenpaketen</strong>. Jedes besteht aus zwei Teilaufgaben mit <strong>Textbeilagen</strong> unter einer gemeinsamen thematischen Klammer; insgesamt sind zwei Texte zu verfassen. Die Aufgabenstellung legt fest, welche Textsorte zu schreiben ist — deshalb entscheidet die richtige Wahl von Ton, Aufbau und Formulierung oft über die Punkte, noch bevor der Inhalt bewertet wird.</p>
       <div class="archive-callout">
-        <span>Echte Prüfungsthemen aller bisherigen Termine:</span>
-        <a href="https://www.matura.gv.at/downloads?tx_solr%5Bfilter%5D%5B0%5D=documentType%3A%2FFr%C3%BChere+Pr%C3%BCfungsaufgaben%2FKlausuren%2F&tx_solr%5Bfilter%5D%5B1%5D=subject%3A%2FUnterrichtssprache%2FDeutsch%2F" target="_blank" rel="noopener noreferrer">Offizielles Aufgaben-Archiv auf matura.gv.at ↗</a>
-        <span>— mit den originalen Klausuraufgaben und Grundlagentexten seit 2012/13.</span>
+        <span>Amtliche, kostenlose Quellen (BMBWF):</span>
+        <a href="https://www.matura.gv.at/downloads?tx_solr%5Bfilter%5D%5B0%5D=documentType%3A%2FFr%C3%BChere+Pr%C3%BCfungsaufgaben%2FKlausuren%2F&tx_solr%5Bfilter%5D%5B1%5D=subject%3A%2FUnterrichtssprache%2FDeutsch%2F" target="_blank" rel="noopener noreferrer">Klausuren mit Kommentierung ↗</a>
+        <a href="https://www.matura.gv.at/downloads/download/Textsortenkatalog%20SRDP%20Unterrichtssprache" target="_blank" rel="noopener noreferrer">Textsortenkatalog ↗</a>
+        <a href="https://www.matura.gv.at/downloads/download/Beurteilungsdokumente%20SRDP%20Unterrichtssprache" target="_blank" rel="noopener noreferrer">Beurteilungsraster ↗</a>
       </div>
     </div>
   </section>
@@ -750,7 +793,7 @@ const VERGLEICH = {
     Sprache:["Ich- und Wir-Perspektive vermeiden, stattdessen man, es, Passiv und Infinitiv verwenden","Leser:innen nicht direkt ansprechen","Rhetorische Mittel einsetzen","Keine zu langen Sätze","Gliederung durch Verbindungen wie „dadurch“, „deshalb“, „daraus erkennt man …“"],
   },
   leserbrief:{
-    Allgemeines:["Reaktion auf einen veröffentlichten Text","Richtet sich an den Verfasser des Textes oder an Herausgeber:in/Chefredaktion des Mediums","Argumentiert die eigene Sicht der Dinge","Stellungnahme zu einzelnen Aussagen oder zum Thema des Textes","Briefform einhalten: Ort, Datum · Betreffzeile mit Titel · Anrede · Einleitung · Hauptteil (5-Satz oder LUZMA) · Schluss mit Appell/Forderung · Grußformel, Unterschrift"],
+    Allgemeines:["Reaktion auf einen veröffentlichten Text","Richtet sich an den Verfasser des Textes oder an Herausgeber:in/Chefredaktion des Mediums","Argumentiert die eigene Sicht der Dinge","Stellungnahme zu einzelnen Aussagen oder zum Thema des Textes","Briefform einhalten: Anrede · Einleitung · Hauptteil (5-Satz oder LUZMA) · Schluss mit Appell/Forderung · Grußformel, Unterschrift","Briefkopf (Ort, Datum, Betreffzeile) ist laut Textsortenkatalog bei der SRDP nicht notwendig"],
     Einleitung:["Bezugnahme auf den Ausgangstext: welcher Artikel, welches Thema, wer/wann verfasst, wo veröffentlicht, welcher strittige Punkt — bildet die Überleitung zum Hauptteil"],
     Hauptteil:["Ausführung der eigenen Ansichten: kritisieren, kommentieren, beurteilen der Aussagen des Textes, Stellung nehmen, aus eigener Sicht schildern, andere Perspektive einnehmen"],
     Schluss:["Schlussfolgerung, Fazit, Mahnung, Resümee, Appell"],
@@ -979,15 +1022,442 @@ const TEXTTRAINING = [
     {t:" sondern davon, was wir jetzt tun können."}]},
 ];
 
+const M = "https://www.matura.gv.at/downloads/download/";
+const DG = "https://www.deutsche-grammatik.net/textsorten-srdp/";
+const MATURA_ARCHIV = "https://www.matura.gv.at/downloads?tx_solr%5Bfilter%5D%5B0%5D=documentType%3A%2FFr%C3%BChere+Pr%C3%BCfungsaufgaben%2FKlausuren%2F&tx_solr%5Bfilter%5D%5B1%5D=subject%3A%2FUnterrichtssprache%2FDeutsch%2F";
+const MATURA_UEBUNG = "https://www.matura.gv.at/downloads?tx_solr%5Bfilter%5D%5B0%5D=subject%3A%2FUnterrichtssprache%2F&tx_solr%5Bfilter%5D%5B1%5D=subject%3A%2FUnterrichtssprache%2FDeutsch%2F&tx_solr%5Bfilter%5D%5B2%5D=documentType%3A%2F%C3%9Cbungsmaterialien%2F";
+const MATURA_TSK = M + "Textsortenkatalog%20SRDP%20Unterrichtssprache";
+const MATURA_RASTER = M + "Beurteilungsdokumente%20SRDP%20Unterrichtssprache";
+const uebPfad = n => M + "%C3%9Cbungsmaterial%20SRDP%20Deutsch%20f%C3%BCr%20Sch%C3%BCler/innen%20mit%20Blindheit%20oder%20Sehbehinderung:%20" + n;
+
+const QUELLEN_ALLGEMEIN = [
+  {href:MATURA_ARCHIV, quelle:"matura.gv.at · BMBWF", typ:"kostenlos · amtlich", text:"Alle bisherigen Klausuren mit „Kommentierung der Aufgaben“ (Erwartungen) — die beste Übungsquelle."},
+  {href:MATURA_TSK, quelle:"matura.gv.at · BMBWF", typ:"kostenlos · amtlich", text:"Textsortenkatalog: Definition, Bewertungskriterien und Umfang jeder Textsorte."},
+  {href:MATURA_RASTER, quelle:"matura.gv.at · BMBWF", typ:"kostenlos · amtlich", text:"Beurteilungsraster und Korrekturanleitung — so wird deine Arbeit bewertet."},
+];
+
+const QUELLEN = {
+  zusammenfassung:[
+    {href:DG+"zusammenfassung/zusammenfassung-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel mit Anmerkungen", text:"Kommentiertes Beispiel einer Zusammenfassung."},
+    {href:DG+"zusammenfassung/zusammenfassung-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Aufgaben mit Lösungen", text:"Übungen: Frauen in der Wirtschaft, Journalismus in Gefahr, Desinformation, Außerschulisches Lernen, Schule — jeweils mit Musterlösung bzw. Erwartungshorizont."},
+    {href:uebPfad("Zusammenfassung"), quelle:"matura.gv.at · BMBWF", typ:"kostenlos · Aufgabe + Textbeilage", text:"Offizielles Übungsset (Aufgabenstellung, Textbeilage, Antwortheft) — ohne Musterlösung."},
+  ],
+  meinungsrede:[
+    {href:DG+"meinungsrede/meinungsrede-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel mit Anmerkungen", text:"Kommentierte Beispiel-Meinungsrede."},
+    {href:DG+"meinungsrede/meinungsrede-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Aufgaben mit Lösungen", text:"Übungen: Schule und elektronische Hilfsmittel, Neue Technologien, Hohe Teuerung, Immer mehr Frauen ohne Arbeit — mit Schüler:innenarbeiten bzw. Erwartungshorizont."},
+    {href:uebPfad("Meinungsrede"), quelle:"matura.gv.at · BMBWF", typ:"kostenlos · Aufgabe + Textbeilagen", text:"Offizielles Übungsset (Aufgabe, zwei Textbeilagen, Infobox) — ohne Musterlösung."},
+  ],
+  kommentar:[
+    {href:DG+"kommentar/kommentar-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel mit Anmerkungen", text:"Kommentierter Beispiel-Kommentar mit nummerierten Erläuterungen zu Aufbau und Stil."},
+    {href:DG+"kommentar/kommentar-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Aufgaben mit Lösungen", text:"Übungen: Kunst und Kultur, Generation Z, Politik und neue Technologien, Boom der Konsumkredite, Matura — mit Lösungen bzw. Erwartungshorizont."},
+    {href:MATURA_UEBUNG, quelle:"matura.gv.at · BMBWF", typ:"kostenlos · Übungsmaterial", text:"Liste aller offiziellen Deutsch-Übungsmaterialien (Aufgaben und Textbeilagen)."},
+  ],
+  leserbrief:[
+    {href:DG+"leserbrief/leserbrief-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel mit Anmerkungen", text:"Kommentierter Beispiel-Leserbrief."},
+    {href:DG+"leserbrief/leserbrief-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Aufgaben mit Lösungen", text:"Übungen: Gewalt in Film und Fernsehen, Persönlichkeitsrechte, 10.000 Schritte pro Tag, Wehrdienst — je mit Lösung und Erwartungshorizont."},
+    {href:uebPfad("Leserbrief"), quelle:"matura.gv.at · BMBWF", typ:"kostenlos · Aufgabe + Textbeilage", text:"Offizielles Übungsset (Aufgabenstellung, Textbeilage, Antwortheft) — ohne Musterlösung."},
+  ],
+  eroerterung:[
+    {href:DG+"erörterung/erörterung-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel mit Anmerkungen", text:"Kommentierte Beispiel-Erörterung."},
+    {href:DG+"erörterung/erörterung-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Aufgaben mit Lösungen", text:"Übungen: Sprache und Kultur, Umgang mit Geld, Klassische Frauenberufe, Gefahren sozialer Netzwerke, Alter und Arbeitsmarkt, Jugend und digitale Medien u. a. — mit Schüler:innenarbeiten bzw. Erwartungshorizont."},
+    {href:uebPfad("Er%C3%B6rterung"), quelle:"matura.gv.at · BMBWF", typ:"kostenlos · Aufgabe + Textbeilage", text:"Offizielles Übungsset (Aufgabe, Textbeilage, Infobox, Antwortheft) — ohne Musterlösung."},
+  ],
+  textanalyse:[
+    {href:DG+"textanalyse/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Anleitung + Übungen", text:"Aufbau, Kriterien und drei Übungs-PDFs (z. B. Social-Media-Regeln, Bildung) mit Musterlösungen."},
+    {href:uebPfad("Textanalyse"), quelle:"matura.gv.at · BMBWF", typ:"kostenlos · Aufgabe + Textvorlage", text:"Offizielles Übungsset (Aufgabenstellung, Textvorlage, Antwortheft) — ohne Musterlösung."},
+  ],
+  textinterpretation:[
+    {href:DG+"textinterpretation/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Anleitung + Übungen", text:"Aufbau, Kriterien, Übungen (u. a. „Die Streuselschnecke“) und eine Beispiel-Schüler:innenarbeit — ohne Lösungsblätter."},
+    {href:uebPfad("Textinterpretation"), quelle:"matura.gv.at · BMBWF", typ:"kostenlos · Aufgabe + Textbeilage", text:"Offizielles Übungsset (Aufgabenstellung, Textbeilage, Antwortheft) — ohne Musterlösung."},
+  ],
+};
+
+const TRAINING = {
+  zusammenfassung:{
+    umfang:"270–330 Wörter",
+    aufgaben:[
+      {titel:"Digitale Medien im Unterricht", auftrag:"Wähle einen Bericht oder Kommentar aus einer österreichischen Tageszeitung (ca. 700–900 Wörter) über digitale Medien in der Schule. Fasse ihn in 270–330 Wörtern zusammen — unter dem Gesichtspunkt: Welche Chancen und welche Risiken werden genannt?"},
+      {titel:"Arbeitswelt im Wandel", auftrag:"Fasse einen Zeitungsartikel zu Homeoffice oder Vier-Tage-Woche zusammen. Gesichtspunkt: Welche Argumente werden angeführt, und wer vertritt sie?"},
+      {titel:"Klimaschutz im Alltag", auftrag:"Fasse einen Text zum Thema Klimaschutz zusammen. Gesichtspunkt: Welche konkreten Maßnahmen werden vorgeschlagen, und welche Einwände werden genannt?"},
+    ],
+    muster:{
+      aufgabe:"Fassen Sie den folgenden Zeitungsartikel unter dem Gesichtspunkt „Chancen und Hindernisse“ zusammen.",
+      grundlage:{titel:"„Klassenzimmer ohne Wände“", quelle:"Anna Berger, Salzburger Bildungszeitung, 12. März 2025 (erfundener Übungstext)", zeilen:[
+        "Immer mehr Schulen verlegen einzelne Stunden ins Freie.",
+        "Im Stadtpark, im Wald oder auf dem Bauernhof lernen Jugendliche, was sich im Klassenzimmer nur schwer vermitteln lässt: Biologie wird zum Bestimmungsspiel, Geometrie zum Vermessen des Schulhofs.",
+        "Studien zeigen, dass Schülerinnen und Schüler nach Unterricht im Freien konzentrierter arbeiten und sich Inhalte besser merken.",
+        "Auch das Klassenklima profitiere, weil Kinder, die im Alltag wenig miteinander zu tun haben, gemeinsam Aufgaben lösen müssten.",
+        "Kritiker wenden ein, dass der Lehrplan ohnehin dicht sei und Ausflüge Unterrichtszeit kosteten.",
+        "Zudem fehle vielen Schulen ein geeignetes Grundstück in der Nähe.",
+        "Die Direktorin einer Salzburger Mittelschule hält dagegen: Man müsse nicht täglich ausrücken, schon eine Freiluftstunde pro Woche verändere die Stimmung.",
+        "Wichtig sei vor allem, dass Lehrkräfte Zeit zur Vorbereitung erhielten.",
+        "Ministerium und Länder sollten deshalb Fortbildungen fördern, fordert die Autorin.",
+        "Denn ein Klassenzimmer ohne Wände sei keine Spielerei, sondern eine Chance, Lernen wieder als Erlebnis zu begreifen."]},
+      teile:[
+        {m:"Im Artikel „Klassenzimmer ohne Wände“ von Anna Berger, erschienen am 12. März 2025 in der „Salzburger Bildungszeitung“, geht es um Unterricht im Freien.", w:"Einleitung: Textsorte, Titel, Autorin, Medium, Datum und Thema in einem Satz."},
+        {t:" "},
+        {m:"Die Autorin erklärt, dass immer mehr Schulen Stunden nach draußen verlegen, wodurch Jugendliche konzentrierter arbeiten und sich Inhalte besser merken würden.", w:"Präsens und indirekte Rede (Konjunktiv): Die Aussage wird der Autorin zugeordnet. Eigene Formulierungen statt Übernahme aus dem Text."},
+        {t:" Auch das Klassenklima verbessere sich, da gemeinsame Aufgaben Kinder zusammenführten. "},
+        {m:"Als Hindernisse würden ein dichter Lehrplan und fehlende Grundstücke in Schulnähe genannt.", w:"Gesichtspunkt der Aufgabe („Chancen und Hindernisse“) steuert die Auswahl. Die Gegenposition wird sachlich wiedergegeben, ohne Wertung."},
+        {t:" "},
+        {m:"Laut einer Direktorin genüge jedoch schon eine Freiluftstunde pro Woche, sofern Lehrkräfte Vorbereitungszeit erhielten.", w:"Abwechslung bei der Redewiedergabe („laut“ + Konjunktiv I). Das Beispiel (Mittelschule Salzburg) wird weggelassen, nur die Kernaussage bleibt."},
+        {t:" "},
+        {m:"Abschließend fordert die Autorin Fortbildungen für Lehrkräfte und bezeichnet Lernen im Freien als Chance, Lernen wieder als Erlebnis zu verstehen.", w:"Ende mit dem letzten inhaltlichen Punkt des Originals — kein eigenes Fazit, keine Bewertung."},
+      ]},
+    check:[
+      "Einleitung nennt Textsorte, Titel, Autor:in, Medium, Datum und Thema.",
+      "Der vorgegebene Gesichtspunkt steuert die Auswahl der Inhalte.",
+      "Nur Kernaussagen, keine Beispiele im Detail und keine Nebensächlichkeiten.",
+      "Durchgehend Präsens, sachlich, keine eigene Meinung, keine Interpretation.",
+      "Eigene Formulierungen; höchstens einzelne, gezielt gewählte Zitate.",
+      "Abwechslungsreiche Redewiedergabe (Konjunktiv I, „laut“, „zufolge“).",
+      "Verständlich auch für jemanden, der den Originaltext nicht kennt.",
+      "Wortzahl 270–330 eingehalten.",
+    ],
+  },
+
+  meinungsrede:{
+    umfang:"405–495 oder 540–660 Wörter",
+    aufgaben:[
+      {titel:"Schulbeginn um 9 Uhr?", auftrag:"Sie halten bei einer Schulgemeinschaftsversammlung eine Rede zur Frage, ob der Unterricht später beginnen soll. Beziehen Sie sich auf eine Textbeilage zu Schlaf und Lernleistung und überzeugen Sie Ihr Publikum von Ihrer Position (405–495 Wörter)."},
+      {titel:"Ein Jugendzentrum für unsere Gemeinde", auftrag:"Als Jugendvertreter:in sprechen Sie in einer Gemeinderatssitzung. Überzeugen Sie die Mitglieder, Geld für ein Jugendzentrum bereitzustellen (405–495 Wörter)."},
+      {titel:"Abschlussfeier", auftrag:"Bei der Maturafeier halten Sie eine Rede darüber, welche Fähigkeiten Schule vermitteln sollte, die bisher zu kurz kommen. Vertreten Sie klar Ihre Position (540–660 Wörter)."},
+    ],
+    muster:{
+      aufgabe:"Halten Sie bei einem Schulfest eine Rede vor Direktion, Lehrkräften und Mitschüler:innen: Soll es an der Schule mehr Mitbestimmung geben? Überzeugen Sie Ihr Publikum. (Gekürzter Modelltext, in der Prüfung 405–495 Wörter.)",
+      grundlage:null,
+      teile:[
+        {m:"Sehr geehrte Frau Direktorin, liebe Lehrerinnen und Lehrer, liebe Mitschülerinnen und Mitschüler!", w:"Anrede: adressiert das Publikum direkt und passend zur Situation."},
+        {p:1},
+        {m:"Stellen Sie sich vor, Sie verbringen acht Stunden am Tag an einem Ort, an dem über beinahe alles entschieden wird — nur nicht von Ihnen.", w:"Einstieg mit Perspektivwechsel: Das Publikum wird direkt einbezogen und die eigene Rolle als Betroffene:r deutlich."},
+        {t:" Genau so geht es uns Schülerinnen und Schülern jeden Tag. "},
+        {m:"Deshalb bin ich überzeugt: Unsere Schule braucht mehr Mitbestimmung!", w:"Klare These, an der die ganze Rede ausgerichtet ist."},
+        {p:1},
+        {m:"Erstens: Wer mitentscheidet, übernimmt Verantwortung.", w:"Gestaffelte Argumentation (erstens – zweitens – drittens) mit Steigerung zum stärksten Argument am Ende."},
+        {t:" Als wir im vergangenen Jahr die Gestaltung des Pausenhofs selbst planen durften, hat niemand die neuen Bänke beschädigt. Zweitens: Mitbestimmung lehrt Demokratie im Alltag. "},
+        {m:"Wie sollen junge Menschen später verantwortungsvoll wählen, wenn sie nie gelernt haben, Kompromisse auszuhandeln?", w:"Rhetorische Frage: Die Antwort ist schon klar, das Publikum denkt mit."},
+        {t:" Drittens, und das wiegt am schwersten: Wir kennen unseren Schulalltag besser als jeder andere. Wir wissen, wo Stundenpläne nicht funktionieren, wo Räume fehlen und wo Ideen ungenutzt bleiben."},
+        {p:1},
+        {m:"Manche werden einwenden, Jugendliche seien mit solchen Entscheidungen überfordert und Verfahren dauerten zu lange. Doch Verantwortung wächst nur dort, wo sie zugetraut wird — und ein Schülerparlament, das monatlich tagt, kostet weniger Zeit als ein Jahr voller Unzufriedenheit.", w:"Gegenargument wird aufgegriffen und entkräftet — das macht die Position glaubwürdig."},
+        {p:1},
+        {m:"Darum meine Bitte an Sie alle: Trauen Sie uns etwas zu! Und an euch, liebe Mitschülerinnen und Mitschüler: Bringt euch ein, meldet euch, kandidiert!", w:"Schluss mit Appell (Imperative) an beide Zielgruppen."},
+        {t:" Denn eine Schule gehört nicht der Direktion, nicht den Lehrkräften und nicht der Schülervertretung allein — "},
+        {m:"sie gehört uns allen.", w:"Einprägsamer Schlusssatz (Trikolon als Vorbereitung, Pointe am Ende)."},
+        {t:" Ich danke Ihnen für Ihre Aufmerksamkeit."},
+      ]},
+    check:[
+      "Direkte Anrede des Publikums am Beginn und mehrfach im Verlauf.",
+      "Einstieg weckt Aufmerksamkeit (Anlass, Frage, Zitat, Betroffenheit).",
+      "Klare These; Position bleibt durchgehend erkennbar.",
+      "Argumente mit konkreten Beispielen bzw. überprüfbaren Fakten, sinnvoll gereiht.",
+      "Mindestens ein Gegenargument wird aufgegriffen und entkräftet.",
+      "Rhetorische Mittel gezielt und in Maßen (Fragen, Anapher, Trikolon).",
+      "Kurze, sprechbare Sätze; Wiederholungen sind erlaubt.",
+      "Schluss mit Appell oder Ausblick; Wortzahl eingehalten.",
+    ],
+  },
+
+  kommentar:{
+    umfang:"270–330, 405–495 oder 540–660 Wörter",
+    aufgaben:[
+      {titel:"Gratis-Öffi-Ticket für Jugendliche", auftrag:"Sie schreiben für die Schüler:innenzeitung einen Kommentar zur Forderung, Jugendlichen ein kostenloses Öffi-Ticket zu geben. Beziehen Sie klar Position (270–330 Wörter)."},
+      {titel:"Handyfreie Pausen", auftrag:"Verfassen Sie für eine regionale Tageszeitung einen Kommentar zu Handyverboten in den Pausen. Nutzen Sie eine Textbeilage als Anlass (405–495 Wörter)."},
+      {titel:"Verpflichtendes Sozialjahr", auftrag:"Kommentieren Sie den Vorschlag eines verpflichtenden Sozialjahres für alle Schulabgänger:innen. Zeigen Sie Ihre Position pointiert (405–495 Wörter)."},
+    ],
+    muster:{
+      aufgabe:"Verfassen Sie für die Schüler:innenzeitung einen Kommentar zur Forderung nach einem kostenlosen Öffi-Ticket für alle Jugendlichen. (Modelltext im Prüfungsumfang.)",
+      grundlage:null,
+      titel:"Freie Fahrt für die Zukunft",
+      teile:[
+        {m:"Es klingt wie ein Weihnachtsgeschenk mitten im Sommer: Alle Jugendlichen sollen ein kostenloses Öffi-Ticket erhalten.", w:"Einstieg über den aktuellen Anlass, mit Vergleichsbild. Der Kommentar knüpft an eine öffentliche Debatte an."},
+        {t:" Die Regierung diskutiert das Vorhaben seit Wochen, die Kritik kommt prompt: zu teuer, zu ungerecht, zu großzügig. "},
+        {m:"Doch wer so argumentiert, denkt zu kurz.", w:"Die These wird knapp und deutlich gesetzt — ohne „ich“, dafür mit Zuspitzung."},
+        {p:1},
+        {t:"Fest steht: Mobilität entscheidet über Chancen. Wer auf dem Land wohnt und nur mit dem Zug zur Lehrstelle, zum Sportverein oder zur Musikschule kommt, für den ist ein Ticket kein Luxus, sondern "},
+        {m:"die Eintrittskarte zum Leben.", w:"Metapher: verdichtet das Argument in einem Bild. Kurz, einprägsam, wertend."},
+        {t:" Hinzu kommt der Klimaschutz: Jugendliche, die früh an Bus und Bahn gewöhnt werden, steigen später seltener ins Auto — ein Argument, das keine Kampagne so überzeugend liefern könnte. Wer heute nach Schulschluss auf einen Bus wartet, der nur stündlich fährt, lernt vor allem eines: dass Mobilität ein Privileg ist. Es sind die Jugendlichen von heute, die morgen Fahrgäste, Steuerzahlerinnen und Wähler sind. Das Ticket entscheidet damit auch, ob Klimaschutz für sie Alltag wird oder bloß Schlagwort bleibt."},
+        {p:1},
+        {t:"Natürlich kostet das Geld, und nicht wenig. "},
+        {m:"Aber was kostet es, wenn Bildungswege am Fahrpreis scheitern?", w:"Rhetorische Frage als Gegenzug: Das Kostenargument wird umgedreht (Gegenargument entkräftet)."},
+        {t:" Wer Milliarden in Straßen und Parkplätze steckt, dem sollte die Zukunft der Jungen ein paar Millionen wert sein. Und wer Jugendliche zum Umsteigen bewegen will, muss ihnen zuerst etwas zum Einsteigen bieten."},
+        {p:1},
+        {m:"Der Einwand, dann profitierten auch Wohlhabende, ist berechtigt — aber schwach. Auch das Schulbuch ist gratis, und niemand hält die Schule deshalb für ungerecht.", w:"Zweites Gegenargument (Gerechtigkeit) wird aufgegriffen und mit einem Vergleich entkräftet."},
+        {t:" Gerecht wird die Maßnahme erst, wenn sie durch bessere Verbindungen im ländlichen Raum ergänzt wird: Ein Gratisticket für einen Bus, der zweimal am Tag fährt, ist ein hohles Versprechen. Wer junge Menschen ernst nimmt, sorgt dafür, dass sie ankommen — pünktlich und ohne Umwege."},
+        {p:1},
+        {m:"Es wird Zeit, dass die Politik nicht nur über Jugend spricht, sondern auch für sie fährt.", w:"Pointierter Schluss mit Appell und Wortspiel („fährt“), klare Positionierung. Der Kommentar endet nicht mit einer Zusammenfassung."},
+      ]},
+    check:[
+      "Aktueller Anlass am Beginn; das Problem wird knapp dargelegt.",
+      "Klare, deutlich erkennbare eigene Position (These).",
+      "Argumente sind erkennbar und verbunden (Gegensatz, Stütze, Einschränkung).",
+      "Gegenposition wird aufgegriffen und entkräftet.",
+      "Zuspitzung: Kurzsätze, Fragen, Bilder — aber ohne Beschimpfungen.",
+      "In der Regel unpersönlich formuliert (kein „ich“), Publikum nicht direkt angesprochen.",
+      "Schluss mit klarer Positionierung oder pointierter Wendung.",
+      "Passender Titel; Wortzahl eingehalten.",
+    ],
+  },
+
+  leserbrief:{
+    umfang:"270–330 Wörter",
+    aufgaben:[
+      {titel:"Handyverbot an Schulen", auftrag:"In der Tageszeitung erscheint ein Kommentar, der ein generelles Handyverbot an Schulen fordert. Schreiben Sie einen Leserbrief an die Redaktion und nehmen Sie dazu Stellung (270–330 Wörter)."},
+      {titel:"Schließung der Dorfbibliothek", auftrag:"Ein Bericht meldet, dass die Bibliothek Ihrer Gemeinde aus Kostengründen schließen soll. Reagieren Sie mit einem Leserbrief und widersprechen Sie mit schlüssigen Argumenten."},
+      {titel:"Vier-Tage-Woche", auftrag:"Ein Kommentar preist die Vier-Tage-Woche als Lösung für viele Probleme. Reagieren Sie mit einem ergänzenden Leserbrief, der Aspekte einbringt, die im Kommentar fehlen."},
+    ],
+    muster:{
+      aufgabe:"Reagieren Sie mit einem Leserbrief auf den folgenden Kommentar. Nehmen Sie Stellung und begründen Sie Ihre Position. (Modelltext im Prüfungsumfang.)",
+      grundlage:{titel:"„Handys weg! Warum Schulen jetzt durchgreifen müssen“", quelle:"Georg Haller, Kommentar in der „Alpenpost“, 10. April 2025 (erfundener Übungstext)", zeilen:[
+        "Kaum ein Klassenzimmer, in dem nicht unter dem Tisch getippt wird.",
+        "Smartphones stehlen den Jugendlichen die Aufmerksamkeit, die Lehrkräfte dringend bräuchten.",
+        "Ein generelles Handyverbot an allen Schulen ist daher überfällig.",
+        "Wer sich konzentrieren will, braucht Ruhe — und die bekommt man nicht mit Empfehlungen, sondern mit klaren Regeln."]},
+      teile:[
+        {m:"Sehr geehrte Redaktion,", w:"Eröffnungsformel. Ein Briefkopf mit Ort und Datum ist laut Textsortenkatalog bei der SRDP nicht notwendig."},
+        {p:1},
+        {m:"mit Interesse habe ich den Kommentar „Handys weg! Warum Schulen jetzt durchgreifen müssen“ von Georg Haller in der „Alpenpost“ vom 10. April 2025 gelesen, in dem er ein generelles Handyverbot an Schulen fordert.", w:"Einleitung: Anlass und Bezug zur Textbeilage (Textsorte, Titel, Autor, Medium, Datum)."},
+        {t:" "},
+        {m:"Seiner Einschätzung, Smartphones raubten den Jugendlichen die Aufmerksamkeit, kann ich nur teilweise zustimmen.", w:"Position gleich benannt: teilweise Zustimmung, dann Widerspruch — eine differenzierte Reaktion."},
+        {p:1},
+        {t:"Richtig ist, dass Handys im Unterricht stören können; wer während einer Erklärung Nachrichten schreibt, verpasst den Anschluss. Ich erlebe das täglich: Sobald ein Handy vibriert, drehen sich mehrere Köpfe um. Ein Pauschalverbot geht jedoch am Kern des Problems vorbei. "},
+        {m:"Erstens nutzen viele Lehrkräfte Smartphones längst sinnvoll — für Recherche, Vokabeltraining oder Übungen. In meiner Klasse bestimmen wir im Biologieunterricht Pflanzen mit einer App, eine Stunde, die ohne Smartphones kaum möglich wäre. Zweitens lernen Jugendliche den verantwortungsvollen Umgang mit digitalen Medien nicht durch Verbote, sondern nur durch Begleitung; wer das Handy nur außerhalb der Schule benutzen darf, übt nichts ein. Drittens ist ein Verbot kaum kontrollierbar und belastet das Vertrauen zwischen Lehrenden und Lernenden, weil aus Erziehung Kontrolle wird.", w:"Hauptteil: drei klar getrennte, begründete Argumente, eines davon mit konkretem Beispiel. Im Leserbrief ist die Ich-Form erlaubt, die Argumente bleiben trotzdem sachlich."},
+        {p:1},
+        {m:"Herr Haller meint, Empfehlungen genügten nicht, es brauche klare Regeln. Dem stimme ich zu — aber Regeln, die eine Klasse gemeinsam entwickelt, werden erfahrungsgemäß eher eingehalten als solche, die von oben verordnet werden. Auch sein Hinweis, viele Jugendliche seien abgelenkt, ist ernst zu nehmen. Er beweist aber nur, dass Handys Regeln brauchen, nicht, dass sie draußen bleiben müssen.", w:"Auseinandersetzung mit einem Argument der Textbeilage: teilweise Zustimmung, dann Weiterführung mit eigenem Gedanken."},
+        {p:1},
+        {m:"Ich schlage daher vor, dass jede Klasse gemeinsam mit den Lehrkräften klare Regeln vereinbart, wann das Handy erlaubt ist und wann nicht. So entsteht Verantwortung statt bloßem Gehorsam. Eine Schule, die junge Menschen auf die digitale Welt vorbereiten will, kann diese nicht vor der Tür lassen.", w:"Schluss: konstruktiver Vorschlag und Appell mit Bezug auf den Anlass."},
+        {p:1},
+        {m:"Mit freundlichen Grüßen", w:"Schlussformel."},
+        {t:" Lena Maier, 17, Schülerin aus Innsbruck"},
+      ]},
+    check:[
+      "Eröffnungsformel und direkte Adressierung (Redaktion, Autor:in oder Leserschaft).",
+      "Einleitung nennt den Anlass: Textsorte, Titel, Autor:in, Medium, Erscheinungsdatum.",
+      "Klare Reaktion: Zustimmung, Ablehnung, Ergänzung oder Widerspruch.",
+      "Eigene Position mit schlüssigen Argumenten oder Beispielen.",
+      "Schluss mit Appell, Bewertung, Fazit oder Ausblick — passend zum Anlass.",
+      "Schlussformel mit Name (Alter/Wohnort nur, wenn inhaltlich relevant).",
+      "Stil kompakt und pointiert; keine Beschimpfungen oder Beleidigungen.",
+      "Wortzahl 270–330 eingehalten.",
+    ],
+  },
+
+  eroerterung:{
+    umfang:"405–495 oder 540–660 Wörter",
+    aufgaben:[
+      {titel:"Noten abschaffen?", auftrag:"Erörtern Sie anhand einer Textbeilage die Frage, ob Ziffernnoten in der Schule abgeschafft werden sollen. Berücksichtigen Sie unterschiedliche Perspektiven und beziehen Sie Ihre eigene Position ein (405–495 Wörter)."},
+      {titel:"Soziale Netzwerke: Chance oder Gefahr?", auftrag:"Erörtern Sie, welche Chancen und Gefahren soziale Netzwerke für Jugendliche haben. Beziehen Sie sich auf die Textbeilage und schließen Sie mit einer begründeten Einschätzung (405–495 Wörter)."},
+      {titel:"Homeoffice als Regelfall?", auftrag:"Erörtern Sie, ob Homeoffice zur Regel werden sollte. Gehen Sie auf Arbeitnehmer:innen, Unternehmen und Gesellschaft ein (540–660 Wörter)."},
+    ],
+    muster:{
+      aufgabe:"Erörtern Sie die Frage, ob Ziffernnoten in der Schule abgeschafft werden sollen. Berücksichtigen Sie verschiedene Perspektiven. (Gekürzter Modelltext, in der Prüfung 405–495 Wörter, mit Bezug auf die Textbeilage.)",
+      grundlage:null,
+      teile:[
+        {m:"Kaum ein Thema spaltet Eltern, Lehrkräfte und Schüler:innen so zuverlässig wie die Frage der Leistungsbeurteilung. Immer wieder wird gefordert, Ziffernnoten durch verbale Beurteilungen zu ersetzen. Doch sollen Noten tatsächlich abgeschafft werden?", w:"Einleitung: Hinführung zum Problem, Fragestellung wird ausdrücklich benannt (offene Frage → abwägende Struktur). Keine Ich-Form."},
+        {p:1},
+        {m:"Für die Beibehaltung spricht zunächst ihre Vergleichbarkeit.", w:"Erster Argumentationsblock: Perspektive der Befürworter von Noten. Das Argument steht am Absatzanfang."},
+        {t:" Noten machen Leistungen auf einen Blick lesbar — etwa bei der Bewerbung um eine Lehrstelle oder einen Studienplatz, wo Betriebe und Hochschulen nicht Dutzende Textzeugnisse lesen können. Zudem bieten sie eine klare Rückmeldung: Wer eine Fünf schreibt, weiß, dass Handlungsbedarf besteht. Nicht zuletzt gelten Noten als motivierend für jene, die sich messen wollen."},
+        {p:1},
+        {m:"Dem steht jedoch gegenüber, dass eine Zahl nur wenig über den Lernweg aussagt.", w:"Überleitung mit Gegensatz-Signal („dem steht gegenüber“). Zweiter Block: Perspektive der Kritiker."},
+        {t:" Ein „Befriedigend“ verrät weder, woran es gescheitert ist, noch, was schon gelungen ist. Außerdem erzeugen Noten Druck: Viele Jugendliche leiden vor Schularbeiten unter Stress, der das Lernen eher blockiert als fördert. Wo Schulen versuchsweise auf Noten verzichten, etwa mit Kompetenzrastern, berichten Lehrkräfte häufig von mehr Gesprächen über das Lernen selbst und weniger Konkurrenz."},
+        {p:1},
+        {m:"Abwägend lässt sich festhalten, dass die Argumente gegen reine Ziffernnoten schwerer wiegen, weil Rückmeldung nur dann Lernen fördert, wenn sie erklärt.", w:"Abwägung: Gewichtung der Argumente, begründete Schlussfolgerung."},
+        {t:" "},
+        {m:"Ich halte daher eine Kombination für sinnvoll: Noten, wo Vergleichbarkeit nötig ist, ergänzt durch ausführliche Rückmeldungen, die zeigen, wie man besser wird.", w:"Erst im Schluss tritt die eigene Position („ich“) hervor — als Lösungsvorschlag, der beide Seiten verbindet."},
+      ]},
+    check:[
+      "Einleitung benennt Problem oder Fragestellung (in der Prüfung mit Bezug auf die Textbeilage).",
+      "Mehrere Perspektiven werden ausgewogen berücksichtigt.",
+      "Jedes Argument ist erkennbar und mit Beispiel, Beleg oder Begründung gestützt.",
+      "Argumente sind verbunden (Gegensatz, Stützung, Einschränkung) statt nur aneinandergereiht.",
+      "Eigenständige Weiterführung der Gedanken (Ergänzung oder Widerlegung der Textbeilage).",
+      "Schluss ordnet ein, wägt ab und beantwortet die Fragestellung.",
+      "Sachlicher Stil, Verben der Meinungsäußerung, abwechslungsreiche Verknüpfungswörter.",
+      "Wortzahl eingehalten.",
+    ],
+  },
+
+  textanalyse:{
+    umfang:"405–495 oder 540–660 Wörter",
+    aufgaben:[
+      {titel:"Kommentar analysieren", auftrag:"Analysieren Sie einen Kommentar aus einer Tageszeitung im Hinblick auf Argumentationsstruktur und sprachliche Mittel. Belegen Sie Ihre Aussagen mit Textstellen (405–495 Wörter)."},
+      {titel:"Rede analysieren", auftrag:"Analysieren Sie den Text einer politischen Rede (z. B. eine Neujahrsansprache) hinsichtlich Intention, Aufbau und rhetorischer Mittel."},
+      {titel:"Werbetext analysieren", auftrag:"Analysieren Sie einen Werbetext oder eine Anzeige. Beschreiben Sie Aufbau, Wortwahl und Wirkung auf die Zielgruppe."},
+    ],
+    muster:{
+      aufgabe:"Analysieren Sie den folgenden Kommentar im Hinblick auf Aufbau, sprachliche Mittel und Intention der Autorin. (Gekürzter Modelltext, in der Prüfung 405–495 Wörter.)",
+      grundlage:{titel:"„Ping!“", quelle:"Miriam Koller, Kommentar im „Kurier des Tages“, 3. Mai 2025 (erfundener Übungstext)", nummeriert:"Z.", zeilen:[
+        "Es vibriert, es blinkt, es piept — und schon ist die Konzentration dahin.",
+        "Push-Nachrichten haben sich unbemerkt zum größten Zeitdieb unserer Tage entwickelt.",
+        "Jede App will gehört werden, jede Redaktion, jeder Shop, jeder Bekannte.",
+        "Wir nennen das „Vernetzung“, dabei ist es Dauerbeschallung.",
+        "Studien zeigen, dass wir nach einer Unterbrechung Minuten brauchen, um wieder in eine Aufgabe zu finden.",
+        "Wer soll da noch in Ruhe denken, lesen oder gar schreiben?",
+        "Dabei wäre die Lösung simpel: Benachrichtigungen ausschalten, nur die wichtigsten zulassen.",
+        "Es liegt an uns, ob wir Herr über unsere Aufmerksamkeit bleiben — oder ihr Diener."]},
+      teile:[
+        {m:"Der Kommentar „Ping!“ von Miriam Koller, erschienen am 3. Mai 2025 im „Kurier des Tages“, thematisiert die ständige Ablenkung durch Push-Nachrichten.", w:"Knappe Einleitung: Textsorte, Titel, Autorin, Medium, Datum, Thema."},
+        {t:" Die Autorin will die Leserschaft dazu bewegen, Benachrichtigungen bewusster zu nutzen."},
+        {p:1},
+        {m:"Inhaltlich behandelt der Text zunächst das Problem (Z. 1–4), danach dessen Folgen für die Konzentration (Z. 5–6) und schließlich eine Lösung mit Appell (Z. 7–8).", w:"Aufbau beschrieben, mit Zeilenangaben. Nur analysieren, nicht interpretieren."},
+        {p:1},
+        {t:"Sprachlich fällt auf, dass die Autorin den Einstieg mit lautmalerischen Verben gestaltet („Es vibriert, es blinkt, es piept“, Z. 1). "},
+        {m:"Die Anapher „es“ und die Dreierstruktur erzeugen Tempo und lassen die Reizüberflutung unmittelbar spürbar werden.", w:"Dreischritt: Stilmittel benennen, Beleg mit Zeile, Wirkung erklären."},
+        {t:" Mit dem Wort „Dauerbeschallung“ (Z. 4) "},
+        {m:"entlarvt sie den positiv besetzten Begriff „Vernetzung“ und verschiebt so die Sicht der Lesenden.", w:"Wirkung der Wortwahl wird begründet und nicht nur behauptet."},
+        {t:" Die rhetorische Frage in Z. 6 bindet die Lesenden ein, weil die Antwort — niemand — bereits mitgedacht ist. Die Gegenüberstellung „Herr … oder Diener“ (Z. 8) ist als Antithese gestaltet und verleiht dem Appell Nachdruck."},
+        {p:1},
+        {m:"Insgesamt verfolgt die Autorin mit knappen Sätzen, Zuspitzungen und einem Appell das Ziel, Leser:innen zum Umdenken anzuregen. Ihre Argumentation stützt sich auf eine Studie (Z. 5), die jedoch nicht belegt wird; das schränkt die sachliche Überzeugungskraft ein.", w:"Schluss: Zusammenfassung der Analyse plus sachlich begründete Einschätzung der Textqualität. Keine persönlichen Geschmacksurteile."},
+      ]},
+    check:[
+      "Knappe Einleitung mit Textsorte, Titel, Autor:in, Medium, Datum, Thema.",
+      "Aufbau und Argumentationsstruktur des Textes beschrieben.",
+      "Sprachliche Mittel richtig benannt (Fachbegriffe korrekt und einheitlich).",
+      "Jede Aussage belegt (Zitat oder Zeilenangabe).",
+      "Zu jedem Mittel: Wirkung bzw. Funktion erklärt, nicht nur benannt.",
+      "Sachlicher Stil, keine Interpretation, keine Meinung zum Thema.",
+      "Schluss fasst Ergebnisse zusammen und schätzt Textqualität/Intention ein.",
+      "Zitate klar gekennzeichnet; Wortzahl eingehalten.",
+    ],
+  },
+
+  textinterpretation:{
+    umfang:"540–660 Wörter",
+    aufgaben:[
+      {titel:"Romantisches Naturgedicht", auftrag:"Interpretieren Sie ein Gedicht der Romantik (z. B. von Eichendorff, Novalis oder Brentano) im Hinblick auf das Verhältnis von Natur und lyrischem Ich (540–660 Wörter)."},
+      {titel:"Kurzgeschichte der Nachkriegszeit", auftrag:"Interpretieren Sie eine Kurzgeschichte der Nachkriegsliteratur (z. B. Wolfgang Borchert, „Das Brot“) im Hinblick auf Erzählweise und Symbolik."},
+      {titel:"Lyrik der Moderne", auftrag:"Interpretieren Sie ein Gedicht der Moderne (z. B. Rilke, „Der Panther“). Entwickeln Sie eine begründete Deutungshypothese und überprüfen Sie diese am Text."},
+    ],
+    muster:{
+      aufgabe:"Interpretieren Sie das Gedicht „Mondnacht“ von Joseph von Eichendorff (1837). Gehen Sie auf Form, Sprache und Inhalt ein. (Gekürzter Modelltext, in der Prüfung 540–660 Wörter.)",
+      grundlage:{titel:"„Mondnacht“", quelle:"Joseph von Eichendorff, 1837 (gemeinfrei)", nummeriert:"V.", strophen:true, zeilen:[
+        "Es war, als hätt der Himmel",
+        "Die Erde still geküßt,",
+        "Daß sie im Blütenschimmer",
+        "Von ihm nun träumen müßt.",
+        "Die Luft ging durch die Felder,",
+        "Die Ähren wogten sacht,",
+        "Es rauschten leis die Wälder,",
+        "So sternklar war die Nacht.",
+        "Und meine Seele spannte",
+        "Weit ihre Flügel aus,",
+        "Flog durch die stillen Lande,",
+        "Als flöge sie nach Haus."]},
+      teile:[
+        {m:"Das Gedicht „Mondnacht“ von Joseph von Eichendorff, 1837 erschienen, gehört zur Epoche der Romantik und thematisiert die Verbindung von Natur und Seele in einer nächtlichen Stimmung.", w:"Einleitung: Textsorte, Titel, Autor, Entstehungs-/Erscheinungsjahr, Thema (und Epoche als Kontext)."},
+        {p:1},
+        {t:"Inhaltlich beschreibt die erste Strophe, wie Himmel und Erde einander nahekommen, die zweite Strophe schildert die friedliche Natur bei Nacht, und in der dritten breitet die Seele des lyrischen Ichs ihre Flügel aus und fliegt „nach Haus“."},
+        {p:1},
+        {t:"Formal besteht das Gedicht aus drei Strophen zu je vier Versen im Kreuzreim (abab). "},
+        {m:"Der gleichmäßige Rhythmus und die einfache Sprache wirken ruhig und verstärken die Stimmung der Stille.", w:"Formmerkmal wird sofort mit einer Wirkung verbunden. Form und Inhalt gehören zusammen."},
+        {t:" Auffällig ist der Konjunktiv („als hätt der Himmel“, V. 1; „als flöge sie“, V. 12): "},
+        {m:"Er macht deutlich, dass das Erlebte kein äußeres Ereignis, sondern ein inneres Bild ist, das nur im Gleichnis ausgesprochen werden kann.", w:"Deutung auf Basis der Analyse: Der Konjunktiv wird nicht nur benannt, sondern in seiner Bedeutung erschlossen."},
+        {p:1},
+        {t:"Die Personifikation, der Himmel habe die Erde „still geküßt“ (V. 1–2), verbindet zwei getrennte Welten zu einer Liebesbegegnung und gibt der Natur eine beseelte Gestalt. In der zweiten Strophe vermitteln leise Verben wie „wogten sacht“ und „rauschten leis“ (V. 6–7) den Eindruck vollkommener Harmonie. "},
+        {m:"Erst in der dritten Strophe tritt das lyrische Ich mit „meine Seele“ (V. 9) hervor. Die Metapher der ausgespannten Flügel deutet die Sehnsucht an, irdische Grenzen zu überwinden; „nach Haus“ (V. 12) lässt sich daher als Sehnsucht nach Geborgenheit oder, im romantischen Sinn, nach Einheit mit einer göttlichen Ordnung deuten.", w:"Symbolgehalt wird erklärt („nach Haus“ als Bild). Die Deutung ist begründet und bleibt am Textbeleg (V. 9, V. 12)."},
+        {p:1},
+        {m:"Insgesamt zeigt das Gedicht typische Merkmale der Romantik: die Verklärung der Natur, die Sehnsucht der Seele und die Überwindung der Grenze zwischen Innen und Außen.", w:"Schluss: knappe Zusammenfassung der Interpretationsergebnisse."},
+      ]},
+    check:[
+      "Einleitung nennt Textsorte, Titel, Autor:in, Entstehungs-/Erscheinungsjahr.",
+      "Thema bzw. Handlung nachvollziehbar zusammengefasst (kurz!).",
+      "Formale, sprachliche und inhaltliche Elemente analysiert (z. B. Reimschema, Erzählperspektive).",
+      "Jede Deutung ist durch Zitate mit Vers- oder Zeilenangabe belegt.",
+      "Symbolgehalt bzw. mehrere Bedeutungsebenen erkannt und erklärt.",
+      "Autor:in, Erzähler:in und lyrisches Ich nicht verwechselt.",
+      "Fachbegriffe korrekt, eigener Ausdruck statt Stilübernahme; Zitate gekennzeichnet.",
+      "Schluss fasst die Deutungsergebnisse knapp zusammen; Wortzahl eingehalten.",
+    ],
+  },
+};
+
+function wordCountOf(teile){
+  return teile.map(p => p.m || p.t || '').join(' ').split(/\s+/).filter(Boolean).length;
+}
+
+function renderGrundlage(g){
+  if (!g) return '';
+  const head = '<div class="g-head"><b>' + esc(g.titel) + '</b><span>' + esc(g.quelle) + '</span></div>';
+  if (!g.nummeriert) return '<div class="grundlage"><div class="g-label">Textbeilage</div>' + head + '<p class="g-text">' + esc(g.zeilen.join(' ')) + '</p></div>';
+  return '<div class="grundlage"><div class="g-label">Textbeilage</div>' + head + '<ol class="g-lines">' +
+    g.zeilen.map((z, i) => '<li' + (g.strophen && i > 0 && i % 4 === 0 ? ' class="strophe"' : '') + '><span class="zn">' + esc(g.nummeriert) + (i + 1) + '</span><span>' + esc(z) + '</span></li>').join('') + '</ol></div>';
+}
+
+function renderMuster(tr){
+  const m = tr.muster;
+  let n = 0, body = '<p>';
+  const notes = [];
+  m.teile.forEach(p => {
+    if (p.p) body += '</p><p>';
+    else if (p.m) { n++; notes.push(p.w); body += '<mark class="tt-mark">' + esc(p.m) + '<sup>' + n + '</sup></mark>'; }
+    else body += esc(p.t);
+  });
+  body += '</p>';
+  const wc = wordCountOf(m.teile);
+  return '<div class="muster-body">' +
+    '<div class="m-aufgabe"><span class="g-label">Aufgabe</span>' + esc(m.aufgabe) + '</div>' +
+    renderGrundlage(m.grundlage) +
+    '<div class="m-modell"><span class="g-label">Modelltext</span>' +
+      (m.titel ? '<div class="muster-title">' + esc(m.titel) + '</div>' : '') +
+      '<div class="tt-text muster-text">' + body + '</div>' +
+      '<p class="m-count">≈ ' + wc + ' Wörter · Umfang in der Prüfung: ' + esc(tr.umfang) + '</p></div>' +
+    '<ol class="notes">' + notes.map((w, i) => '<li><span class="nn">' + (i + 1) + '</span><span>' + esc(w) + '</span></li>').join('') + '</ol>' +
+    '<p class="link-note">Eigener Modelltext mit fiktivem Anlass — kein amtlicher Erwartungshorizont. Er zeigt Aufbau, Stil und Umgang mit der Textbeilage; in der Prüfung sind die angegebenen Wortzahlen einzuhalten.</p>' +
+  '</div>';
+}
+
+function renderTraining(t){
+  const tr = TRAINING[t.id];
+  if (!tr) return '';
+  const quellen = (QUELLEN[t.id] || []).concat(QUELLEN_ALLGEMEIN.slice(0, 2));
+  return `
+    <div class="panel" style="margin-top:18px;">
+      <h4><span class="dot"></span>Übungsbeispiele &amp; Musterlösungen</h4>
+
+      <div class="train-block">
+        <h5>Übungsaufträge <small>Umfang laut Textsortenkatalog: ${esc(tr.umfang)}</small></h5>
+        <ul class="auftraege">
+          ${tr.aufgaben.map(a => `<li><b>${esc(a.titel)}</b><span>${esc(a.auftrag)}</span></li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="train-block">
+        <details class="muster">
+          <summary>Musterlösung mit Randnotizen anzeigen</summary>
+          ${renderMuster(tr)}
+        </details>
+      </div>
+
+      <div class="train-block">
+        <h5>Selbstcheck <small>nach den Bewertungskriterien des Textsortenkatalogs</small></h5>
+        <ul class="selfcheck" data-sc="${t.id}">
+          ${tr.check.map((c, i) => `<li><label><input type="checkbox" id="sc-${t.id}-${i}"><span>${esc(c)}</span></label></li>`).join('')}
+        </ul>
+        <div class="sc-progress" id="scp-${t.id}">0 von ${tr.check.length} erfüllt</div>
+      </div>
+
+      <div class="train-block">
+        <h5>Kostenlose Quellen mit Aufgaben <small>geprüft: keine Buch- oder Textverkäufer</small></h5>
+        <div class="linklist">
+          ${quellen.map(u => `
+            <a class="linkcard" href="${u.href}" target="_blank" rel="noopener noreferrer">
+              <span class="row1"><span class="quelle">${esc(u.quelle)}</span><span class="ext">↗</span></span>
+              <span class="txt">${esc(u.text)}</span>
+              <span class="typ">${esc(u.typ)}</span>
+            </a>`).join('')}
+        </div>
+      </div>
+    </div>`;
+}
+
 const TEXTSORTEN = [
   {
     id:"zusammenfassung", gruppe:"Sachlich & informativ", tag:"Sachtext · informativ",
     name:"Zusammenfassung", kurz:"Den Inhalt eines Textes objektiv, vollständig und in eigenen Worten wiedergeben.",
-    meta:["Perspektive: neutral","Zeit: Präsens","Länge: ca. ¼ des Originals"],
+    meta:["Perspektive: neutral","Zeit: Präsens","Umfang: 270–330 Wörter"],
     merkmale:[
       "Sachlich und neutral — keine eigene Meinung oder Wertung",
       "Präsens, auch wenn der Ausgangstext in der Vergangenheit steht",
-      "Redewiedergabe indirekt (Konjunktiv I), keine wörtlichen Zitate",
+      "Redewiedergabe indirekt (Konjunktiv I); wörtliche Zitate höchstens einzeln und gezielt",
       "Eigene Formulierungen statt übernommener Satzstrukturen",
       "Deutlich kürzer als der Originaltext, keine Nebensächlichkeiten"
     ],
@@ -1012,17 +1482,12 @@ const TEXTSORTEN = [
       {t:"Zu nah am Original", x:"Ganze Satzteile werden übernommen statt in eigenen Worten wiedergegeben."},
       {t:"Zu viele Details", x:"Beispiele und Nebensätze werden mitgenommen, die Zusammenfassung wird kaum kürzer als der Text."},
       {t:"Falsche Zeitform", x:"Vergangenheit statt Präsens, obwohl der Text selbst im Präsens referiert wird."}
-    ],
-    uebung:[
-      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/zusammenfassung/zusammenfassung-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel", text:"Ausformuliertes Beispiel einer Zusammenfassung mit Kommentar"},
-      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/zusammenfassung/zusammenfassung-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übung", text:"Interaktive Übungsaufgaben zur Zusammenfassung"},
-      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-zusammenfassung-download-978-3-7101-3522-4", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgaben mit vollständigen Lösungstexten"}
     ]
   },
   {
     id:"meinungsrede", gruppe:"Meinungsbildend & appellativ", tag:"Appellativ · mündlich konzipiert",
     name:"Meinungsrede", kurz:"Eine mündlich vorgetragene, pointierte Stellungnahme, die das Publikum überzeugen soll.",
-    meta:["Perspektive: ich, direkte Anrede","Zeit: variabel","Ziel: Überzeugung + Appell"],
+    meta:["Perspektive: ich, direkte Anrede","Ziel: Überzeugung + Appell","Umfang: 405–495 oder 540–660 Wörter"],
     merkmale:[
       "Direkte Zuhöreransprache zu Beginn und im Verlauf",
       "Rhetorische Mittel: rhetorische Fragen, Wiederholung, Dreierfiguren",
@@ -1053,17 +1518,12 @@ const TEXTSORTEN = [
       {t:"Keine Zuhöreransprache", x:"Die Rede liest sich wie ein Aufsatz, das Publikum wird nie direkt adressiert."},
       {t:"Nur Aufzählung", x:"Argumente stehen nebeneinander ohne rhetorische Zuspitzung oder Emotion."},
       {t:"Fehlender Appell", x:"Die Rede endet inhaltlich, ohne zu einer konkreten Handlung aufzurufen."}
-    ],
-    uebung:[
-      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/meinungsrede/meinungsrede-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel", text:"Ausformulierte Beispiel-Meinungsrede mit Kommentar"},
-      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/meinungsrede/meinungsrede-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übung", text:"Übungsaufgaben zur Meinungsrede"},
-      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-meinungsrede-download-978-3-7101-3526-2", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgabe mit zwei vollständigen Lösungstexten"}
     ]
   },
   {
     id:"kommentar", gruppe:"Meinungsbildend & appellativ", tag:"Journalistisch · meinungsbildend",
     name:"Kommentar", kurz:"Pointierte, subjektive Stellungnahme zu einem aktuellen Ereignis für ein Zeitungspublikum.",
-    meta:["Perspektive: ich / man","Zeit: Präsens","Ton: zugespitzt, meinungsstark"],
+    meta:["Perspektive: unpersönlich (i. d. R. kein „ich“)","Ton: zugespitzt, meinungsstark","Umfang: 270–330, 405–495 oder 540–660 Wörter"],
     merkmale:[
       "Klare, oft zugespitzte Meinung — aber sachlich fundiert",
       "Konkreter Bezug zu einem aktuellen Ereignis oder Anlass",
@@ -1094,23 +1554,18 @@ const TEXTSORTEN = [
       {t:"Fehlender Aufhänger", x:"Kein konkreter aktueller Anlass, das Thema bleibt abstrakt."},
       {t:"Polemik statt Pointe", x:"Beschimpfung ohne Argumentation ist nicht dasselbe wie eine zugespitzte Meinung."},
       {t:"Zu behäbig", x:"Lange, unpointierte Sätze nehmen dem Kommentar die Schärfe."}
-    ],
-    uebung:[
-      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/kommentar/kommentar-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel", text:"Ausformulierter Beispiel-Kommentar mit Kommentar zum Aufbau"},
-      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/kommentar/kommentar-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übung", text:"Übungsaufgaben zum Kommentar"},
-      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-kommentar-download-978-3-7101-3521-7", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgaben mit vollständigen Lösungstexten"}
     ]
   },
   {
     id:"leserbrief", gruppe:"Meinungsbildend & appellativ", tag:"Appellativ · Zeitung",
     name:"Leserbrief", kurz:"Reaktion einer Privatperson auf einen Artikel, veröffentlicht in der Leserbriefspalte.",
-    meta:["Perspektive: ich","Adressat: Redaktion, öffentlich","Länge: kurz"],
+    meta:["Perspektive: ich","Adressat: Redaktion, öffentlich","Umfang: 270–330 Wörter"],
     merkmale:[
       "Konkreter Bezug auf einen Artikel — Titel, Datum, Ausgabe",
       "Persönliche, aber begründete Meinung",
       "Formal an die Redaktion gerichtet, inhaltlich an die Leserschaft",
       "Anrede und Grußformel wie im Brief",
-      "Kurz und prägnant, meist nicht länger als eine Seite"
+      "Kompakt und prägnant (270–330 Wörter); ein Briefkopf mit Ort und Datum ist bei der SRDP nicht notwendig"
     ],
     aufbau:[
       {b:"Anrede", t:"Sehr geehrte Redaktion / Sehr geehrte Damen und Herren."},
@@ -1135,18 +1590,12 @@ const TEXTSORTEN = [
       {t:"Zu lang", x:"Leserbriefe sind kurz; ausufernde Ausführungen sprengen die Textsorte."},
       {t:"Falscher Ton", x:"Zu förmlich-distanziert oder zu locker für ein Zeitungsformat."},
       {t:"Meinung ohne Begründung", x:"Position wird behauptet, aber nicht mit Argumenten unterlegt."}
-    ],
-    uebung:[
-      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/leserbrief/leserbrief-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel", text:"Ausformulierter Beispiel-Leserbrief mit Kommentar"},
-      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/leserbrief/leserbrief-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übung", text:"Übungsaufgaben zum Leserbrief"},
-      {href:"https://wissenplus.westermann.at/wissenplus-leserbrief-ueben-fuer-die-zentralmatura/", quelle:"WissenPlus Westermann", typ:"kostenlos · Übung mit Musterlösung", text:"Leserbrief üben für die Zentralmatura, mit kommentierter Musterlösung"},
-      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-leserbrief-download-978-3-7101-3523-1", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgaben mit vollständigen Lösungstexten"}
     ]
   },
   {
     id:"eroerterung", gruppe:"Meinungsbildend & appellativ", tag:"Argumentativ · sachlich-analytisch",
     name:"Erörterung", kurz:"Ein Thema von mehreren Seiten beleuchten und Argumente zu einem begründeten Urteil abwägen.",
-    meta:["Form: dialektisch oder linear","Perspektive: meist neutral bis zum Schluss","Zeit: Präsens"],
+    meta:["Form: dialektisch oder linear","Perspektive: meist neutral bis zum Schluss","Umfang: 405–495 oder 540–660 Wörter"],
     merkmale:[
       "Sachlich-distanzierter Stil, dialektisch meist ohne durchgehendes Ich",
       "Abwägen mehrerer Positionen statt einseitiger Meinung",
@@ -1177,17 +1626,12 @@ const TEXTSORTEN = [
       {t:"Unausgewogen", x:"Eine Seite wird nur pflichtschuldig erwähnt, nicht ernsthaft durchdacht."},
       {t:"Argument ohne Beispiel", x:"Behauptungen bleiben unbelegt und damit angreifbar."},
       {t:"Keine Gewichtung", x:"Alle Argumente stehen gleich wichtig nebeneinander, ohne Steigerung."}
-    ],
-    uebung:[
-      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/erörterung/erörterung-beispiel/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Beispiel", text:"Ausformulierte Beispiel-Erörterung mit Kommentar"},
-      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/erörterung/erörterung-übungen/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übung", text:"Übungsaufgaben zur Erörterung"},
-      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-eroerterung-download-978-3-7101-3524-8", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgaben mit vollständigen Lösungstexten"}
     ]
   },
   {
     id:"textanalyse", gruppe:"Literarisch & analytisch", tag:"Analytisch · Sachtext",
     name:"Textanalyse", kurz:"Sachliche Untersuchung eines meist nicht-fiktionalen Textes hinsichtlich Inhalt, Struktur, Sprache und Wirkung.",
-    meta:["Perspektive: analytisch-distanziert","Zeit: Präsens","Belegpflicht: mit Zeilenangabe"],
+    meta:["Perspektive: analytisch-distanziert","Belegpflicht: mit Zeilenangabe","Umfang: 405–495 oder 540–660 Wörter"],
     merkmale:[
       "Sachlich-distanzierter Stil im Präsens",
       "Jede Aussage wird mit Zitat und Zeilenangabe belegt",
@@ -1219,16 +1663,12 @@ const TEXTSORTEN = [
       {t:"Stilmittel ohne Wirkung", x:"„Der Autor verwendet eine Metapher.“ — und weiter passiert nichts."},
       {t:"Fehlende Zeilenbelege", x:"Behauptungen ohne Textstelle sind nicht überprüfbar."},
       {t:"Wertung statt Beschreibung", x:"Eigene Meinung zum Thema vermischt sich mit der Analyse des Textes."}
-    ],
-    uebung:[
-      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/textanalyse/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übersicht + PDF-Übungen", text:"Erklärung, Kriterien und downloadbare Übungsaufgaben zur Textanalyse"},
-      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-textanalyse-download-978-3-7101-3525-5", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgaben mit vollständigen Lösungstexten"}
     ]
   },
   {
     id:"textinterpretation", gruppe:"Literarisch & analytisch", tag:"Literarisch-analytisch",
     name:"Textinterpretation", kurz:"Analyse und Deutung eines literarischen Textes hinsichtlich Inhalt, Form und Bedeutung.",
-    meta:["Perspektive: analytisch, deutend","Zeit: Präsens","Belegpflicht: Zeilen-/Versangabe"],
+    meta:["Perspektive: analytisch, deutend","Belegpflicht: Zeilen-/Versangabe","Umfang: 540–660 Wörter"],
     merkmale:[
       "Präsens, sachlich-distanzierter Grundton — Deutung ist ausdrücklich gefordert",
       "Zitate mit Zeilen- oder Versangabe als Beleg",
@@ -1260,10 +1700,6 @@ const TEXTSORTEN = [
       {t:"Deutung ohne Beleg", x:"Interpretation wirkt frei erfunden, weil kein Zitat sie stützt."},
       {t:"Ich-Verwechslung", x:"Autor:in, Erzähler:in und lyrisches Ich werden gleichgesetzt."},
       {t:"Form ohne Deutung", x:"Reim oder Metrum werden benannt, aber ihre Bedeutung nicht erschlossen."}
-    ],
-    uebung:[
-      {href:"https://www.deutsche-grammatik.net/textsorten-srdp/textinterpretation/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Übersicht + PDF-Übungen", text:"Erklärung, Kriterien und downloadbare Übungsaufgaben zur Textinterpretation"},
-      {href:"https://www.veritas.at/durchstarten-zur-zentralmatura-deutsch-ahs-bhs-trainingspaket-textinterpretation-download-978-3-7101-3520-0", quelle:"Veritas Trainingspaket", typ:"kostenpflichtig · Musterlösung", text:"Original-Matura-Aufgaben mit vollständigen Lösungstexten"}
     ]
   },
 ];
@@ -1403,21 +1839,22 @@ document.getElementById('tslist').innerHTML = TEXTSORTEN.map((t, i) => `
             </div>`).join('')}
         </div>
       </div>
-      <div class="panel" style="margin-top:18px;">
-        <h4><span class="dot"></span>Übungsbeispiele &amp; Musterlösungen</h4>
-        <div class="linklist">
-          ${t.uebung.map(u => `
-            <a class="linkcard" href="${u.href}" target="_blank" rel="noopener noreferrer">
-              <span class="row1"><span class="quelle">${esc(u.quelle)}</span><span class="ext">↗</span></span>
-              <span class="txt">${esc(u.text)}</span>
-              <span class="typ">${esc(u.typ)}</span>
-            </a>`).join('')}
-        </div>
-        ${t.uebungNote ? `<p class="link-note">${esc(t.uebungNote)}</p>` : ''}
-      </div>
+      ${renderTraining(t)}
     </div>
   </details>
 `).join('');
+
+// Selbstcheck-Zähler
+document.querySelectorAll('.selfcheck').forEach(ul => {
+  const id = ul.dataset.sc, out = document.getElementById('scp-' + id);
+  const boxes = ul.querySelectorAll('input');
+  const upd = () => {
+    const n = ul.querySelectorAll('input:checked').length;
+    out.textContent = n + ' von ' + boxes.length + ' erfüllt';
+    out.classList.toggle('done', n === boxes.length);
+  };
+  boxes.forEach(b => b.addEventListener('change', upd));
+});
 
 // Rail active state + auto-open on click
 const railLinks = document.querySelectorAll('.rail a');
