@@ -5,64 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Textsortenatlas</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Caveat:wght@500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&family=Caveat:wght@500;600;700&display=swap');
 
   :root{
-    --bg:#F2F0E9;
-    --surface:#FFFFFE;
-    --surface-2:#EAE7DD;
-    --ink:#1E2530;
-    --ink-soft:#57616F;
-    --ink-faint:#8B92A0;
-    --line:#DAD5C7;
-    --accent:#2E4C7A;
-    --accent-strong:#1F3557;
-    --accent-soft:#E3EAF3;
+    /* Design-Tokens der Schulhomepage gym.scp.ac.at */
+    --bg:#FFFFFF;
+    --surface:#FFFFFF;
+    --surface-2:#F1F6FC;
+    --ink:#333333;
+    --ink-soft:#5A5A5A;
+    --ink-faint:#7D7D7D;
+    --line:#E0DEDE;
+    --accent:#009FE3;
+    --accent-strong:#0E3C88;
+    --accent-soft:#D8E5F6;
+    --blue-mid:#436DB4;
+    --blue-dark:#0E3C88;
+    --blue-petrol:#0079AF;
+    --blue-light:#8CD3F6;
     --red:#A13A3A;
     --red-soft:#F5E3E1;
     --red-strong:#7E2C2C;
-    --shadow: 0 1px 2px rgba(30,37,48,.06), 0 8px 24px -12px rgba(30,37,48,.18);
-    --font-display: 'Fraunces', ui-serif, Georgia, serif;
-    --font-body: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
-    --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
+    --shadow: 0 1px 2px rgba(14,60,136,.06), 0 8px 24px -12px rgba(14,60,136,.22);
+    --font-display: 'Ubuntu', Arial, Helvetica, sans-serif;
+    --font-body: 'Fira Sans', Arial, Helvetica, sans-serif;
+    --font-mono: 'Fira Sans', Arial, Helvetica, sans-serif;
     --font-hand: 'Caveat', cursive;
     color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark){
-    :root:not([data-theme="light"]){
-      --bg:#12161C;
-      --surface:#191E26;
-      --surface-2:#1F2530;
-      --ink:#E9E6DC;
-      --ink-soft:#9CA6B3;
-      --ink-faint:#6B7482;
-      --line:#2B323D;
-      --accent:#8FB0DE;
-      --accent-strong:#B7CDEA;
-      --accent-soft:#20304A;
-      --red:#E08A82;
-      --red-soft:#3A2222;
-      --red-strong:#F2AFA8;
-      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px -14px rgba(0,0,0,.55);
-      color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#12161C;
-    --surface:#191E26;
-    --surface-2:#1F2530;
-    --ink:#E9E6DC;
-    --ink-soft:#9CA6B3;
-    --ink-faint:#6B7482;
-    --line:#2B323D;
-    --accent:#8FB0DE;
-    --accent-strong:#B7CDEA;
-    --accent-soft:#20304A;
-    --red:#E08A82;
-    --red-soft:#3A2222;
-    --red-strong:#F2AFA8;
-    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 28px -14px rgba(0,0,0,.55);
-    color-scheme: dark;
   }
 
   *{ box-sizing:border-box; }
@@ -90,20 +59,19 @@
   main{ overflow-wrap:anywhere; min-width:0; }
   .col{ max-width:760px; margin:0 auto; padding:0 24px; }
 
-  /* ---------- Header ---------- */
+  /* ---------- Header (Stil der Schulhomepage) ---------- */
   header.site{
     position:sticky; top:0; z-index:40;
-    background:color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(10px);
-    border-bottom:1px solid var(--line);
+    background:var(--accent);
+    color:#fff;
   }
   .site-bar{
     max-width:1180px; margin:0 auto; padding:14px 24px;
-    display:flex; align-items:baseline; justify-content:space-between; gap:20px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
   }
-  .logotype{ display:flex; align-items:baseline; gap:2px; font-family:var(--font-display); font-size:1.35rem; flex-shrink:0; white-space:nowrap; }
-  .logotype b{ font-weight:700; }
-  .logotype i{ font-style:italic; font-weight:500; color:var(--accent); }
+  .logotype{ display:flex; align-items:baseline; gap:0; font-family:var(--font-body); font-size:1.55rem; font-weight:400; color:#fff; flex-shrink:0; white-space:nowrap; }
+  .logotype b{ font-weight:400; }
+  .logotype i{ font-style:normal; font-weight:400; color:#fff; }
   nav.chips{
     display:flex; gap:8px; overflow-x:auto; padding:2px;
     scrollbar-width:none;
@@ -111,13 +79,17 @@
   nav.chips::-webkit-scrollbar{ display:none; }
   nav.chips a{
     flex:none;
-    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.04em; text-transform:uppercase;
-    color:var(--ink-soft); text-decoration:none;
-    border:1px solid var(--line); border-radius:999px;
-    padding:6px 12px;
+    font-family:var(--font-body); font-size:.8rem;
+    color:#fff; text-decoration:none;
+    background:var(--blue-petrol); border-radius:0 0 20px 0;
+    padding:8px 22px 8px 10px;
     white-space:nowrap;
   }
-  nav.chips a:hover{ color:var(--accent); border-color:var(--accent); }
+  nav.chips a:nth-child(4n+1){ background:var(--blue-light); }
+  nav.chips a:nth-child(4n+2){ background:var(--blue-petrol); }
+  nav.chips a:nth-child(4n+3){ background:var(--blue-dark); }
+  nav.chips a:nth-child(4n+4){ background:var(--blue-mid); }
+  nav.chips a:hover{ filter:brightness(.92); }
 
   /* ---------- Hero ---------- */
   .hero{ padding:56px 0 40px; border-bottom:1px solid var(--line); }
@@ -126,8 +98,8 @@
     font-family:var(--font-mono); font-size:.75rem; letter-spacing:.09em; text-transform:uppercase;
     color:var(--accent); margin:0 0 14px;
   }
-  .hero h1{ font-size:clamp(2.1rem, 4.4vw, 3.1rem); font-weight:600; line-height:1.08; }
-  .hero h1 em{ font-style:italic; color:var(--accent); font-weight:500; }
+  .hero h1{ font-size:clamp(2.1rem, 4.4vw, 3.1rem); font-weight:700; line-height:1.1; color:var(--accent); }
+  .hero h1 em{ font-style:normal; color:var(--accent); font-weight:700; }
   .hero p.lede{ margin-top:18px; font-size:1.1rem; color:var(--ink-soft); max-width:52ch; line-height:1.65; }
   .facts{ display:flex; flex-direction:column; gap:14px; }
   .fact{
@@ -380,8 +352,8 @@
   /* ---------- Stilmittel ---------- */
   .stil-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(270px,100%),1fr)); gap:14px; }
   .stil-card{ border:1px solid var(--line); border-radius:10px; padding:16px 18px; background:var(--surface); display:flex; flex-direction:column; gap:9px; }
-  .stil-card .head{ display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
-  .stil-card .name{ font-family:var(--font-display); font-size:1.05rem; font-weight:600; }
+  .stil-card .head{ display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:2px 8px; }
+  .stil-card .name{ font-family:var(--font-display); font-size:1.02rem; font-weight:700; overflow-wrap:normal; word-break:normal; hyphens:auto; }
   .stil-card .num{ font-family:var(--font-mono); font-size:.68rem; color:var(--ink-faint); }
   .stil-card .def{ font-size:.85rem; color:var(--ink-soft); line-height:1.5; }
   .stil-card .beispiel{ font-size:.85rem; font-style:italic; color:var(--ink); background:var(--accent-soft); border-radius:6px; padding:8px 10px; line-height:1.5; }
@@ -535,30 +507,6 @@
   footer{ padding:40px 0 60px; }
   footer p{ font-size:.85rem; color:var(--ink-faint); max-width:60ch; line-height:1.6; }
 
-  /* ---------- Zoom controls ---------- */
-  .zoom-controls{
-    position:fixed; right:18px; bottom:18px; z-index:50;
-    display:flex; align-items:center; gap:2px;
-    background:var(--surface); border:1px solid var(--line); border-radius:999px;
-    box-shadow:var(--shadow); padding:4px;
-  }
-  .zoom-btn{
-    border:none; background:transparent; color:var(--ink); cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    width:34px; height:34px; border-radius:50%;
-    font-family:var(--font-body); font-size:1.15rem; line-height:1;
-  }
-  .zoom-btn:hover{ background:var(--accent-soft); color:var(--accent-strong); }
-  .zoom-btn:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
-  .zoom-btn:disabled{ opacity:.35; cursor:default; }
-  .zoom-btn.zoom-level{
-    width:auto; padding:0 10px; border-radius:999px;
-    font-family:var(--font-mono); font-size:.72rem; color:var(--ink-soft);
-  }
-  @media (max-width:640px){
-    .zoom-controls{ right:12px; bottom:12px; }
-  }
-
   @media (max-width:640px){
     .hero-grid{ grid-template-columns:1fr; gap:32px; }
     .krit-row{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
@@ -569,7 +517,6 @@
 </head>
 <body>
 
-<div id="zoomwrap">
 <header class="site">
   <div class="site-bar">
     <div class="logotype"><b>Textsorten</b><i>atlas</i></div>
@@ -718,13 +665,6 @@
     </div>
   </footer>
 </main>
-</div>
-
-<div class="zoom-controls" role="group" aria-label="Ansicht vergrößern oder verkleinern">
-  <button class="zoom-btn" id="zoomOut" aria-label="Verkleinern" type="button">–</button>
-  <button class="zoom-btn zoom-level" id="zoomReset" aria-label="Zoom zurücksetzen" type="button">100%</button>
-  <button class="zoom-btn" id="zoomIn" aria-label="Vergrößern" type="button">+</button>
-</div>
 
 <script>
 const NIVEAUS = [
@@ -2092,39 +2032,6 @@ document.querySelectorAll('details.ts').forEach(el => observer.observe(el));
   }
 
   renderTabs(); mount();
-})();
-
-// Zoom controls (unabhängig vom Host, z. B. für eingebettete Teams-Tabs ohne Pinch-Zoom)
-(function initZoom(){
-  const wrap = document.getElementById('zoomwrap');
-  const btnOut = document.getElementById('zoomOut');
-  const btnIn = document.getElementById('zoomIn');
-  const btnReset = document.getElementById('zoomReset');
-  if (!wrap || !btnOut || !btnIn || !btnReset) return;
-
-  const levels = [0.7, 0.8, 0.9, 1, 1.1, 1.25, 1.4, 1.6];
-  let idx = levels.indexOf(1);
-  try {
-    const saved = parseFloat(localStorage.getItem('ta_zoom'));
-    if (!isNaN(saved)) {
-      let closest = 0;
-      levels.forEach((l, i) => { if (Math.abs(l - saved) < Math.abs(levels[closest] - saved)) closest = i; });
-      idx = closest;
-    }
-  } catch (e) {}
-
-  function apply(){
-    const z = levels[idx];
-    wrap.style.zoom = z;
-    btnReset.textContent = Math.round(z * 100) + '%';
-    btnOut.disabled = idx === 0;
-    btnIn.disabled = idx === levels.length - 1;
-    try { localStorage.setItem('ta_zoom', String(z)); } catch (e) {}
-  }
-  btnOut.addEventListener('click', () => { if (idx > 0) { idx--; apply(); } });
-  btnIn.addEventListener('click', () => { if (idx < levels.length - 1) { idx++; apply(); } });
-  btnReset.addEventListener('click', () => { idx = levels.indexOf(1); apply(); });
-  apply();
 })();
 </script>
 
