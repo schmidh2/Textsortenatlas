@@ -27,3 +27,8 @@ Datenobjekte im `<script>`: `OPERATOREN`/`NIVEAUS`, `KRITERIEN`, `VERGLEICH` (Ve
 
 ## Zusätzlich
 Es gibt eine Artifact-Kopie in claude.ai (nur Ansicht, nicht das Original): https://claude.ai/artifact/NqFxpprohFaaJddQSM5HR2
+
+## Homepage-Variante veröffentlichen und mit main abgleichen
+- Eigene Webadresse: https://schmidh2.github.io/Textsortenatlas-Homepage/ (Repo `schmidh2/Textsortenatlas-Homepage`, Remote `homepage-site`, Pages aus dessen `main`).
+- Inhaltliche Änderungen kommen auf `main` (Teams-Version) und werden mit `./sync-homepage.sh` in `homepage` übernommen und veröffentlicht. Bei Konflikten bricht das Skript ab, ohne etwas zu verändern.
+- Design (CSS, Kopfzeile) nur auf `homepage` ändern, Inhalte (Datenobjekte im Skript) nur auf `main`, dann gibt es kaum Konflikte.
