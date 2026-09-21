@@ -118,7 +118,8 @@
   /* ---------- Section shell ---------- */
   section.block{ padding:52px 0; border-bottom:1px solid var(--line); }
   .block-head{ margin-bottom:28px; max-width:70ch; }
-  .block-head h2{ font-size:1.7rem; font-weight:600; }
+  .block-head h2{ font-size:1.7rem; font-weight:700; color:var(--accent); display:flex; align-items:center; gap:14px; }
+  .block-head h2::after{ content:""; flex:1 1 40px; min-width:24px; height:5px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
   .block-head p{ margin-top:10px; color:var(--ink-soft); font-size:1rem; }
 
   /* ---------- Operatoren ---------- */
@@ -247,6 +248,7 @@
   .entwurf{
     background:
       repeating-linear-gradient(var(--surface), var(--surface) 27px, var(--line) 28px);
+    background-origin:content-box;
     background-color:var(--surface);
     border:1px solid var(--line);
     border-left:3px solid var(--accent);
@@ -365,6 +367,7 @@
   .quiz-progress{ font-family:var(--font-mono); font-size:.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.04em; display:flex; justify-content:space-between; margin-bottom:16px; }
   .quiz-sentence{
     background: repeating-linear-gradient(var(--surface), var(--surface) 27px, var(--line) 28px);
+    background-origin:content-box;
     background-color:var(--surface);
     border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px;
     padding:14px 18px; font-family:var(--font-display); font-size:1.02rem; line-height:28px; color:var(--ink);
@@ -510,8 +513,10 @@
   @media (max-width:640px){
     .hero-grid{ grid-template-columns:1fr; gap:32px; }
     .krit-row{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
-    .site-bar{ flex-direction:column; align-items:flex-start; gap:10px; }
-    nav.chips{ max-width:100%; }
+    .site-bar{ padding:8px 16px; gap:8px; flex-wrap:wrap; }
+    .logotype{ font-size:1.25rem; }
+    nav.chips{ max-width:100%; flex:1 1 100%; padding:0; }
+    nav.chips a{ padding:5px 18px 5px 9px; font-size:.75rem; }
   }
 </style>
 </head>
@@ -619,7 +624,7 @@
       <div class="stage">
         <div>
           <div class="col" style="max-width:100%; padding:0; margin-bottom:28px;">
-            <h2 style="font-size:1.7rem; font-weight:600;">Die Textsorten im Detail</h2>
+            <h2 style="font-size:1.7rem;">Die Textsorten im Detail</h2>
             <p style="margin-top:10px; color:var(--ink-soft);">Jede Karte lässt sich aufklappen: links Merkmale und Aufbau, rechts Formulierungshilfen, darunter ein Schreibentwurf zum Weiterschreiben und die roten Anmerkungen zu den häufigsten Fehlern.</p>
           </div>
           <div class="ts-list" id="tslist"></div>
