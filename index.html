@@ -241,7 +241,7 @@
   .ts-grid{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }
   @media (max-width:760px){ .ts-grid{ grid-template-columns:1fr; } }
 
-  .panel{ border:1px solid var(--line); border-radius:10px; padding:18px 20px; background:var(--surface); }
+  .panel{ min-width:0; border:1px solid var(--line); border-radius:10px; padding:18px 20px; background:var(--surface); }
   .panel h4{
     font-family:var(--font-mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase;
     color:var(--ink-faint); margin-bottom:14px; display:flex; align-items:center; gap:8px;
@@ -371,7 +371,7 @@
   .wordbank-card .words{ font-size:.86rem; line-height:1.6; color:var(--ink); }
 
   .chainlist{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chain{ font-family:var(--font-mono); font-size:.76rem; background:var(--surface-2); border:1px solid var(--line); border-radius:6px; padding:5px 10px; color:var(--ink-soft); white-space:nowrap; }
+  .chain{ font-family:var(--font-mono); font-size:.76rem; background:var(--surface-2); border:1px solid var(--line); border-radius:6px; padding:5px 10px; color:var(--ink-soft); white-space:normal; }
 
   .checklist{ display:flex; flex-direction:column; gap:9px; }
   .checklist li{ display:flex; gap:9px; align-items:flex-start; font-size:.88rem; color:var(--ink); line-height:1.5; }
@@ -420,6 +420,75 @@
   .quiz-done .big{ font-family:var(--font-display); font-size:2.2rem; font-weight:600; color:var(--accent); }
   .quiz-done p{ margin-top:8px; color:var(--ink-soft); font-size:.92rem; }
 
+  /* ---------- Stilmittel: Filter, Karten, Übungsmodi ---------- */
+  .stil-tools{ display:flex; flex-wrap:wrap; align-items:center; gap:12px 16px; margin-bottom:18px; }
+  .filter-chips{ display:flex; flex-wrap:wrap; gap:8px; }
+  .fchip{
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.03em;
+    border:1px solid var(--line); border-radius:999px; padding:6px 12px;
+    background:transparent; color:var(--ink-soft); cursor:pointer;
+  }
+  .fchip:hover{ border-color:var(--accent); color:var(--accent); }
+  .fchip:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .fchip.active{ background:var(--accent-soft); color:var(--accent-strong); border-color:var(--accent); font-weight:600; }
+  .stil-search, .stil-select{
+    font-family:var(--font-body); font-size:.88rem; color:var(--ink); background:var(--surface);
+    border:1px solid var(--line); border-radius:8px; padding:8px 12px; max-width:100%;
+  }
+  .stil-search{ flex:1; min-width:180px; max-width:300px; }
+  .stil-empty{ color:var(--ink-soft); font-size:.9rem; }
+  .stil-card .kat{ font-family:var(--font-mono); font-size:.62rem; letter-spacing:.05em; text-transform:uppercase; color:var(--accent); text-align:right; }
+  .stil-card .beispiele{ display:flex; flex-direction:column; gap:6px; }
+
+  .tip-box{
+    display:flex; flex-wrap:wrap; gap:10px 22px; align-items:center;
+    padding:14px 18px; margin-bottom:20px; border:1px solid var(--line); border-radius:10px; background:var(--surface);
+    font-size:.9rem;
+  }
+  .tip-box .tip-title{ font-family:var(--font-mono); font-size:.7rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); }
+  .tip-box ol{ display:flex; flex-wrap:wrap; gap:8px 22px; margin:0; padding:0; list-style:none; counter-reset:t; }
+  .tip-box li{ counter-increment:t; display:flex; gap:8px; align-items:baseline; }
+  .tip-box li::before{ content:counter(t); font-family:var(--font-mono); font-size:.75rem; color:var(--accent); }
+  .tip-box li b{ font-weight:600; }
+
+  .mode-tabs{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px; }
+  .mode-hint{ font-size:.85rem; color:var(--ink-soft); margin-bottom:14px; }
+  .quiz-options.one{ grid-template-columns:minmax(0,1fr); }
+  .quiz-progress .stil-select{ text-transform:none; letter-spacing:0; font-size:.8rem; padding:5px 10px; }
+
+  .flash{
+    min-height:230px; border:1px solid var(--line); border-radius:12px; padding:26px 24px;
+    background:var(--surface-2); cursor:pointer; display:flex; flex-direction:column; justify-content:center; gap:12px; text-align:center;
+  }
+  .flash:hover{ border-color:var(--accent); }
+  .flash:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+  .flash .fkat{ font-family:var(--font-mono); font-size:.68rem; letter-spacing:.05em; text-transform:uppercase; color:var(--accent); }
+  .flash .fname{ font-family:var(--font-display); font-size:1.7rem; font-weight:600; }
+  .flash .fhint{ font-size:.85rem; color:var(--ink-faint); }
+  .flash.back{ text-align:left; align-items:stretch; }
+  .flash.back .fname{ font-size:1.3rem; }
+  .flash .def{ font-size:.9rem; color:var(--ink-soft); line-height:1.5; }
+  .flash .beispiele{ display:flex; flex-direction:column; gap:6px; }
+  .flash .beispiel{ font-size:.86rem; font-style:italic; background:var(--accent-soft); border-radius:6px; padding:7px 10px; line-height:1.5; }
+  .flash .wirkung{ font-size:.86rem; color:var(--ink-soft); line-height:1.5; }
+  .flash .wirkung b{ color:var(--accent-strong); font-weight:600; }
+
+  .tt-text{
+    font-family:var(--font-display); font-size:1.02rem; line-height:2; color:var(--ink);
+    border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px; padding:14px 18px; background:var(--surface);
+  }
+  .tt-mark{ background:var(--accent-soft); color:var(--ink); border-bottom:2px solid var(--accent); padding:1px 3px; border-radius:3px; }
+  .tt-mark sup{ font-family:var(--font-mono); font-size:.62rem; color:var(--accent-strong); margin-left:2px; font-weight:600; }
+  .tt-list{ display:flex; flex-direction:column; gap:12px; }
+  .tt-row{ display:grid; grid-template-columns:auto minmax(0,260px) minmax(0,1fr); gap:6px 12px; align-items:start; padding:10px 12px; border:1px solid var(--line); border-radius:8px; }
+  @media (max-width:640px){ .tt-row{ grid-template-columns:auto minmax(0,1fr); } .tt-row .tt-fb{ grid-column:1 / -1; } }
+  .tt-n{ font-family:var(--font-mono); font-size:.8rem; color:var(--accent); padding-top:8px; display:inline-block; }
+  .tt-fb{ font-size:.84rem; line-height:1.5; color:var(--ink-soft); }
+  .tt-row.ok{ border-color:var(--accent); background:var(--accent-soft); }
+  .tt-row.ok .tt-fb b{ color:var(--accent-strong); }
+  .tt-row.bad{ border-color:var(--red); background:var(--red-soft); }
+  .tt-row.bad .tt-fb b{ color:var(--red-strong); }
+
   /* ---------- Footer ---------- */
   footer{ padding:40px 0 60px; }
   footer p{ font-size:.85rem; color:var(--ink-faint); max-width:60ch; line-height:1.6; }
@@ -452,6 +521,7 @@
     .hero-grid{ grid-template-columns:1fr; gap:32px; }
     .krit-row{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
     .site-bar{ flex-direction:column; align-items:flex-start; gap:10px; }
+    nav.chips{ max-width:100%; }
   }
 </style>
 </head>
@@ -572,15 +642,29 @@
   <section class="block" id="stilmittel">
     <div class="wrap">
       <div class="block-head">
-        <h2>15 Stilmittel erkennen</h2>
-        <p>Bei Textanalyse und Textinterpretation reicht es nicht, ein Stilmittel zu benennen — entscheidend ist, seine Wirkung zu erklären. Diese 15 kommen am häufigsten vor.</p>
+        <h2 id="stilTitle">Stilmittel erkennen</h2>
+        <p>Bei Textanalyse und Textinterpretation reicht es nicht, ein Stilmittel zu benennen — entscheidend ist, seine Wirkung zu erklären. Nach Gruppen filtern oder gezielt suchen.</p>
       </div>
-      <div class="stil-grid" id="stilgrid"></div>
+      <div class="stil-tools">
+        <div class="filter-chips" id="stilChips" role="group" aria-label="Nach Gruppe filtern"></div>
+        <input type="search" id="stilSearch" class="stil-search" placeholder="Stilmittel suchen …" aria-label="Stilmittel suchen">
+      </div>
+      <div class="stil-grid" id="stilGrid"></div>
 
       <div class="subhead">
-        <h3>Übung: Stilmittel erkennen</h3>
-        <p>Zu jedem Satz eine Antwort wählen — die Erklärung zur Wirkung erscheint sofort danach.</p>
+        <h3>Übungen</h3>
+        <p>Fünf Übungsformen — vom schnellen Erkennen bis zum Formulieren eigener Analysesätze.</p>
       </div>
+      <div class="tip-box">
+        <span class="tip-title">So analysierst du ein Stilmittel</span>
+        <ol>
+          <li><span><b>Benennen</b> — welches Mittel?</span></li>
+          <li><span><b>Belegen</b> — mit der Textstelle</span></li>
+          <li><span><b>Wirkung erklären</b> — was bewirkt es?</span></li>
+        </ol>
+      </div>
+      <div class="mode-tabs" id="modeTabs" role="tablist" aria-label="Übungsform"></div>
+      <p class="mode-hint" id="modeHint"></p>
       <div class="quiz-panel" id="quizPanel"></div>
     </div>
   </section>
@@ -756,35 +840,143 @@ const GRAFIKEN = [
   {l:"Aussage herausarbeiten", p:["Das Diagramm arbeitet … heraus.","Diese Grafik betont/hebt … hervor und stellt … in den Mittelpunkt."]},
 ];
 
+const STIL_KATEGORIEN = ["Klang & Wiederholung","Bildsprache","Steigern & Abschwächen","Gegensatz & Haltung","Satzbau","Publikum & Appell"];
+
 const STILMITTEL = [
-  {name:"Metapher", def:"Bildhafte Übertragung: Ein Ausdruck wird ohne Vergleichswort in einen neuen Bedeutungszusammenhang gesetzt.", beispiel:"„In seinen Augen brannte pures Feuer.“", wirkung:"Verdichtet einen Sachverhalt zu einem einprägsamen Bild und weckt Assoziationen."},
-  {name:"Vergleich", def:"Zwei Sachverhalte werden mit „wie“ oder „als“ einander gegenübergestellt.", beispiel:"„Er kämpfte wie ein Löwe.“", wirkung:"Veranschaulicht durch Bekanntes, macht abstrakte Eigenschaften greifbar."},
-  {name:"Personifikation", def:"Unbelebten Dingen oder Abstrakta werden menschliche Eigenschaften oder Handlungen zugeschrieben.", beispiel:"„Der Wind flüsterte durch die Bäume.“", wirkung:"Belebt die Darstellung, schafft Nähe, Stimmung oder Atmosphäre."},
-  {name:"Symbol", def:"Ein konkretes Bild steht stellvertretend für eine abstrakte Idee oder einen größeren Sinnzusammenhang.", beispiel:"Die Taube als Bild für den Frieden.", wirkung:"Verdichtet Bedeutung und verlangt von den Lesenden eine eigene Deutungsleistung."},
-  {name:"Rhetorische Frage", def:"Eine Frage, auf die keine Antwort erwartet wird, weil sie bereits in sich enthalten ist.", beispiel:"„Wollen wir wirklich tatenlos zusehen?“", wirkung:"Aktiviert und involviert das Publikum, suggeriert eine Antwort, ohne sie zu behaupten."},
-  {name:"Anapher", def:"Wiederholung desselben Wortes oder derselben Wortgruppe am Anfang aufeinanderfolgender Sätze oder Verse.", beispiel:"„Wir werden kämpfen. Wir werden nicht aufgeben.“", wirkung:"Erzeugt Nachdruck und einen eindringlichen Rhythmus, bleibt im Gedächtnis."},
-  {name:"Trikolon", def:"Drei Wörter, Wortgruppen oder Sätze mit ähnlicher Struktur werden aneinandergereiht.", beispiel:"„Veni, vidi, vici.“", wirkung:"Wirkt geschlossen und überzeugend — die Dreierstruktur klingt besonders rund."},
-  {name:"Klimax", def:"Steigerung von Begriffen oder Aussagen in aufsteigender Reihenfolge ihrer Bedeutung oder Intensität.", beispiel:"„Ärgerlich, dann besorgniserregend, schließlich existenzbedrohend.“", wirkung:"Verstärkt eine Aussage schrittweise und führt sie zu einem Höhepunkt."},
-  {name:"Antithese", def:"Zwei gegensätzliche Begriffe oder Gedanken werden einander bewusst gegenübergestellt.", beispiel:"„Der eine spart, der andere verschwendet.“", wirkung:"Schärft Gegensätze und macht Positionen klar erkennbar."},
-  {name:"Hyperbel", def:"Bewusst starke Übertreibung eines Sachverhalts.", beispiel:"„Das habe ich schon tausendmal gesagt.“", wirkung:"Verleiht Nachdruck, kann auch komisch oder ironisch wirken."},
-  {name:"Ironie", def:"Es wird das Gegenteil dessen gesagt, was tatsächlich gemeint ist — erkennbar am Kontext oder Tonfall.", beispiel:"„Na, das hast du ja wieder toll hinbekommen“, bei einem Missgeschick gesagt.", wirkung:"Übt indirekt Kritik, schafft Distanz oder Komik."},
-  {name:"Euphemismus", def:"Beschönigende, verharmlosende Umschreibung eines unangenehmen Sachverhalts.", beispiel:"„Freisetzung von Mitarbeitern“ statt „Kündigung“.", wirkung:"Mildert, verschleiert oder relativiert eine unangenehme Wahrheit."},
-  {name:"Alliteration", def:"Aufeinanderfolgende, meist betonte Wörter beginnen mit demselben Laut.", beispiel:"„Milch macht müde Männer munter.“", wirkung:"Erzeugt Klangwirkung, macht eine Aussage eingängig und einprägsam."},
-  {name:"Ellipse", def:"Auslassung von Satzteilen, die sich aus dem Kontext erschließen lassen.", beispiel:"„Je mehr, desto besser.“", wirkung:"Wirkt knapp und prägnant, oft dynamisch oder umgangssprachlich."},
-  {name:"Paradoxon", def:"Eine scheinbar widersprüchliche Aussage, die bei genauerem Nachdenken einen tieferen Sinn offenbart.", beispiel:"„Weniger ist mehr.“", wirkung:"Irritiert bewusst und regt zum Nachdenken an — bleibt dadurch im Gedächtnis."},
+  {name:"Alliteration", kat:0, def:"Wiederholter Anfangslaut aufeinanderfolgender, meist betonter Wörter.", beispiele:["„sie sieht, sie schreit“","„mit Kind und Kegel“","„wir wollen weit weg“"], wirkung:"Verstärkt die Einprägsamkeit und lenkt die Aufmerksamkeit auf wichtige Wörter."},
+  {name:"Anapher", kat:0, def:"Wiederholung eines Wortes oder einer Wortgruppe am Anfang von Sätzen, Strophen oder Zeilen.", beispiele:["„Sollen wir das etwa glauben? Sollen wir das einfach hinnehmen?“","„Das Wasser rauscht, das Wasser schwoll.“ (Goethe)"], wirkung:"Hebt die Aussage hervor und verdeutlicht sie durch Nachdruck am Satz- oder Versanfang."},
+  {name:"Epipher", kat:0, def:"Wiederholung von Wörtern oder Wortgruppen am Ende aufeinanderfolgender Sätze — die Umkehrung der Anapher.", beispiele:["„Nicht jetzt, sagte er. Nachher, sagte er.“"], wirkung:"Betont das Wiederholte am Satzende und lässt es nachklingen."},
+  {name:"Wiederholung", kat:0, def:"Wörter, Wortgruppen oder Sätze kommen mehrfach vor.", beispiele:["„bald da, bald dort“"], wirkung:"Hebt Wichtiges hervor, indem es mehrfach vorkommt."},
+  {name:"Parallelismus", kat:0, def:"Aufeinanderfolgende Sätze oder Satzteile haben den gleichen Satzbau.", beispiele:["„Wir wollen gehört werden. Wir wollen ernst genommen werden. Wir wollen mitentscheiden.“"], wirkung:"Erzeugt Rhythmus und verstärkt die Aussage durch den gleichen Satzbau."},
+  {name:"Trikolon", kat:0, def:"Drei Wörter, Wortgruppen oder Sätze mit ähnlicher Struktur werden aneinandergereiht.", beispiele:["„Veni, vidi, vici.“"], wirkung:"Wirkt geschlossen und überzeugend — die Dreierstruktur klingt besonders rund."},
+
+  {name:"Metapher", kat:1, def:"Sprachliches Bild: Zwei Wörter, die gewöhnlich nicht zusammengehören, werden ohne Vergleichswort verknüpft (Bedeutungsübertragung).", beispiele:["„Warteschlange“","„Menschentraube“","„Licht ins Dunkel bringen“"], wirkung:"Veranschaulicht und umschreibt bildhaft; weckt Assoziationen."},
+  {name:"Vergleich", kat:1, def:"Zwei Sachverhalte werden mit „wie“ oder „als“ einander gegenübergestellt.", beispiele:["„Er sah mich an wie ein gehetztes Wild.“","„Sie sah aus wie ein Engel.“"], wirkung:"Veranschaulicht durch die Gegenüberstellung mit etwas Bekanntem."},
+  {name:"Personifikation", kat:1, def:"Vermenschlichung: Gegenständen oder abstrakten Begriffen werden menschliche Eigenschaften oder Handlungen zugeschrieben.", beispiele:["„Das Glück lacht uns an.“","„Das Unheil schaut drohend und mit tausend Augen aus der Finsternis.“","„Die Fabriken dieser Welt keuchen und prusten dunklen, giftigen Rauch in die Luft.“"], wirkung:"Macht die Darstellung lebendig und schafft Nähe oder Atmosphäre."},
+  {name:"Symbol", kat:1, def:"Ein konkretes Bild oder Objekt steht stellvertretend für eine abstrakte Idee oder einen größeren Sinnzusammenhang.", beispiele:["Die Taube als Bild für den Frieden."], wirkung:"Verdichtet Bedeutung und verlangt von den Lesenden eine eigene Deutungsleistung."},
+  {name:"Allusion", kat:1, def:"Anspielung auf eine Person, ein Ereignis oder etwas Literarisches bzw. Künstlerisches.", beispiele:["„sein Waterloo erleben“ (Anspielung auf Napoleons Niederlage bei Waterloo)","„seine Hände in Unschuld waschen“ (Anspielung auf Pontius Pilatus)"], wirkung:"Ruft durch die Anspielung eine bildhafte Vorstellung und Vorwissen wach."},
+  {name:"Wortspiel", kat:1, def:"Geistreiche, oft witzige Verwendung gleich oder ähnlich klingender Wörter mit unterschiedlicher Bedeutung.", beispiele:["„Ich bin dir Farfalle“ (Werbung: Lieferando)","„Wir haben die Schnauze voll“ (Werbung: WWF, Delfin mit Plastikmüll)"], wirkung:"Erregt Aufmerksamkeit und sorgt für Humor."},
+
+  {name:"Hyperbel", kat:2, def:"Bewusst starke Übertreibung eines Sachverhalts.", beispiele:["„Er hatte tausendmal nachgefragt.“","„Die Zeit verging unendlich langsam.“"], wirkung:"Drückt Emotionalität und Leidenschaft aus; wirkt eindringlich oder komisch."},
+  {name:"Klimax", kat:2, def:"Steigerung oder Häufung von Begriffen, die immer bedeutender werden — oft in einem Dreierschritt.", beispiele:["„Ich habe ihn gebeten, angefleht, beschworen.“","„Ich kam, sah und siegte.“"], wirkung:"Steigert die Aufmerksamkeit Schritt für Schritt bis zu einem Höhepunkt."},
+  {name:"Correctio", kat:2, def:"Ein schwächerer Ausdruck wird durch einen stärkeren ersetzt.", beispiele:["„Es war ein Erfolg, was sage ich, ein Triumph.“","„Ich werde mich voll bemühen oder besser gesagt bis zum Äußersten gehen.“"], wirkung:"Verstärkt die Aussage, weil der schwächere Ausdruck durch einen stärkeren ersetzt wird."},
+  {name:"Litotes", kat:2, def:"Doppelte Verneinung, die eine Aussage abschwächt.", beispiele:["„nicht übel“ statt „gut“","„nicht gerade sehr tapfer“ statt „ziemlich feige“"], wirkung:"Verstärkt paradoxerweise durch Abschwächung — das Gemeinte klingt zurückhaltend, aber nachdrücklich."},
+  {name:"Euphemismus", kat:2, def:"Beschönigende, verharmlosende Umschreibung eines unangenehmen Sachverhalts (Beschönigung).", beispiele:["„in die Geborgenheit des Herrn eingehen“ (= sterben)","„jemanden um die Ecke bringen“ (= töten)","„entschlafen“ (= sterben)"], wirkung:"Verharmlost und mildert, was unangenehm oder schmerzhaft ist."},
+
+  {name:"Antithese", kat:3, def:"Zwei gegensätzliche Begriffe oder Gedanken werden einander bewusst gegenübergestellt.", beispiele:["„Der eine spart, der andere verschwendet.“"], wirkung:"Schärft Gegensätze und macht Positionen klar erkennbar."},
+  {name:"Paradoxon", kat:3, def:"Eine scheinbar widersprüchliche Aussage, die bei genauerem Nachdenken einen tieferen Sinn offenbart.", beispiele:["„Weniger ist mehr.“"], wirkung:"Irritiert bewusst und regt zum Nachdenken an."},
+  {name:"Ironie", kat:3, def:"Behauptungen, die nicht ernst gemeint sind und eigentlich das Gegenteil bedeuten — erkennbar an Kontext oder Tonfall.", beispiele:["„Das hast du toll hinbekommen.“","„Wirklich, das war vielleicht eine geniale Idee.“"], wirkung:"Verspottet oder enttarnt indirekt — gemeint ist das Gegenteil des Gesagten."},
+  {name:"Praeteritio", kat:3, def:"Auch Paralipse: Der Sprechende hebt etwas besonders hervor, indem er sagt, er wolle es übergehen und nicht besprechen.", beispiele:["„Und wir wollen nicht davon sprechen, dass …“","„Wir wollen davon absehen, dass Politiker Unsummen verdienen, sondern stattdessen darauf eingehen, dass …“"], wirkung:"Betont etwas besonders, indem angeblich darüber hinweggegangen wird."},
+
+  {name:"Ellipse", kat:4, def:"Auslassung von Satzteilen, die sich aus dem Zusammenhang erschließen lassen.", beispiele:["„Ende gut, alles gut?“","„Was nun?“"], wirkung:"Erzeugt Aufmerksamkeit, Dringlichkeit und Tempo."},
+  {name:"Parenthese", kat:4, def:"Einschub: ein Nebengedanke wird mitten in einen Satz eingefügt (durch Gedankenstriche oder Klammern abgesetzt).", beispiele:["„Dieses Gesetz – das haben wir immer gefordert – muss verbessert werden.“"], wirkung:"Liefert einen zusätzlichen Hinweis oder Kommentar mitten im Satz."},
+  {name:"Aufzählung", kat:4, def:"Aneinanderreihung mehrerer Begriffe oder Argumente.", beispiele:["„Das kostet Zeit, Geld und Nerven.“"], wirkung:"Vermittelt Fülle und Nachdruck."},
+  {name:"Ausruf", kat:4, def:"Besonders nachdrückliche Aussage, meist mit Ausrufezeichen.", beispiele:["„So darf das nicht weitergehen!“"], wirkung:"Vermittelt Entschlossenheit und Emotionalität."},
+
+  {name:"Rhetorische Frage", kat:5, def:"Scheinfrage: Die Antwort ist schon klar, es wird keine Antwort erwartet.", beispiele:["„Wie viele Menschen müssen noch sterben?“","„Wollen Sie diese Chance verstreichen lassen?“"], wirkung:"Steigert die Aufmerksamkeit und bindet das Publikum ein — die Antwort ist schon klar."},
+  {name:"Anrede", kat:5, def:"Direkte Hinwendung an die Adressat:innen.", beispiele:["„Sehr geehrte Damen und Herren, liebe Gäste!“"], wirkung:"Stellt einen direkten Bezug zum Publikum her."},
+  {name:"Appell", kat:5, def:"Auch Imperativ: direkte Aufforderung an das Publikum.", beispiele:["„Handeln wir jetzt!“","„Übernehmen Sie Verantwortung!“"], wirkung:"Fordert das Publikum unmittelbar zum Handeln auf."},
+];
+
+const STIL_NAH = [
+  ["Anapher","Wiederholung","Parallelismus","Epipher","Trikolon","Aufzählung"],
+  ["Trikolon","Klimax","Aufzählung","Parallelismus"],
+  ["Klimax","Correctio","Aufzählung"],
+  ["Metapher","Vergleich","Personifikation","Symbol","Allusion"],
+  ["Antithese","Paradoxon"],
+  ["Euphemismus","Litotes"],
+  ["Ironie","Hyperbel","Litotes","Praeteritio"],
+  ["Ausruf","Appell","Rhetorische Frage","Anrede"],
+  ["Ellipse","Parenthese","Ausruf"],
+  ["Wortspiel","Alliteration"],
 ];
 
 const QUIZ = [
-  {satz:"In seinen Augen brannte pures Feuer.", antwort:"Metapher", erklaerung:"„Feuer in den Augen“ überträgt eine emotionale Intensität bildhaft, ohne sie beim Namen zu nennen — die Lesenden füllen das Bild selbst mit Bedeutung."},
+  {satz:"In seinen Augen brannte pures Feuer.", antwort:"Metapher", erklaerung:"„Feuer in den Augen“ überträgt eine emotionale Intensität bildhaft, ohne Vergleichswort — die Lesenden füllen das Bild selbst mit Bedeutung."},
   {satz:"Er rannte so schnell wie der Wind.", antwort:"Vergleich", erklaerung:"Das Vergleichswort „wie“ stellt die Geschwindigkeit dem Wind gegenüber und macht sie dadurch besonders anschaulich."},
-  {satz:"Der Herbstwind flüsterte traurige Geschichten durch die leeren Straßen.", antwort:"Personifikation", erklaerung:"Dem Wind werden menschliche Fähigkeiten — Flüstern, Erzählen — zugeschrieben. Das erzeugt eine melancholische, fast unheimliche Atmosphäre."},
-  {satz:"Wollen wir wirklich tatenlos zusehen, wie das geschieht?", antwort:"Rhetorische Frage", erklaerung:"Die Frage verlangt keine Antwort, sondern suggeriert bereits: Nein, wir dürfen nicht zusehen. Sie bindet die Lesenden emotional ein."},
+  {satz:"Der Herbstwind flüsterte traurige Geschichten durch die leeren Straßen.", antwort:"Personifikation", erklaerung:"Dem Wind werden menschliche Fähigkeiten — Flüstern, Erzählen — zugeschrieben. Das erzeugt eine melancholische Atmosphäre."},
+  {satz:"Die Taube, die am Ende des Romans über dem zerstörten Dorf aufsteigt, steht für die Hoffnung auf Frieden.", antwort:"Symbol", erklaerung:"Ein konkretes Bild (die Taube) steht stellvertretend für eine abstrakte Idee (Frieden). Die Lesenden müssen diese Bedeutung selbst erschließen."},
+  {satz:"Wollen wir wirklich tatenlos zusehen, wie das geschieht?", antwort:"Rhetorische Frage", erklaerung:"Die Frage verlangt keine Antwort, sondern suggeriert sie bereits: Nein, wir dürfen nicht zusehen. Das Publikum wird emotional eingebunden."},
   {satz:"Niemand hat uns gefragt. Niemand hat uns gewarnt. Niemand hat uns geholfen.", antwort:"Anapher", erklaerung:"Die dreifache Wiederholung von „Niemand hat …“ am Satzanfang erzeugt Nachdruck und einen eindringlichen Rhythmus."},
-  {satz:"Schnell, entschlossen und ohne zu zögern traf sie ihre Wahl.", antwort:"Trikolon", erklaerung:"Drei gleichrangige Glieder reihen sich aneinander — das wirkt geschlossen und entschlossen, ohne dass dabei eine Steigerung vorliegt."},
+  {satz:"Nicht jetzt, sagte er. Nachher, sagte er. Morgen, sagte er.", antwort:"Epipher", erklaerung:"Die Wiederholung steht am Satzende („sagte er“) — das ist die Umkehrung der Anapher. Das Gleichförmige wirkt ermüdend und vertröstend."},
+  {satz:"Schnell, entschlossen und ohne zu zögern traf sie ihre Wahl.", antwort:"Trikolon", erklaerung:"Drei gleichrangige Glieder reihen sich aneinander — das wirkt geschlossen und entschlossen, ohne dass eine Steigerung vorliegt."},
   {satz:"Das Problem war ärgerlich, dann besorgniserregend, schließlich existenzbedrohend.", antwort:"Klimax", erklaerung:"Die Begriffe steigern sich in ihrer Intensität und führen die Aussage zu einem Höhepunkt."},
   {satz:"Die einen hungern, die anderen verschwenden.", antwort:"Antithese", erklaerung:"Die Gegenüberstellung von „hungern“ und „verschwenden“ macht den sozialen Gegensatz besonders scharf sichtbar."},
   {satz:"Ich habe dir das jetzt schon hundertmal erklärt.", antwort:"Hyperbel", erklaerung:"Die Zahl „hundertmal“ ist offensichtlich übertrieben — sie unterstreicht den Frust, nicht die tatsächliche Häufigkeit."},
-  {satz:"„Das hast du ja wirklich elegant gelöst“, sagte sie, während die Scherben am Boden lagen.", antwort:"Ironie", erklaerung:"Gesagt wird das Gegenteil dessen, was gemeint ist — der Kontext (die Scherben) macht die eigentlich kritische Absicht erkennbar."},
+  {satz:"„Das hast du ja wirklich elegant gelöst“, sagte sie, während die Scherben am Boden lagen.", antwort:"Ironie", erklaerung:"Gesagt wird das Gegenteil des Gemeinten — der Kontext (die Scherben) macht die kritische Absicht erkennbar."},
+  {satz:"Der Betrieb kündigte eine „Freisetzung von Mitarbeitern“ an.", antwort:"Euphemismus", erklaerung:"„Freisetzung“ beschönigt das unangenehme Wort „Kündigung“ und lässt den Verlust des Arbeitsplatzes harmloser klingen."},
+  {satz:"Milch macht müde Männer munter.", antwort:"Alliteration", erklaerung:"Die Wörter beginnen mit demselben Laut (M). Das macht den Satz klangvoll und einprägsam."},
+  {satz:"Ende gut, alles gut?", antwort:"Ellipse", erklaerung:"Satzteile (Verben) fehlen und werden mitgedacht. Das wirkt knapp und verleiht dem Gedanken Tempo."},
+  {satz:"Weniger ist mehr.", antwort:"Paradoxon", erklaerung:"Auf den ersten Blick widersprüchlich — beim Nachdenken ergibt der Satz einen tieferen Sinn (Reduktion kann Qualität steigern)."},
+  {satz:"Nach dem verlorenen Finale erlebte der Trainer sein Waterloo.", antwort:"Allusion", erklaerung:"Der Ausdruck spielt auf Napoleons Niederlage bei Waterloo an und ruft so ohne lange Erklärung das Bild einer vernichtenden Niederlage wach."},
+  {satz:"Sehr geehrte Damen und Herren, liebe Gäste!", antwort:"Anrede", erklaerung:"Die direkte Hinwendung an das Publikum stellt sofort einen Bezug zu den Zuhörer:innen her."},
+  {satz:"Handeln wir jetzt, bevor es zu spät ist.", antwort:"Appell", erklaerung:"Eine direkte Aufforderung an das Publikum — sie soll unmittelbar zum Handeln bewegen."},
+  {satz:"Das kostet Zeit, Geld und Nerven.", antwort:"Aufzählung", erklaerung:"Mehrere Begriffe werden einfach aneinandergereiht. Das vermittelt Fülle und Nachdruck."},
+  {satz:"So darf das nicht weitergehen!", antwort:"Ausruf", erklaerung:"Eine nachdrückliche Aussage mit Ausrufezeichen — sie vermittelt Entschlossenheit und Emotionalität."},
+  {satz:"Es war ein Erfolg, was sage ich, ein Triumph.", antwort:"Correctio", erklaerung:"Der schwächere Ausdruck („Erfolg“) wird sofort durch einen stärkeren („Triumph“) ersetzt und die Aussage dadurch verstärkt."},
+  {satz:"Die Aufführung war nicht gerade schlecht.", antwort:"Litotes", erklaerung:"Durch die doppelte Verneinung („nicht … schlecht“) klingt das Lob zurückhaltend, ist aber nachdrücklich gemeint."},
+  {satz:"Ich sehe die Probleme, du erkennst die Ursachen, sie kennen die Lösungen.", antwort:"Parallelismus", erklaerung:"Die Satzglieder sind gleich gebaut (Subjekt – Verb – Objekt), beginnen aber unterschiedlich — darum keine Anapher, sondern Parallelismus."},
+  {satz:"Dieses Gesetz – das haben wir immer gefordert – muss verbessert werden.", antwort:"Parenthese", erklaerung:"Ein Nebengedanke wird als Einschub mitten in den Satz gesetzt und durch Gedankenstriche abgetrennt."},
+  {satz:"Ich will gar nicht davon sprechen, dass der Bürgermeister die Frist dreimal verschlafen hat.", antwort:"Praeteritio", erklaerung:"Der Sprecher behauptet, etwas übergehen zu wollen, und sagt es dabei trotzdem — genau dadurch wird es betont."},
+  {satz:"„Wir haben die Schnauze voll“ — Werbeslogan mit einem Delfin, dessen Schnauze voller Plastikmüll ist.", antwort:"Wortspiel", erklaerung:"Der Doppelsinn von „Schnauze voll“ (genervt sein / wörtlich voll) erregt Aufmerksamkeit und bleibt im Gedächtnis."},
+  {satz:"Bald da, bald dort tauchte er auf.", antwort:"Wiederholung", erklaerung:"Das Wort „bald“ kommt mehrfach vor, ohne dass es am Satzanfang stünde — das hebt den Wechsel hervor."},
+];
+
+const ANALYSE = [
+  {satz:"„Die Zeit heilt alle Wunden.“", mittel:"Metapher", optionen:[
+    {t:"Der Satz enthält eine Metapher.", gut:false},
+    {t:"Der Satz enthält die Metapher „Die Zeit heilt alle Wunden“.", gut:false},
+    {t:"Die Metapher „Die Zeit heilt alle Wunden“ stellt die Zeit als Heilerin dar. Dadurch wirkt Schmerz überwindbar, und der Satz spendet Trost.", gut:true}]},
+  {satz:"„Wollen wir wirklich tatenlos zusehen?“", mittel:"Rhetorische Frage", optionen:[
+    {t:"Der Autor stellt eine rhetorische Frage.", gut:false},
+    {t:"Die rhetorische Frage „Wollen wir wirklich tatenlos zusehen?“ fällt im dritten Absatz auf.", gut:false},
+    {t:"Mit der rhetorischen Frage „Wollen wir wirklich tatenlos zusehen?“ bindet der Autor die Lesenden ein: Die Antwort „Nein“ ist bereits mitgedacht, sodass der Appell zum Handeln nahezu unausweichlich wirkt.", gut:true}]},
+  {satz:"„Niemand hat uns gefragt. Niemand hat uns gewarnt. Niemand hat uns geholfen.“", mittel:"Anapher", optionen:[
+    {t:"Die Sätze beginnen alle gleich, das ist eine Anapher.", gut:false},
+    {t:"Der Redner verwendet eine dreifache Anapher mit „Niemand hat uns …“.", gut:false},
+    {t:"Die dreifache Anapher „Niemand hat uns …“ erzeugt einen eindringlichen Rhythmus. Sie betont das Gefühl, alleingelassen worden zu sein, und stärkt so den Vorwurf an die Verantwortlichen.", gut:true}]},
+  {satz:"„Die Fabriken dieser Welt keuchen und prusten dunklen, giftigen Rauch in die Luft.“", mittel:"Personifikation", optionen:[
+    {t:"Die Fabriken „keuchen und prusten“ — das ist eine Personifikation.", gut:false},
+    {t:"Hier liegt eine Personifikation vor, weil Fabriken wie Menschen beschrieben werden.", gut:false},
+    {t:"Durch die Personifikation „keuchen und prusten“ erscheinen die Fabriken wie kranke, erschöpfte Lebewesen. Das macht die Umweltverschmutzung anschaulich und weckt Mitgefühl mit der Natur.", gut:true}]},
+  {satz:"„Das hast du ja wirklich elegant gelöst“, sagte sie, während die Scherben am Boden lagen.", mittel:"Ironie", optionen:[
+    {t:"Der Satz ist ironisch gemeint.", gut:false},
+    {t:"Sie sagt „elegant gelöst“, obwohl Scherben am Boden liegen.", gut:false},
+    {t:"Die Ironie zeigt sich im Kontrast zwischen „elegant gelöst“ und den Scherben. Sie kritisiert das Missgeschick indirekt und macht die Figur zugleich als spöttisch erkennbar.", gut:true}]},
+  {satz:"„Der Betrieb kündigte eine Freisetzung von Mitarbeitern an.“", mittel:"Euphemismus", optionen:[
+    {t:"„Freisetzung von Mitarbeitern“ ist ein Euphemismus.", gut:false},
+    {t:"Der Euphemismus „Freisetzung von Mitarbeitern“ steht im ersten Satz des Artikels.", gut:false},
+    {t:"Der Euphemismus „Freisetzung von Mitarbeitern“ beschönigt die Kündigungen. Er verharmlost den Verlust von Arbeitsplätzen und soll die Verantwortung des Betriebs verschleiern.", gut:true}]},
+];
+
+const TEXTTRAINING = [
+  {titel:"Kommentar: Handy in der Schule", teile:[
+    {t:"Wer heute ein Handy im Rucksack hat, trägt "},
+    {m:"ein ganzes Klassenzimmer der Ablenkung", a:"Metapher", w:"Die Ablenkung wird als „Klassenzimmer“ bildhaft dargestellt, ohne Vergleichswort — das veranschaulicht, wie groß und allgegenwärtig sie ist."},
+    {t:" mit sich herum. "},
+    {m:"Wollen wir wirklich zusehen, wie eine ganze Generation den Blick vom Leben abwendet?", a:"Rhetorische Frage", w:"Die Antwort ist schon klar (Nein!). Die Frage bindet die Lesenden ein und macht den Appell dringlich."},
+    {t:" "},
+    {m:"Wir brauchen klare Regeln. Wir brauchen Vertrauen. Wir brauchen Mut zur Veränderung.", a:"Anapher", w:"Die Wiederholung von „Wir brauchen“ am Satzanfang erzeugt Nachdruck und Rhythmus."},
+    {t:" "},
+    {m:"Handeln wir jetzt!", a:"Appell", w:"Eine direkte Aufforderung, die das Publikum unmittelbar zum Handeln bewegen soll."}]},
+  {titel:"Leserbrief: Verkehrslärm", teile:[
+    {t:"Unsere Stadt "},
+    {m:"schläft nie, sie keucht und stöhnt unter dem Verkehr", a:"Personifikation", w:"Die Stadt wird wie ein erschöpftes Lebewesen dargestellt — das weckt Mitgefühl und macht die Belastung fühlbar."},
+    {t:". Ich habe die Gemeinde "},
+    {m:"hundertmal", a:"Hyperbel", w:"Die Zahl ist offensichtlich übertrieben und drückt den Frust der Schreibenden aus."},
+    {t:" gebeten, etwas zu unternehmen. Das Ergebnis war "},
+    {m:"nicht gerade ein Erfolg", a:"Litotes", w:"Die doppelte Verneinung schwächt scheinbar ab, meint aber nachdrücklich: ein Misserfolg."},
+    {t:". Die Verantwortlichen sprechen von einer "},
+    {m:"„Optimierung der Verkehrsbelastung“", a:"Euphemismus", w:"Der Ausdruck beschönigt das Problem und verharmlost die Lärmbelastung."}]},
+  {titel:"Meinungsrede: Klimaschutz", teile:[
+    {m:"Liebe Mitschülerinnen und Mitschüler,", a:"Anrede", w:"Die direkte Hinwendung stellt sofort einen Bezug zum Publikum her."},
+    {t:" wir haben "},
+    {m:"zu lange gewartet, zu lange geschwiegen, zu lange weggesehen", a:"Anapher", w:"Die Wiederholung von „zu lange“ erzeugt Nachdruck und macht den Vorwurf eindringlich."},
+    {t:". Die Klimakrise ist "},
+    {m:"kein Problem von morgen, sondern das Problem von heute", a:"Antithese", w:"Die Gegenüberstellung von „morgen“ und „heute“ schärft den Gegensatz und erzeugt Dringlichkeit."},
+    {t:". "},
+    {m:"Ich will gar nicht davon sprechen, wie viel Geld in Ausreden fließt,", a:"Praeteritio", w:"Der Redner behauptet, etwas zu übergehen, und nennt es dabei trotzdem — dadurch wird es besonders betont."},
+    {t:" sondern davon, was wir jetzt tun können."}]},
 ];
 
 const TEXTSORTEN = [
@@ -1250,20 +1442,14 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('details.ts').forEach(el => observer.observe(el));
 
-// Stilmittel-Glossar
-document.getElementById('stilgrid').innerHTML = STILMITTEL.map((s, i) => `
-  <div class="stil-card">
-    <div class="head"><span class="name">${esc(s.name)}</span><span class="num">${String(i+1).padStart(2,'0')}/15</span></div>
-    <div class="def">${esc(s.def)}</div>
-    <div class="beispiel">${esc(s.beispiel)}</div>
-    <div class="wirkung"><b>Wirkung: </b>${esc(s.wirkung)}</div>
-  </div>
-`).join('');
-
-// Stilmittel-Quiz
-(function initQuiz(){
-  const panel = document.getElementById('quizPanel');
+// Stilmittel: Glossar + Übungen
+(function initStilmittel(){
+  const $ = id => document.getElementById(id);
   const names = STILMITTEL.map(s => s.name);
+  const byName = Object.fromEntries(STILMITTEL.map(s => [s.name, s]));
+
+  $('stilTitle').textContent = STILMITTEL.length + ' Stilmittel erkennen';
+
   function shuffle(arr){
     const a = arr.slice();
     for (let i = a.length - 1; i > 0; i--) {
@@ -1272,65 +1458,203 @@ document.getElementById('stilgrid').innerHTML = STILMITTEL.map((s, i) => `
     }
     return a;
   }
-  let order = shuffle(QUIZ.map((_, i) => i));
-  let qi = 0, score = 0, answered = false;
-
-  function optionsFor(correct){
-    const distractors = shuffle(names.filter(n => n !== correct)).slice(0, 3);
-    return shuffle([correct, ...distractors]);
+  function confusable(a, b){ return STIL_NAH.some(g => g.includes(a) && g.includes(b)); }
+  function distractors(correct, n){
+    return shuffle(names.filter(x => x !== correct && !confusable(correct, x))).slice(0, n);
   }
 
-  function render(){
-    if (qi >= order.length){
+  // ---------- Glossar ----------
+  let activeKat = -1, query = '';
+  function renderChips(){
+    const chips = [{i:-1, l:'Alle (' + STILMITTEL.length + ')'}].concat(STIL_KATEGORIEN.map((k, i) => ({i, l: k + ' (' + STILMITTEL.filter(s => s.kat === i).length + ')'})));
+    $('stilChips').innerHTML = chips.map(c => '<button type="button" class="fchip' + (c.i === activeKat ? ' active' : '') + '" data-k="' + c.i + '">' + esc(c.l) + '</button>').join('');
+    $('stilChips').querySelectorAll('.fchip').forEach(b => b.addEventListener('click', () => { activeKat = parseInt(b.dataset.k, 10); renderChips(); renderGrid(); }));
+  }
+  function renderGrid(){
+    const q = query.trim().toLowerCase();
+    const list = STILMITTEL.filter(s => (activeKat < 0 || s.kat === activeKat) &&
+      (!q || (s.name + ' ' + s.def + ' ' + s.wirkung + ' ' + s.beispiele.join(' ')).toLowerCase().includes(q)));
+    $('stilGrid').innerHTML = list.length ? list.map(s => `
+      <div class="stil-card">
+        <div class="head"><span class="name">${esc(s.name)}</span><span class="kat">${esc(STIL_KATEGORIEN[s.kat])}</span></div>
+        <div class="def">${esc(s.def)}</div>
+        <div class="beispiele">${s.beispiele.map(b => `<div class="beispiel">${esc(b)}</div>`).join('')}</div>
+        <div class="wirkung"><b>Wirkung: </b>${esc(s.wirkung)}</div>
+      </div>`).join('') : '<p class="stil-empty">Kein Stilmittel gefunden — Suchbegriff oder Filter anpassen.</p>';
+  }
+  $('stilSearch').addEventListener('input', e => { query = e.target.value; renderGrid(); });
+  renderChips(); renderGrid();
+
+  // ---------- Übungen ----------
+  const panel = $('quizPanel');
+  const MODES = [
+    {id:'erkennen', label:'Erkennen', hint:'Zu jedem Satz das passende Stilmittel wählen.'},
+    {id:'wirkung', label:'Wirkung zuordnen', hint:'Zu jedem Stilmittel die passende Wirkung wählen.'},
+    {id:'karten', label:'Karteikarten', hint:'Karte umdrehen, Wissen prüfen, unsichere Karten wiederholen.'},
+    {id:'text', label:'Textstellen bestimmen', hint:'Markierte Stellen in Kurztexten dem Stilmittel zuordnen.'},
+    {id:'analyse', label:'Analysesatz', hint:'Den Satz wählen, der Stilmittel benennt, belegt und seine Wirkung erklärt.'},
+  ];
+  let mode = 'erkennen';
+
+  function renderTabs(){
+    $('modeTabs').innerHTML = MODES.map(m => '<button type="button" role="tab" aria-selected="' + (m.id === mode) + '" class="fchip mode-tab' + (m.id === mode ? ' active' : '') + '" data-m="' + m.id + '">' + esc(m.label) + '</button>').join('');
+    $('modeTabs').querySelectorAll('.mode-tab').forEach(b => b.addEventListener('click', () => { mode = b.dataset.m; renderTabs(); mount(); }));
+    $('modeHint').textContent = MODES.find(m => m.id === mode).hint;
+  }
+  function mount(){
+    ({erkennen: mountErkennen, wirkung: mountWirkung, karten: mountKarten, text: mountText, analyse: mountAnalyse})[mode]();
+  }
+
+  // Generische Multiple-Choice-Runde
+  function mountChoice(items, again){
+    let qi = 0, score = 0, answered = false;
+    function render(){
+      if (qi >= items.length){
+        panel.innerHTML = `<div class="quiz-done"><div class="big">${score} / ${items.length}</div><p>richtig.</p><button class="quiz-restart" id="qAgain" type="button" style="margin-top:14px;">Neue Runde</button></div>`;
+        $('qAgain').addEventListener('click', again);
+        return;
+      }
+      const it = items[qi]; answered = false;
       panel.innerHTML = `
-        <div class="quiz-done">
-          <div class="big">${score} / ${order.length}</div>
-          <p>richtig erkannt.</p>
-          <button class="quiz-restart" id="quizRestart" style="margin-top:14px;">Nochmal üben</button>
-        </div>`;
-      document.getElementById('quizRestart').addEventListener('click', () => {
-        order = shuffle(QUIZ.map((_, i) => i)); qi = 0; score = 0; render();
-      });
-      return;
+        <div class="quiz-progress"><span>Frage ${qi + 1} von ${items.length}</span><span id="qScore">${score} richtig bisher</span></div>
+        ${it.prompt}
+        <div class="quiz-options${it.long ? ' one' : ''}">${it.options.map((o, i) => `<button class="quiz-option" type="button" data-i="${i}">${esc(o)}</button>`).join('')}</div>
+        <div class="quiz-feedback" id="qFb"></div>
+        <div class="quiz-actions"><button class="quiz-restart" id="qReset" type="button">Von vorn</button><button class="quiz-next" id="qNext" type="button" disabled>Weiter →</button></div>`;
+      const btns = Array.from(panel.querySelectorAll('.quiz-option'));
+      btns.forEach(b => b.addEventListener('click', () => {
+        if (answered) return; answered = true;
+        const chosen = it.options[parseInt(b.dataset.i, 10)];
+        btns.forEach(x => { x.disabled = true; if (it.options[parseInt(x.dataset.i, 10)] === it.correct) x.classList.add('correct'); });
+        const ok = chosen === it.correct;
+        if (ok) score++; else b.classList.add('wrong');
+        $('qFb').innerHTML = '<b>' + (ok ? 'Richtig.' : 'Nicht ganz.') + '</b> ' + it.feedback;
+        $('qFb').classList.add('show');
+        $('qNext').disabled = false;
+        $('qScore').textContent = score + ' richtig bisher';
+      }));
+      $('qNext').addEventListener('click', () => { qi++; render(); });
+      $('qReset').addEventListener('click', again);
     }
-    const item = QUIZ[order[qi]];
-    answered = false;
-    const opts = optionsFor(item.antwort);
-    panel.innerHTML = `
-      <div class="quiz-progress"><span>Frage ${qi + 1} von ${order.length}</span><span class="quiz-score">${score} richtig bisher</span></div>
-      <div class="quiz-sentence">„${esc(item.satz)}“</div>
-      <p class="quiz-question">Welches Stilmittel liegt hier vor?</p>
-      <div class="quiz-options">${opts.map(o => `<button class="quiz-option" data-name="${esc(o)}">${esc(o)}</button>`).join('')}</div>
-      <div class="quiz-feedback" id="quizFeedback"></div>
-      <div class="quiz-actions">
-        <button class="quiz-restart" id="quizRestart">Von vorn</button>
-        <button class="quiz-next" id="quizNext" disabled>Weiter →</button>
-      </div>`;
-
-    const buttons = Array.from(panel.querySelectorAll('.quiz-option'));
-    buttons.forEach(btn => btn.addEventListener('click', () => {
-      if (answered) return;
-      answered = true;
-      const chosen = btn.dataset.name;
-      buttons.forEach(b => {
-        b.disabled = true;
-        if (b.dataset.name === item.antwort) b.classList.add('correct');
-      });
-      if (chosen !== item.antwort) btn.classList.add('wrong');
-      else score++;
-      const fb = document.getElementById('quizFeedback');
-      fb.innerHTML = `<b>${chosen === item.antwort ? 'Richtig' : 'Richtige Antwort: ' + esc(item.antwort)}.</b> ${esc(item.erklaerung)}`;
-      fb.classList.add('show');
-      document.getElementById('quizNext').disabled = false;
-      panel.querySelector('.quiz-score').textContent = `${score} richtig bisher`;
-    }));
-    document.getElementById('quizNext').addEventListener('click', () => { qi++; render(); });
-    document.getElementById('quizRestart').addEventListener('click', () => {
-      order = shuffle(QUIZ.map((_, i) => i)); qi = 0; score = 0; render();
-    });
+    render();
   }
 
-  render();
+  function mountErkennen(){
+    const pick = shuffle(QUIZ).slice(0, 10);
+    mountChoice(pick.map(q => ({
+      prompt: '<div class="quiz-sentence">' + esc(q.satz.startsWith('„') ? q.satz : '„' + q.satz + '“') + '</div><p class="quiz-question">Welches Stilmittel liegt hier vor?</p>',
+      options: shuffle([q.antwort].concat(distractors(q.antwort, 3))),
+      correct: q.antwort,
+      feedback: esc(q.erklaerung),
+    })), mountErkennen);
+  }
+
+  function mountWirkung(){
+    const pick = shuffle(STILMITTEL).slice(0, 10);
+    mountChoice(pick.map(s => {
+      const wrong = distractors(s.name, 3).map(n => byName[n].wirkung);
+      return {
+        prompt: '<div class="quiz-sentence"><b>' + esc(s.name) + '</b> — ' + esc(s.beispiele[0]) + '</div><p class="quiz-question">Welche Wirkung passt am besten zu diesem Stilmittel?</p>',
+        options: shuffle([s.wirkung].concat(wrong)),
+        correct: s.wirkung,
+        long: true,
+        feedback: esc(s.def) + ' <i>Wirkung: ' + esc(s.wirkung) + '</i>',
+      };
+    }), mountWirkung);
+  }
+
+  function mountAnalyse(){
+    const pick = shuffle(ANALYSE);
+    mountChoice(pick.map(a => ({
+      prompt: '<div class="quiz-sentence">' + esc(a.satz) + '</div><p class="quiz-question">Stilmittel: <b>' + esc(a.mittel) + '</b>. Welcher Analysesatz ist am besten?</p>',
+      options: shuffle(a.optionen.map(o => o.t)),
+      correct: a.optionen.find(o => o.gut).t,
+      long: true,
+      feedback: 'Ein guter Analysesatz folgt drei Schritten: <b>benennen</b> (welches Stilmittel), <b>belegen</b> (mit der Textstelle) und <b>Wirkung erklären</b> (was bewirkt es bei den Lesenden?). Nur der richtige Satz leistet alle drei.',
+    })), mountAnalyse);
+  }
+
+  // Karteikarten
+  function mountKarten(){
+    let kat = -1, deck = [], flipped = false, known = 0, total = 0;
+    function build(){
+      deck = shuffle(STILMITTEL.map((s, i) => i).filter(i => kat < 0 || STILMITTEL[i].kat === kat));
+      total = deck.length; known = 0; flipped = false; render();
+    }
+    function render(){
+      const opts = '<option value="-1">Alle Kategorien</option>' + STIL_KATEGORIEN.map((k, i) => '<option value="' + i + '"' + (i === kat ? ' selected' : '') + '>' + esc(k) + '</option>').join('');
+      let body;
+      if (!deck.length){
+        body = `<div class="quiz-done"><div class="big">${known} / ${total}</div><p>Alle Karten gewusst.</p><button class="quiz-restart" id="kAgain" type="button" style="margin-top:14px;">Nochmal mischen</button></div>`;
+      } else {
+        const s = STILMITTEL[deck[0]];
+        body = flipped
+          ? `<div class="flash back" id="flash" role="button" tabindex="0"><div class="fkat">${esc(STIL_KATEGORIEN[s.kat])}</div><div class="fname">${esc(s.name)}</div><div class="def">${esc(s.def)}</div><div class="beispiele">${s.beispiele.map(b => `<div class="beispiel">${esc(b)}</div>`).join('')}</div><div class="wirkung"><b>Wirkung: </b>${esc(s.wirkung)}</div></div>
+             <div class="quiz-actions"><button class="quiz-restart" id="kNo" type="button">Nochmal</button><button class="quiz-next" id="kYes" type="button">Gewusst</button></div>`
+          : `<div class="flash" id="flash" role="button" tabindex="0"><div class="fkat">${esc(STIL_KATEGORIEN[s.kat])}</div><div class="fname">${esc(s.name)}</div><div class="fhint">Was ist das — und welche Wirkung hat es? Zum Umdrehen klicken.</div></div>`;
+      }
+      panel.innerHTML = `<div class="quiz-progress"><span>${deck.length ? 'Noch ' + deck.length + ' von ' + total + ' Karten' : 'Fertig'}</span><select id="kKat" class="stil-select" aria-label="Kategorie">${opts}</select></div>${body}`;
+      $('kKat').addEventListener('change', e => { kat = parseInt(e.target.value, 10); build(); });
+      if ($('kAgain')) $('kAgain').addEventListener('click', build);
+      const fl = $('flash');
+      if (fl){
+        const flip = () => { flipped = !flipped; render(); };
+        fl.addEventListener('click', flip);
+        fl.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+      }
+      if ($('kYes')) $('kYes').addEventListener('click', () => { deck.shift(); known++; flipped = false; render(); });
+      if ($('kNo')) $('kNo').addEventListener('click', () => { deck.push(deck.shift()); flipped = false; render(); });
+    }
+    build();
+  }
+
+  // Textstellen bestimmen
+  function mountText(){
+    let ti = 0, checked = false;
+    function render(){
+      const T = TEXTTRAINING[ti];
+      let n = 0;
+      const marks = T.teile.filter(p => p.m);
+      const textHtml = T.teile.map(p => {
+        if (!p.m) return esc(p.t);
+        n++;
+        return '<mark class="tt-mark" id="ttm' + n + '">' + esc(p.m) + '<sup>' + n + '</sup></mark>';
+      }).join('');
+      const rows = marks.map((p, i) => {
+        const opts = shuffle([p.a].concat(distractors(p.a, 4)));
+        return `<div class="tt-row" id="ttr${i}"><label for="tts${i}"><span class="tt-n">${i + 1}</span></label>
+          <select id="tts${i}" class="stil-select"><option value="">Stilmittel wählen …</option>${opts.map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('')}</select>
+          <div class="tt-fb" id="ttf${i}"></div></div>`;
+      }).join('');
+      panel.innerHTML = `
+        <div class="quiz-progress"><span>Text ${ti + 1} von ${TEXTTRAINING.length}: ${esc(T.titel)}</span><span id="ttScore"></span></div>
+        <div class="tt-text">${textHtml}</div>
+        <p class="quiz-question">Ordne jeder markierten Stelle ein Stilmittel zu.</p>
+        <div class="tt-list">${rows}</div>
+        <div class="quiz-actions"><button class="quiz-restart" id="ttReset" type="button">Zurücksetzen</button><span><button class="quiz-next" id="ttCheck" type="button">Prüfen</button> <button class="quiz-next" id="ttNext" type="button" disabled>Nächster Text →</button></span></div>`;
+      checked = false;
+      $('ttReset').addEventListener('click', render);
+      $('ttNext').addEventListener('click', () => { ti = (ti + 1) % TEXTTRAINING.length; render(); });
+      $('ttCheck').addEventListener('click', () => {
+        if (checked) return;
+        let ok = 0;
+        marks.forEach((p, i) => {
+          const sel = $('tts' + i);
+          const good = sel.value === p.a;
+          if (good) ok++;
+          sel.disabled = true;
+          $('ttr' + i).classList.add(good ? 'ok' : 'bad');
+          $('ttf' + i).innerHTML = (good ? '<b>Richtig: ' : '<b>Richtig wäre: ') + esc(p.a) + '.</b> ' + esc(p.w);
+        });
+        checked = true;
+        $('ttScore').textContent = ok + ' von ' + marks.length + ' richtig';
+        $('ttNext').disabled = false; $('ttCheck').disabled = true;
+      });
+    }
+    render();
+  }
+
+  renderTabs(); mount();
 })();
 
 // Zoom controls (unabhängig vom Host, z. B. für eingebettete Teams-Tabs ohne Pinch-Zoom)
