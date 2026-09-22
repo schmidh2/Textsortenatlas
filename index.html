@@ -473,6 +473,11 @@
   .auftraege li{ border:1px solid var(--line); border-radius:8px; padding:11px 14px; background:var(--surface-2); display:flex; flex-direction:column; gap:3px; }
   .auftraege li b{ font-size:.9rem; color:var(--accent-strong); font-weight:600; }
   .auftraege li span{ font-size:.86rem; color:var(--ink); line-height:1.55; }
+  .auftraege .artikel-links{ font-size:.78rem; color:var(--ink-soft); line-height:1.6; margin-top:2px; }
+  .auftraege .artikel-links b{ font-weight:600; color:var(--ink-soft); font-size:inherit; }
+  .auftraege .artikel-links a{ color:var(--accent-strong); text-decoration:none; }
+  .auftraege .artikel-links a:hover{ text-decoration:underline; }
+  .auftraege .artikel-links a:not(:last-child)::after{ content:" · "; color:var(--ink-faint); }
 
   details.muster{ border:1px solid var(--line); border-radius:10px; background:var(--surface); }
   details.muster > summary{ cursor:pointer; padding:12px 16px; font-weight:600; font-size:.9rem; color:var(--accent-strong); list-style:none; }
@@ -1021,9 +1026,21 @@ const TRAINING = {
   zusammenfassung:{
     umfang:"270–330 Wörter",
     aufgaben:[
-      {titel:"Digitale Medien im Unterricht", auftrag:"Wähle einen Bericht oder Kommentar aus einer österreichischen Tageszeitung (ca. 700–900 Wörter) über digitale Medien in der Schule. Fasse ihn in 270–330 Wörtern zusammen — unter dem Gesichtspunkt: Welche Chancen und welche Risiken werden genannt?"},
-      {titel:"Arbeitswelt im Wandel", auftrag:"Fasse einen Zeitungsartikel zu Homeoffice oder Vier-Tage-Woche zusammen. Gesichtspunkt: Welche Argumente werden angeführt, und wer vertritt sie?"},
-      {titel:"Klimaschutz im Alltag", auftrag:"Fasse einen Text zum Thema Klimaschutz zusammen. Gesichtspunkt: Welche konkreten Maßnahmen werden vorgeschlagen, und welche Einwände werden genannt?"},
+      {titel:"Digitale Medien im Unterricht", auftrag:"Wähle einen Bericht oder Kommentar aus einer österreichischen Tageszeitung (ca. 700–900 Wörter) über digitale Medien in der Schule. Fasse ihn in 270–330 Wörtern zusammen — unter dem Gesichtspunkt: Welche Chancen und welche Risiken werden genannt?", artikel:[
+        {href:"https://orf.at/stories/3169874/", quelle:"ORF: Digitalisierungsplan für Schulen"},
+        {href:"https://wien.orf.at/v2/news/stories/2946604/", quelle:"ORF: Experte gegen Tablet-Unterricht"},
+        {href:"https://steiermark.orf.at/news/stories/2961524", quelle:"ORF: Grazer Schule zieht positive Bilanz"},
+      ]},
+      {titel:"Arbeitswelt im Wandel", auftrag:"Fasse einen Zeitungsartikel zu Homeoffice oder Vier-Tage-Woche zusammen. Gesichtspunkt: Welche Argumente werden angeführt, und wer vertritt sie?", artikel:[
+        {href:"https://orf.at/stories/3112228/", quelle:"ORF: Vorteile der Viertagewoche"},
+        {href:"https://oe3.orf.at/stories/3031454/", quelle:"ORF: Vier-Tage-Woche — Pro & Contra"},
+        {href:"https://debatte.orf.at/stories/1823076/", quelle:"ORF: Was bringt das Homeoffice?"},
+      ]},
+      {titel:"Klimaschutz im Alltag", auftrag:"Fasse einen Text zum Thema Klimaschutz zusammen. Gesichtspunkt: Welche konkreten Maßnahmen werden vorgeschlagen, und welche Einwände werden genannt?", artikel:[
+        {href:"https://burgenland.orf.at/stories/3024412/", quelle:"ORF: 75 Maßnahmen gegen den Klimawandel"},
+        {href:"https://science.orf.at/stories/3232777/", quelle:"ORF: Maßnahmen für saubere Luft"},
+        {href:"https://science.orf.at/stories/3227210/", quelle:"ORF: Einwand — Klimaschutz kann Artenschutz schaden"},
+      ]},
     ],
     muster:{
       aufgabe:"Fassen Sie den folgenden Zeitungsartikel unter dem Gesichtspunkt „Chancen und Hindernisse“ zusammen.",
@@ -1064,7 +1081,11 @@ const TRAINING = {
   meinungsrede:{
     umfang:"405–495 oder 540–660 Wörter",
     aufgaben:[
-      {titel:"Schulbeginn um 9 Uhr?", auftrag:"Sie halten bei einer Schulgemeinschaftsversammlung eine Rede zur Frage, ob der Unterricht später beginnen soll. Beziehen Sie sich auf eine Textbeilage zu Schlaf und Lernleistung und überzeugen Sie Ihr Publikum von Ihrer Position (405–495 Wörter)."},
+      {titel:"Schulbeginn um 9 Uhr?", auftrag:"Sie halten bei einer Schulgemeinschaftsversammlung eine Rede zur Frage, ob der Unterricht später beginnen soll. Beziehen Sie sich auf eine Textbeilage zu Schlaf und Lernleistung und überzeugen Sie Ihr Publikum von Ihrer Position (405–495 Wörter).", artikel:[
+        {href:"https://science.orf.at/stories/3200007/", quelle:"ORF: Später Schulbeginn, bessere Leistung"},
+        {href:"https://science.orf.at/stories/3234380/", quelle:"ORF: Schlafmangel und Schulstart"},
+        {href:"https://tirol.orf.at/v2/news/stories/2605165/", quelle:"ORF: Späterer Schulbeginn würde entlasten"},
+      ]},
       {titel:"Ein Jugendzentrum für unsere Gemeinde", auftrag:"Als Jugendvertreter:in sprechen Sie in einer Gemeinderatssitzung. Überzeugen Sie die Mitglieder, Geld für ein Jugendzentrum bereitzustellen (405–495 Wörter)."},
       {titel:"Abschlussfeier", auftrag:"Bei der Maturafeier halten Sie eine Rede darüber, welche Fähigkeiten Schule vermitteln sollte, die bisher zu kurz kommen. Vertreten Sie klar Ihre Position (540–660 Wörter)."},
     ],
@@ -1105,9 +1126,20 @@ const TRAINING = {
   kommentar:{
     umfang:"270–330, 405–495 oder 540–660 Wörter",
     aufgaben:[
-      {titel:"Gratis-Öffi-Ticket für Jugendliche", auftrag:"Sie schreiben für die Schüler:innenzeitung einen Kommentar zur Forderung, Jugendlichen ein kostenloses Öffi-Ticket zu geben. Beziehen Sie klar Position (270–330 Wörter)."},
-      {titel:"Handyfreie Pausen", auftrag:"Verfassen Sie für eine regionale Tageszeitung einen Kommentar zu Handyverboten in den Pausen. Nutzen Sie eine Textbeilage als Anlass (405–495 Wörter)."},
-      {titel:"Verpflichtendes Sozialjahr", auftrag:"Kommentieren Sie den Vorschlag eines verpflichtenden Sozialjahres für alle Schulabgänger:innen. Zeigen Sie Ihre Position pointiert (405–495 Wörter)."},
+      {titel:"Gratis-Öffi-Ticket für Jugendliche", auftrag:"Sie schreiben für die Schüler:innenzeitung einen Kommentar zur Forderung, Jugendlichen ein kostenloses Öffi-Ticket zu geben. Beziehen Sie klar Position (270–330 Wörter).", artikel:[
+        {href:"https://vorarlberg.orf.at/stories/3026981/", quelle:"ORF: Gratis-Öffi-Ticket bis 26 Jahre?"},
+        {href:"https://kaernten.orf.at/v2/news/stories/2915161/", quelle:"ORF: Öffi-Sommerticket für Jugendliche"},
+        {href:"https://noe.orf.at/stories/3147743/", quelle:"ORF: Forderung nach kostenlosen Öffis"},
+      ]},
+      {titel:"Handyfreie Pausen", auftrag:"Verfassen Sie für eine regionale Tageszeitung einen Kommentar zu Handyverboten in den Pausen. Nutzen Sie eine Textbeilage als Anlass (405–495 Wörter).", artikel:[
+        {href:"https://wien.orf.at/stories/3303556/", quelle:"ORF: Handyverbot an Schulen in Kraft"},
+        {href:"https://noe.orf.at/stories/3293989/", quelle:"ORF: Handyverbot „für viele sinnvoll“"},
+      ]},
+      {titel:"Verpflichtendes Sozialjahr", auftrag:"Kommentieren Sie den Vorschlag eines verpflichtenden Sozialjahres für alle Schulabgänger:innen. Zeigen Sie Ihre Position pointiert (405–495 Wörter).", artikel:[
+        {href:"https://orf.at/stories/3417690/", quelle:"ORF: Debatte um verpflichtende Dienste"},
+        {href:"https://orf.at/stories/3439372/", quelle:"ORF: Sorge um freiwilliges Sozialjahr"},
+        {href:"https://wien.orf.at/stories/3278059/", quelle:"ORF: Freiwilliges Sozialjahr immer beliebter"},
+      ]},
     ],
     muster:{
       aufgabe:"Verfassen Sie für die Schüler:innenzeitung einen Kommentar zur Forderung nach einem kostenlosen Öffi-Ticket für alle Jugendlichen. (Modelltext im Prüfungsumfang.)",
@@ -1146,9 +1178,19 @@ const TRAINING = {
   leserbrief:{
     umfang:"270–330 Wörter",
     aufgaben:[
-      {titel:"Handyverbot an Schulen", auftrag:"In der Tageszeitung erscheint ein Kommentar, der ein generelles Handyverbot an Schulen fordert. Schreiben Sie einen Leserbrief an die Redaktion und nehmen Sie dazu Stellung (270–330 Wörter)."},
-      {titel:"Schließung der Dorfbibliothek", auftrag:"Ein Bericht meldet, dass die Bibliothek Ihrer Gemeinde aus Kostengründen schließen soll. Reagieren Sie mit einem Leserbrief und widersprechen Sie mit schlüssigen Argumenten."},
-      {titel:"Vier-Tage-Woche", auftrag:"Ein Kommentar preist die Vier-Tage-Woche als Lösung für viele Probleme. Reagieren Sie mit einem ergänzenden Leserbrief, der Aspekte einbringt, die im Kommentar fehlen."},
+      {titel:"Handyverbot an Schulen", auftrag:"In der Tageszeitung erscheint ein Kommentar, der ein generelles Handyverbot an Schulen fordert. Schreiben Sie einen Leserbrief an die Redaktion und nehmen Sie dazu Stellung (270–330 Wörter).", artikel:[
+        {href:"https://orf.at/stories/3387238/", quelle:"ORF: Handyverbot bis zur 8. Schulstufe"},
+        {href:"https://wien.orf.at/stories/3293835/", quelle:"ORF: Erlass zum Handyverbot"},
+      ]},
+      {titel:"Schließung der Dorfbibliothek", auftrag:"Ein Bericht meldet, dass die Bibliothek Ihrer Gemeinde aus Kostengründen schließen soll. Reagieren Sie mit einem Leserbrief und widersprechen Sie mit schlüssigen Argumenten.", artikel:[
+        {href:"https://vorarlberg.orf.at/stories/3343636/", quelle:"ORF: Sparmaßnahmen auf dem Prüfstand"},
+        {href:"https://noe.orf.at/stories/3103589/", quelle:"ORF: Neue Strategie für Bibliotheken"},
+      ]},
+      {titel:"Vier-Tage-Woche", auftrag:"Ein Kommentar preist die Vier-Tage-Woche als Lösung für viele Probleme. Reagieren Sie mit einem ergänzenden Leserbrief, der Aspekte einbringt, die im Kommentar fehlen.", artikel:[
+        {href:"https://noe.orf.at/stories/3140617/", quelle:"ORF: Vier-Tage-Woche — so kann sie funktionieren"},
+        {href:"https://noe.orf.at/stories/3326602/", quelle:"ORF: Motiviert, aber belastet Familien"},
+        {href:"https://vorarlberg.orf.at/stories/3121576/", quelle:"ORF: Ein Modell der Zukunft?"},
+      ]},
     ],
     muster:{
       aufgabe:"Reagieren Sie mit einem Leserbrief auf den folgenden Kommentar. Nehmen Sie Stellung und begründen Sie Ihre Position. (Modelltext im Prüfungsumfang.)",
@@ -1189,9 +1231,21 @@ const TRAINING = {
   eroerterung:{
     umfang:"405–495 oder 540–660 Wörter",
     aufgaben:[
-      {titel:"Noten abschaffen?", auftrag:"Erörtern Sie anhand einer Textbeilage die Frage, ob Ziffernnoten in der Schule abgeschafft werden sollen. Berücksichtigen Sie unterschiedliche Perspektiven und beziehen Sie Ihre eigene Position ein (405–495 Wörter)."},
-      {titel:"Soziale Netzwerke: Chance oder Gefahr?", auftrag:"Erörtern Sie, welche Chancen und Gefahren soziale Netzwerke für Jugendliche haben. Beziehen Sie sich auf die Textbeilage und schließen Sie mit einer begründeten Einschätzung (405–495 Wörter)."},
-      {titel:"Homeoffice als Regelfall?", auftrag:"Erörtern Sie, ob Homeoffice zur Regel werden sollte. Gehen Sie auf Arbeitnehmer:innen, Unternehmen und Gesellschaft ein (540–660 Wörter)."},
+      {titel:"Noten abschaffen?", auftrag:"Erörtern Sie anhand einer Textbeilage die Frage, ob Ziffernnoten in der Schule abgeschafft werden sollen. Berücksichtigen Sie unterschiedliche Perspektiven und beziehen Sie Ihre eigene Position ein (405–495 Wörter).", artikel:[
+        {href:"https://salzburg.orf.at/stories/3051181/", quelle:"ORF: „Ziffernnoten abschaffen“ — neuer Anlauf"},
+        {href:"https://oe1.orf.at/artikel/278914/Suche-nach-Alternativen-zu-Schulnoten", quelle:"ORF: Suche nach Alternativen zu Schulnoten"},
+        {href:"https://wien.orf.at/stories/3032504/", quelle:"ORF: Eltern protestieren gegen Noten"},
+      ]},
+      {titel:"Soziale Netzwerke: Chance oder Gefahr?", auftrag:"Erörtern Sie, welche Chancen und Gefahren soziale Netzwerke für Jugendliche haben. Beziehen Sie sich auf die Textbeilage und schließen Sie mit einer begründeten Einschätzung (405–495 Wörter).", artikel:[
+        {href:"https://noe.orf.at/stories/3122070/", quelle:"ORF: Soziale Medien — Fluch und Segen"},
+        {href:"https://science.orf.at/stories/3236757/", quelle:"ORF: Früher Start bremst Schulerfolg"},
+        {href:"https://orf.at/stories/3433550/", quelle:"ORF: Kinder sehen Social Media positiver"},
+      ]},
+      {titel:"Homeoffice als Regelfall?", auftrag:"Erörtern Sie, ob Homeoffice zur Regel werden sollte. Gehen Sie auf Arbeitnehmer:innen, Unternehmen und Gesellschaft ein (540–660 Wörter).", artikel:[
+        {href:"https://oesterreich.orf.at/stories/3080065/", quelle:"ORF: Unterschiedliche Sichtweisen auf Homeoffice"},
+        {href:"https://noe.orf.at/stories/3054937/", quelle:"ORF: Hohe Akzeptanz bei Homeoffice"},
+        {href:"https://orf.at/stories/3322518/", quelle:"ORF: Regierung will nachbessern"},
+      ]},
     ],
     muster:{
       aufgabe:"Erörtern Sie die Frage, ob Ziffernnoten in der Schule abgeschafft werden sollen. Berücksichtigen Sie verschiedene Perspektiven. (Gekürzter Modelltext, in der Prüfung 405–495 Wörter, mit Bezug auf die Textbeilage.)",
@@ -1350,6 +1404,13 @@ function renderMuster(tr){
   '</div>';
 }
 
+function renderArtikelLinks(artikel){
+  if (!artikel || !artikel.length) return '';
+  return '<span class="artikel-links"><b>Artikel dazu: </b>' +
+    artikel.map(a => `<a href="${a.href}" target="_blank" rel="noopener noreferrer">${esc(a.quelle)}</a>`).join('') +
+    '</span>';
+}
+
 function renderTraining(t){
   const tr = TRAINING[t.id];
   if (!tr) return '';
@@ -1361,7 +1422,7 @@ function renderTraining(t){
       <div class="train-block">
         <h5>Übungsaufträge <small>Umfang laut Textsortenkatalog: ${esc(tr.umfang)}</small></h5>
         <ul class="auftraege">
-          ${tr.aufgaben.map(a => `<li><b>${esc(a.titel)}</b><span>${esc(a.auftrag)}</span></li>`).join('')}
+          ${tr.aufgaben.map(a => `<li><b>${esc(a.titel)}</b><span>${esc(a.auftrag)}</span>${renderArtikelLinks(a.artikel)}</li>`).join('')}
         </ul>
       </div>
 
