@@ -537,6 +537,29 @@
   .sc-progress{ margin-top:8px; font-family:var(--font-mono); font-size:.72rem; color:var(--ink-soft); }
   .sc-progress.done{ color:var(--accent-strong); font-weight:600; }
 
+  /* ---------- Text untersuchen ---------- */
+  .scan-box{ border:1px solid var(--line); border-radius:12px; background:var(--surface); padding:18px 20px; margin-bottom:8px; }
+  .scan-input{ width:100%; min-height:140px; resize:vertical; margin-top:6px; padding:12px 14px; border:1px solid var(--line); border-radius:8px; background:var(--bg); color:var(--ink); font-family:var(--font-body); font-size:.95rem; line-height:1.6; }
+  .scan-input:focus-visible{ outline:2px solid var(--accent); outline-offset:1px; }
+  .scan-actions{ display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+  .scan-run{ border:none; border-radius:8px; background:var(--accent); color:#fff; font-family:var(--font-body); font-weight:600; font-size:.88rem; padding:9px 18px; cursor:pointer; }
+  .scan-run:hover{ filter:brightness(.92); }
+  .scan-sec{ border:1px solid var(--line); border-radius:8px; background:transparent; color:var(--ink-soft); font-family:var(--font-body); font-size:.85rem; padding:8px 14px; cursor:pointer; }
+  .scan-sec:hover{ border-color:var(--accent); color:var(--accent-strong); }
+  .scan-out{ white-space:pre-wrap; overflow-wrap:anywhere; font-size:1rem; line-height:2.1; margin-top:8px; }
+  .scan-out:empty{ display:none; }
+  .scan-mark{ background:var(--accent-soft); color:inherit; border-bottom:2px solid var(--accent); border-radius:2px; padding:1px 0; }
+  .scan-mark.unsure{ border-bottom:2px dashed var(--accent); background:transparent; }
+  .scan-tag{ font-size:.68em; font-weight:600; color:var(--accent-strong); margin:0 4px 0 1px; white-space:nowrap; vertical-align:super; line-height:0; }
+  .scan-tag.unsure{ font-weight:500; opacity:.85; }
+  .scan-found{ margin-top:4px; }
+  .scan-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-top:4px; }
+  .scan-chip{ border:1px solid var(--line); border-radius:999px; background:var(--accent-soft); color:var(--accent-strong); font-family:var(--font-body); font-size:.78rem; padding:4px 10px; cursor:pointer; }
+  .scan-chip b{ font-weight:700; margin-left:2px; }
+  .scan-chip.off{ background:transparent; color:var(--ink-faint); text-decoration:line-through; }
+  .scan-none{ font-size:.86rem; color:var(--ink-soft); margin:6px 0; }
+  .scan-note{ font-size:.8rem; color:var(--ink-soft); line-height:1.6; margin-top:14px; padding-top:12px; border-top:1px solid var(--line); }
+
   /* ---------- Footer ---------- */
   footer{ padding:40px 0 60px; }
   footer p{ font-size:.85rem; color:var(--ink-faint); max-width:60ch; line-height:1.6; }
@@ -701,6 +724,23 @@
         <input type="search" id="stilSearch" class="stil-search" placeholder="Stilmittel suchen …" aria-label="Stilmittel suchen">
       </div>
       <div class="stil-grid" id="stilGrid"></div>
+
+      <div class="subhead">
+        <h3>Text untersuchen</h3>
+        <p>Füge einen Text ein: Die Seite sucht darin nach Stilmitteln, markiert die Stellen und benennt sie in Klammern. Der Text bleibt in deinem Browser.</p>
+      </div>
+      <div class="scan-box">
+        <label class="g-label" for="scanInput">Dein Text</label>
+        <textarea id="scanInput" class="scan-input" rows="7" maxlength="6000" placeholder="Text hier einfügen (bis 6000 Zeichen) …"></textarea>
+        <div class="scan-actions">
+          <button type="button" class="scan-run" id="scanRun">Untersuchen</button>
+          <button type="button" class="scan-sec" id="scanSample">Beispieltext einfügen</button>
+          <button type="button" class="scan-sec" id="scanClear">Leeren</button>
+        </div>
+        <div id="scanSummary" aria-live="polite"></div>
+        <div id="scanOut" class="scan-out" aria-label="Markierter Text"></div>
+        <p class="scan-note"><b>So liest du das Ergebnis:</b> Durchgezogen unterstrichen = formal eindeutiges Muster (z. B. Anapher, Ausruf). Gestrichelt und mit „?“ = Vorschlag, den du selbst prüfen musst (z. B. ob eine Frage wirklich rhetorisch ist). Erkannt werden nur Mittel, die sich an Wortlaut und Satzbau festmachen lassen: Alliteration, Anapher, Epipher, Wiederholung, Trikolon/Aufzählung, Ausruf, Rhetorische Frage, Anrede, Appell, Vergleich, Antithese, Litotes, Hyperbel, Praeteritio, Correctio, Parenthese. <b>Nicht</b> erkannt werden Metapher, Personifikation, Symbol, Ironie, Paradoxon, Klimax, Ellipse u. a. — dafür braucht es dein Textverständnis. Eine Prüfung ersetzt das nicht.</p>
+      </div>
 
       <div class="subhead">
         <h3>Übungen</h3>
@@ -2157,6 +2197,190 @@ document.querySelectorAll('details.ts').forEach(el => observer.observe(el));
   }
 
   renderTabs(); mount();
+})();
+
+// Text untersuchen: mustergestützte Vorschläge für Stilmittel (läuft komplett im Browser, keine Daten verlassen die Seite)
+(function initStilScan(){
+  const input = document.getElementById('scanInput');
+  const btn = document.getElementById('scanRun');
+  const sample = document.getElementById('scanSample');
+  const clear = document.getElementById('scanClear');
+  const out = document.getElementById('scanOut');
+  const summary = document.getElementById('scanSummary');
+  if (!input || !btn || !out) return;
+
+  const MAX = 6000;
+  const L = "A-Za-zÄÖÜäöüß";
+  const STOP = new Set(("der die das den dem des ein eine einen einem einer eines und oder aber doch denn weil dass ist sind war waren wird werden hat haben hatte " +
+    "nicht kein keine auch nur noch schon wie als wenn mit von zu zum zur auf aus bei nach vor für über unter durch gegen ohne um an in im am es er sie wir ihr ich du " +
+    "man sich uns euch ihm ihn ihnen mein dein sein unser euer so da dort hier dann nun ja nein sehr mehr").split(' '));
+  const SAMPLE = "Meine Damen und Herren, liebe Mitschüler! Wir brauchen Regeln. Wir brauchen Vertrauen. Wir brauchen Mut zur Veränderung! " +
+    "Warum sollten ausgerechnet wir schweigen? Millionen Menschen warten, hoffen und handeln – und wir schauen zu. " +
+    "Milch macht müde Männer munter, heißt es, doch nicht Milch, sondern Mut macht uns munter. Das ist nicht unwichtig. " +
+    "Handeln Sie jetzt, denn Zeit ist kostbar wie ein seltener Schatz!";
+
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const onset = w => { const l = w.toLowerCase(); return /^(sch|st|sp)/.test(l) ? l.match(/^(sch|st|sp)/)[1] : l[0]; };
+  const isCons = c => /[bcdfghjklmnpqrstvwxyzß]/.test(c);
+
+  function scan(text){
+    const spans = [];
+    const add = (s, e, label, sure, tag) => spans.push({s, e, label, sure, tag: tag !== false});
+
+    // Wörter mit Position
+    const words = [];
+    const wre = new RegExp("[" + L + "][" + L + "'’-]*", "g");
+    let m;
+    while ((m = wre.exec(text))) words.push({w: m[0], lw: m[0].toLowerCase(), s: m.index, e: m.index + m[0].length});
+
+    // Sätze
+    const sents = [];
+    const sre = /[^.!?…\n]+[.!?…]*["“”«»)]*/g;
+    while ((m = sre.exec(text))) {
+      const raw = m[0], lead = raw.length - raw.trimStart().length, trimmed = raw.trim();
+      if (!trimmed) continue;
+      sents.push({s: m.index + lead, e: m.index + lead + trimmed.length, t: trimmed});
+    }
+    const wordsIn = (s, e) => words.filter(x => x.s >= s && x.e <= e);
+
+    // Ausruf, Rhetorische Frage, Appell
+    sents.forEach(se => {
+      const w = wordsIn(se.s, se.e);
+      if (/!["“”«»)]*$/.test(se.t) && w.length) add(w[w.length - 1].s, se.e, 'Ausruf', true);
+      if (/\?["“”«»)]*$/.test(se.t)) add(se.s, se.e, 'Rhetorische Frage', false);
+      if (w.length >= 2 && /(?:en|ln|rn)$/.test(w[0].lw) && w[1].lw === 'sie' && !/\?/.test(se.t)) add(w[0].s, se.e, 'Appell', false);
+      if (w.length >= 2 && (w[0].lw === 'lasst' || w[0].lw === 'lass') && w[1].lw === 'uns') add(w[0].s, se.e, 'Appell', false);
+    });
+
+    // Segmente (für Anapher/Epipher)
+    const segs = [];
+    const gre = /[^.!?…;:,\n–—]+/g;
+    while ((m = gre.exec(text))) {
+      const w = wordsIn(m.index, m.index + m[0].length);
+      if (w.length) segs.push({w});
+    }
+    // Anapher
+    for (let i = 0; i < segs.length;) {
+      let j = i + 1;
+      const f = segs[i].w[0].lw;
+      while (j < segs.length && segs[j].w[0].lw === f) j++;
+      const run = j - i;
+      if (run >= 2 && f.length >= 2) {
+        const two = segs[i].w.length > 1 && segs.slice(i, j).every(x => x.w.length > 1 && x.w[1].lw === segs[i].w[1].lw);
+        if (!STOP.has(f) || run >= 3 || two) segs.slice(i, j).forEach((x, k) => add(x.w[0].s, x.w[0].e, 'Anapher', true, k === 0));
+      }
+      i = j;
+    }
+    // Epipher
+    for (let i = 0; i < segs.length;) {
+      let j = i + 1;
+      const last = a => a.w[a.w.length - 1].lw;
+      const f = last(segs[i]);
+      while (j < segs.length && last(segs[j]) === f) j++;
+      if (j - i >= 2 && f.length >= 4 && !STOP.has(f)) segs.slice(i, j).forEach((x, k) => add(x.w[x.w.length - 1].s, x.w[x.w.length - 1].e, 'Epipher', true, k === 0));
+      i = j;
+    }
+
+    // Alliteration: mindestens drei aufeinanderfolgende Inhaltswörter mit gleichem konsonantischem Anlaut
+    sents.forEach(se => {
+      const c = wordsIn(se.s, se.e).filter(x => x.w.length >= 3 && !STOP.has(x.lw));
+      for (let i = 0; i < c.length;) {
+        let j = i + 1;
+        const o = onset(c[i].w);
+        while (j < c.length && onset(c[j].w) === o) j++;
+        if (j - i >= 3 && isCons(o[0])) add(c[i].s, c[j - 1].e, 'Alliteration', true);
+        i = j;
+      }
+    });
+
+    // Wiederholung: Inhaltswort mindestens dreimal innerhalb von 40 Wörtern
+    const byWord = {};
+    words.forEach((x, i) => { if (x.w.length >= 5 && !STOP.has(x.lw)) (byWord[x.lw] = byWord[x.lw] || []).push(i); });
+    Object.values(byWord).forEach(idx => {
+      for (let i = 0; i + 2 < idx.length; i++) {
+        if (idx[i + 2] - idx[i] <= 40) {
+          const grp = idx.slice(i, i + 3);
+          grp.forEach((k, n) => add(words[k].s, words[k].e, 'Wiederholung', false, n === 0));
+          break;
+        }
+      }
+    });
+
+    // Aufzählung / Trikolon
+    const item = "(?:(?:der|die|das|den|dem|ein|eine|einen)\\s+)?[" + L + "-]+";
+    const lre = new RegExp(item + "(?:,\\s+" + item + ")+,?\\s+(?:und|oder|sowie)\\s+" + item, "g");
+    while ((m = lre.exec(text))) {
+      const n = (m[0].match(/,/g) || []).length + 2;
+      add(m.index, m.index + m[0].length, n === 3 ? 'Trikolon' : 'Aufzählung', false);
+    }
+
+    // Musterbasierte Mittel
+    const pats = [
+      ['Anrede', /\b(?:sehr geehrte[rn]?|liebe[rn]?|meine damen und herren|verehrte[rn]?|werte[rn]?)\b[^.!?\n]{0,40}?(?=[!,.:\n]|$)/gi, false],
+      ['Vergleich', /\b(?:wie (?:ein|eine|einen|einem|einer)\b(?:\s+[A-Za-zÄÖÜäöüß-]+){1,2}|als ob\b)/gi, false],
+      ['Antithese', /\bnicht\b[^.!?\n]{1,60}?,?\s+sondern\b[^.!?\n,;]{1,40}/gi, false],
+      ['Antithese', /\beinerseits\b[^.!?\n]{1,120}?\bandererseits\b/gi, false],
+      ['Litotes', /\bnicht\s+(?:un(?!bedingt|d\b|s\b|ser|ter|ten|gefähr)[a-zäöüß]{3,}|schlecht|ohne\b|selten|wenig)/gi, false],
+      ['Hyperbel', /\b(?:tausend[a-zäöüß]*|abertausend[a-zäöüß]*|million(?:en)?(?:mal|fach)?|unzählig[a-zäöüß]*|unendlich[a-zäöüß]*|tod(?:müde|traurig|ernst)|zu tode|nie und nimmer)\b/gi, false],
+      ['Praeteritio', /\b(?:ich will (?:gar )?nicht (?:davon )?(?:sprechen|reden)|ganz zu schweigen von|von [^.!?\n]{1,40} (?:will|möchte) ich (?:gar )?nicht (?:sprechen|reden))/gi, false],
+      ['Correctio', /\b(?:oder besser(?: gesagt)?|besser gesagt|genauer gesagt|um nicht zu sagen|vielmehr)\b/gi, false],
+      ['Parenthese', /\([^()\n]{3,150}\)|[–—-]\s[^–—\n]{3,100}\s[–—-](?=\s|$)/g, false],
+    ];
+    pats.forEach(([label, re, sure]) => { while ((m = re.exec(text))) { if (m[0].length) add(m.index, m.index + m[0].length, label, sure); else re.lastIndex++; } });
+    return spans;
+  }
+
+  function def(label){ const x = (typeof STILMITTEL !== 'undefined') && STILMITTEL.find(y => y.name === label); return x ? x.def : ''; }
+
+  let lastText = '', lastSpans = [], hidden = new Set();
+
+  function render(){
+    const spans = lastSpans.filter(s => !hidden.has(s.label));
+    const text = lastText;
+    const cuts = new Set([0, text.length]);
+    spans.forEach(s => { cuts.add(s.s); cuts.add(s.e); });
+    const pos = [...cuts].sort((a, b) => a - b);
+    let html = '';
+    for (let i = 0; i < pos.length - 1; i++) {
+      const a = pos[i], b = pos[i + 1];
+      const act = spans.filter(s => s.s <= a && s.e >= b);
+      const chunk = esc(text.slice(a, b));
+      if (act.length) {
+        const labels = [...new Set(act.map(s => s.label))];
+        const unsure = act.every(s => !s.sure);
+        html += '<mark class="scan-mark' + (unsure ? ' unsure' : '') + '" title="' + esc(labels.map(l => l + ': ' + def(l)).join('\n')) + '">' + chunk + '</mark>';
+      } else html += chunk;
+      spans.filter(s => s.e === b && s.tag).forEach(s => { html += '<sup class="scan-tag' + (s.sure ? '' : ' unsure') + '">(' + esc(s.label) + (s.sure ? '' : '?') + ')</sup>'; });
+    }
+    out.innerHTML = html;
+  }
+
+  function renderSummary(){
+    const counts = {};
+    lastSpans.forEach(s => { if (s.tag) counts[s.label] = (counts[s.label] || 0) + 1; });
+    const names = Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b, 'de'));
+    if (!names.length) { summary.innerHTML = '<p class="scan-none">Keine Stilmittel mit den eingebauten Mustern gefunden. Das heißt nicht, dass keine vorkommen — Metaphern, Personifikationen, Ironie und Symbole erkennt nur ein Mensch.</p>'; return; }
+    summary.innerHTML = '<div class="scan-found"><span class="g-label">Gefunden (zum Ein-/Ausblenden anklicken)</span><div class="scan-chips">' +
+      names.map(n => '<button type="button" class="scan-chip' + (hidden.has(n) ? ' off' : '') + '" data-l="' + esc(n) + '">' + esc(n) + ' <b>' + counts[n] + '</b></button>').join('') + '</div></div>';
+    summary.querySelectorAll('.scan-chip').forEach(b => b.addEventListener('click', () => {
+      const l = b.dataset.l; hidden.has(l) ? hidden.delete(l) : hidden.add(l);
+      b.classList.toggle('off'); render();
+    }));
+  }
+
+  function run(){
+    let t = input.value.replace(/\r\n?/g, '\n');
+    if (!t.trim()) { out.textContent = ''; summary.innerHTML = '<p class="scan-none">Bitte zuerst einen Text einfügen.</p>'; return; }
+    let note = '';
+    if (t.length > MAX) { t = t.slice(0, MAX); note = '<p class="scan-none">Der Text wurde auf ' + MAX + ' Zeichen gekürzt.</p>'; }
+    lastText = t; hidden = new Set(); lastSpans = scan(t);
+    render(); renderSummary();
+    if (note) summary.insertAdjacentHTML('afterbegin', note);
+  }
+
+  btn.addEventListener('click', run);
+  if (sample) sample.addEventListener('click', () => { input.value = SAMPLE; run(); });
+  if (clear) clear.addEventListener('click', () => { input.value = ''; out.textContent = ''; summary.innerHTML = ''; });
 })();
 
 // Zoom controls (unabhängig vom Host, z. B. für eingebettete Teams-Tabs ohne Pinch-Zoom)
