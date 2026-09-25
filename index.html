@@ -535,6 +535,40 @@
   .scan-none{ font-size:.86rem; color:var(--ink-soft); margin:6px 0; }
   .scan-note{ font-size:.8rem; color:var(--ink-soft); line-height:1.6; margin-top:14px; padding-top:12px; border-top:1px solid var(--line); }
 
+  /* ---------- Textinterpretation: Kurzprosa und Lyrik ---------- */
+  .matura-panel{ margin-bottom:20px; }
+  .matura-text{ font-size:.9rem; color:var(--ink); line-height:1.6; margin:0 0 14px; }
+  .matura-cols{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr)); gap:16px; }
+  .matura-cols ul, .matura-az{ display:flex; flex-direction:column; gap:6px; margin-top:6px; }
+  .matura-cols li, .matura-az li{ font-size:.86rem; line-height:1.5; padding-left:14px; position:relative; }
+  .matura-cols li::before, .matura-az li::before{ content:"–"; position:absolute; left:0; color:var(--accent); }
+  .matura-az li b{ font-weight:600; }
+  .var-tabs{ display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 16px; }
+  .var-tab{ font-size:.8rem; padding:8px 16px; }
+  .var-kurz{ font-size:.95rem; color:var(--ink-soft); line-height:1.6; margin:0 0 16px; max-width:75ch; }
+  .formen-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr)); gap:12px; }
+  .form-card{ border:1px solid var(--line); border-radius:10px; padding:12px 14px; background:var(--surface-2); display:flex; flex-direction:column; gap:4px; }
+  .form-card b{ font-size:.9rem; color:var(--accent-strong); }
+  .form-card span{ font-size:.84rem; line-height:1.5; color:var(--ink); }
+  .form-tipp{ font-size:.86rem; line-height:1.55; margin-top:12px; color:var(--ink-soft); }
+  .steps{ display:flex; flex-direction:column; gap:12px; margin:0; padding:0; list-style:none; }
+  .step-card{ border:1px solid var(--line); border-radius:10px; padding:14px 16px; background:var(--surface); }
+  .step-head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px; margin-bottom:8px; }
+  .step-head .num{ font-family:var(--font-mono); font-size:.78rem; color:var(--accent); }
+  .step-head b{ font-family:var(--font-display); font-size:1rem; font-weight:600; }
+  .step-head .wz{ font-family:var(--font-mono); font-size:.68rem; color:var(--ink-faint); letter-spacing:.03em; }
+  .step-do{ display:flex; flex-direction:column; gap:5px; }
+  .step-do li{ font-size:.87rem; line-height:1.55; padding-left:16px; position:relative; }
+  .step-do li::before{ content:"›"; position:absolute; left:2px; color:var(--accent); font-weight:700; }
+  .step-bsp{ margin:10px 0 0; padding:9px 12px; border-radius:6px; background:var(--accent-soft); font-size:.85rem; line-height:1.55; }
+  .step-bsp span:first-child{ display:block; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.06em; text-transform:uppercase; color:var(--accent-strong); margin-bottom:2px; }
+  .az-list{ display:flex; flex-direction:column; gap:10px; }
+  .az{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:6px 18px; border-top:1px dotted var(--line); padding-top:10px; }
+  .az:first-child{ border-top:none; padding-top:0; }
+  .az b{ font-size:.86rem; font-weight:600; }
+  .az span{ font-size:.85rem; color:var(--ink-soft); line-height:1.5; }
+  @media (max-width:640px){ .az{ grid-template-columns:1fr; } }
+
   /* ---------- Footer ---------- */
   footer{ padding:40px 0 60px; }
   footer p{ font-size:.85rem; color:var(--ink-faint); max-width:60ch; line-height:1.6; }
@@ -808,11 +842,11 @@ const VERGLEICH = {
     Sprache:["Bei einer Textanalyse geht es darum, einen Text und seinen Aufbau genau zu beschreiben — im Hinblick auf Inhalt, Sprache und Gestaltung. „Analyse“ (altgriechisch: auflösen) heißt: ein Ganzes in einzelne Teile zerlegen und diese genau betrachten"],
   },
   textinterpretation:{
-    Allgemeines:["Beschreibt sachlich und in eigenen Worten den Sinn eines Textes","Durchschaut die Textstruktur und nimmt begründet Stellung","Den Schluss bildet eine Bewertung"],
-    Einleitung:["Informationen zu Titel, Autor:in, Erscheinungsjahr und Thema"],
-    Hauptteil:["Erschließung der Textsorte","Aufbau und Gliederung","Motive zum Verfassen des Textes","Sprache und Stil","Interpretation anhand aller Elemente (z. B. sensibilisieren, aufmerksam machen, Betroffenheit erzeugen, erschüttern …)"],
-    Schluss:["Bewertung und Interpretation"],
-    Sprache:["Die Textinterpretation baut auf den Ergebnissen der Analyse auf, geht aber einen Schritt weiter: Der Fokus liegt darauf, den Text im Hinblick auf einen bestimmten Aspekt zu deuten — aufzuzeigen, was der Autor/die Autorin sagen möchte oder warum der Text verfasst wurde, und die Analyseergebnisse in einen größeren Zusammenhang zu stellen"],
+    Allgemeines:["Deutet einen literarischen Text auf der Grundlage einer Analyse von Inhalt, Form und Sprache","In der Matura bisher: Kurzprosa oder Lyrik (Gedicht, Gedichtvergleich)","Belege mit Zeilenangabe (Z.) bzw. Versangabe (V.)"],
+    Einleitung:["Textsorte, Titel, Autor:in, Erscheinungs- bzw. Entstehungsjahr; beim Gedichtvergleich beide Gedichte und der Vergleichsaspekt"],
+    Hauptteil:["Kurze, nachvollziehbare Zusammenfassung von Thema bzw. Handlung","Analyse: Erzählweise und Figuren (Kurzprosa) bzw. Form, Reim, Metrum und Bilder (Lyrik)","Entwicklung oder Überprüfung einer Deutungshypothese","Erkennen und Erklären des Symbolgehalts","Beim Gedichtvergleich: Gemeinsamkeiten und Unterschiede am Vergleichsaspekt"],
+    Schluss:["Knappe Zusammenfassung der Interpretationsergebnisse"],
+    Sprache:["Die Textinterpretation baut auf der Analyse auf und geht einen Schritt weiter: Sie deutet den Text. Fachtermini korrekt und einheitlich, eigenes vom Text gelöstes Vokabular, direkte und indirekte Zitate klar gekennzeichnet"],
   },
 };
 
@@ -1060,9 +1094,19 @@ const QUELLEN = {
     {href:DG+"textanalyse/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Anleitung + Übungen", text:"Aufbau, Kriterien und drei Übungs-PDFs (z. B. Social-Media-Regeln, Bildung) mit Musterlösungen."},
     {href:uebPfad("Textanalyse"), quelle:"matura.gv.at · BMBWF", typ:"kostenlos · Aufgabe + Textvorlage", text:"Offizielles Übungsset (Aufgabenstellung, Textvorlage, Antwortheft) — ohne Musterlösung."},
   ],
-  textinterpretation:[
-    {href:DG+"textinterpretation/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Anleitung + Übungen", text:"Aufbau, Kriterien, Übungen (u. a. „Die Streuselschnecke“) und eine Beispiel-Schüler:innenarbeit — ohne Lösungsblätter."},
+  ti_kurzprosa:[
+    {href:"https://www.matura.gv.at/fileadmin/user_upload/downloads/Uebungsmaterial/US/srdp_de_kurzgeschichte_11_2015-02-26.pdf", quelle:"matura.gv.at · BMBWF", typ:"kostenlos · Aufgabe + Textvorlage", text:"Amtliche Übung „Kurzgeschichte“ (Schnurre, „Auf der Flucht“) mit vier Arbeitsaufträgen — ohne Musterlösung."},
+    {href:DG+"textinterpretation/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Anleitung + Übungen", text:"Aufbau, Kriterien, Übungen (u. a. „Die Streuselschnecke“, „Nasen kann man so und so sehen“) — ohne Lösungsblätter."},
     {href:uebPfad("Textinterpretation"), quelle:"matura.gv.at · BMBWF", typ:"kostenlos · Aufgabe + Textbeilage", text:"Offizielles Übungsset (Aufgabenstellung, Textbeilage, Antwortheft) — ohne Musterlösung."},
+  ],
+  ti_gedicht:[
+    {href:DG+"textinterpretation/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Anleitung + Übungen", text:"Aufbau, Kriterien und Formulierungshilfen der Textinterpretation; Zitieren mit Versangabe (V.)."},
+    {href:uebPfad("Textinterpretation"), quelle:"matura.gv.at · BMBWF", typ:"kostenlos · Aufgabe + Textbeilage", text:"Offizielles Übungsset (Aufgabenstellung, Textbeilage, Antwortheft) — ohne Musterlösung."},
+  ],
+  ti_vergleich:[
+    {href:"https://www.matura.gv.at/index.php?eID=dumpFile&t=f&f=188&token=1c4eab92e1f2a520c47f3ccdf22ea540b0c3b8fa", quelle:"matura.gv.at · BMBWF", typ:"kostenlos · amtliche Kommentierung", text:"Kommentierung der Aufgaben Mai 2016: Gedichtvergleich Wolfenstein/Heym mit möglichen Realisierungen der Arbeitsaufträge."},
+    {href:"https://www.matura.gv.at/index.php?eID=dumpFile&t=f&f=8035&token=5a5895715f2b25a1a9bfd8316d9084b61c525326", quelle:"matura.gv.at · BMBWF", typ:"kostenlos · Aufgabenheft", text:"Klausur 7. Mai 2025 (Thema 1: Gedichtvergleich Halter/Enzensberger) mit Original-Arbeitsaufträgen."},
+    {href:DG+"textinterpretation/", quelle:"deutsche-grammatik.net", typ:"kostenlos · Anleitung + Übungen", text:"Aufbau, Kriterien und Formulierungshilfen; Hinweise zu Textvergleichen."},
   ],
 };
 
@@ -1363,16 +1407,82 @@ const TRAINING = {
     ],
   },
 
-  textinterpretation:{
+  ti_kurzprosa:{
     umfang:"540–660 Wörter",
     aufgaben:[
-      {titel:"Romantisches Naturgedicht", auftrag:"Interpretieren Sie ein Gedicht der Romantik (z. B. von Eichendorff, Novalis oder Brentano) im Hinblick auf das Verhältnis von Natur und lyrischem Ich (540–660 Wörter)."},
-      {titel:"Kurzgeschichte der Nachkriegszeit", auftrag:"Interpretieren Sie eine Kurzgeschichte der Nachkriegsliteratur (z. B. Wolfgang Borchert, „Das Brot“) im Hinblick auf Erzählweise und Symbolik."},
-      {titel:"Lyrik der Moderne", auftrag:"Interpretieren Sie ein Gedicht der Moderne (z. B. Rilke, „Der Panther“). Entwickeln Sie eine begründete Deutungshypothese und überprüfen Sie diese am Text."},
+      {titel:"Kurzgeschichte der Nachkriegszeit", auftrag:"Interpretieren Sie eine Kurzgeschichte der Nachkriegsliteratur, z. B. Wolfgang Borchert, „Das Brot“. Geben Sie den Inhalt kurz wieder, analysieren Sie Erzählweise und Sprache und deuten Sie den Text im Hinblick auf Titel und Ende (540–660 Wörter)."},
+      {titel:"Offizielle Übung: Schnurre, „Auf der Flucht“", auftrag:"Bearbeiten Sie die vier Arbeitsaufträge der amtlichen Übung: Inhalt kurz wiedergeben, sprachliche Auffälligkeiten analysieren und zum Inhalt in Beziehung setzen, die Personen und ihre Handlungsweisen charakterisieren, den Text in Hinblick auf Titel und Gesamtaussage bewerten (540–660 Wörter).", linklabel:"Text und Aufgabe: ", artikel:[
+        {href:"https://www.matura.gv.at/fileadmin/user_upload/downloads/Uebungsmaterial/US/srdp_de_kurzgeschichte_11_2015-02-26.pdf", quelle:"matura.gv.at: Übung „Kurzgeschichte“ (PDF)"},
+      ]},
+      {titel:"Kalendergeschichte", auftrag:"Interpretieren Sie eine Kalendergeschichte von Johann Peter Hebel, z. B. „Unverhofftes Wiedersehen“. Zeigen Sie, wie Erzählton, Zeitgestaltung und Schluss die Aussage tragen (540–660 Wörter)."},
+      {titel:"Parabel", auftrag:"Interpretieren Sie eine Parabel, z. B. Franz Kafka, „Vor dem Gesetz“. Beschreiben Sie zuerst die Bildebene, erschließen Sie dann die Sachebene und begründen Sie Ihre Deutung am Text (540–660 Wörter)."},
+      {titel:"Anekdote", auftrag:"Interpretieren Sie eine Anekdote, z. B. Heinrich von Kleist, „Anekdote aus dem letzten preußischen Kriege“. Erklären Sie, wie die Pointe die Haltung der Figur sichtbar macht (540–660 Wörter)."},
     ],
     muster:{
-      aufgabe:"Interpretieren Sie das Gedicht „Mondnacht“ von Joseph von Eichendorff (1837). Gehen Sie auf Form, Sprache und Inhalt ein. (Gekürzter Modelltext, in der Prüfung 540–660 Wörter.)",
-      grundlage:{titel:"„Mondnacht“", quelle:"Joseph von Eichendorff, 1837 (gemeinfrei)", nummeriert:"V.", strophen:true, zeilen:[
+      aufgabe:"Interpretieren Sie die Kurzgeschichte „Der Schlüssel“. Geben Sie den Inhalt kurz wieder, analysieren Sie Erzählweise und Sprache und deuten Sie den Text im Hinblick auf Titel und Ende. (Gekürzter Modelltext, in der Prüfung 540–660 Wörter.)",
+      grundlagen:[{titel:"„Der Schlüssel“", quelle:"erfundener Übungstext", nummeriert:"Z.", zeilen:[
+        "Am Montag fand Tobias den Schlüssel im Briefkasten.",
+        "Er war alt, aus dunklem Metall und trug keinen Zettel.",
+        "„Wer schickt einem Zwölfjährigen einen Schlüssel?“, dachte er.",
+        "Den ganzen Tag trug er ihn in der Hosentasche mit sich herum.",
+        "In der Schule schob er die Hand hinein, sobald die anderen lachten.",
+        "Am Abend probierte er ihn an allen Türen der Wohnung aus.",
+        "Er passte nirgends.",
+        "Am Dienstag zeigte er ihn der Nachbarin, Frau Kovač.",
+        "Sie sah den Schlüssel lange an und sagte nichts.",
+        "„Der gehört zum Gartentor“, sagte sie schließlich.",
+        "„Zum Garten hinter dem Haus, bevor sie es abgerissen haben.“",
+        "Tobias sah auf das Wort „abgerissen“ und dann auf den Schlüssel.",
+        "Am Mittwoch ging er dorthin, wo das Tor gewesen sein musste.",
+        "Da war ein Parkplatz, grau und glatt, mit weißen Linien.",
+        "Er hielt den Schlüssel in die Luft, als könnte er etwas aufsperren.",
+        "Ein Auto fuhr vorbei, ohne zu bremsen.",
+        "Am Abend legte Tobias den Schlüssel zurück in den Briefkasten.",
+        "Vielleicht, dachte er, brauchte ihn jemand anderer dringender."]}],
+      teile:[
+        {m:"Die Kurzgeschichte „Der Schlüssel“ (erfundener Übungstext, 2026) erzählt, wie ein Zwölfjähriger einen rätselhaften Schlüssel findet und dabei erfährt, dass der Ort, zu dem er gehört, nicht mehr existiert.", w:"Einleitung: Form, Titel, Autor:in, Jahr und Thema in einem Satz. Bei einem erfundenen Text fehlt die Autorenangabe — in der Prüfung steht sie in der Quellenangabe."},
+        {p:1},
+        {t:"Tobias findet an einem Montag einen alten Schlüssel im Briefkasten und probiert ihn vergeblich an allen Türen der Wohnung aus. Seine Nachbarin erkennt ihn als Schlüssel zu einem Gartentor, das mit dem Haus abgerissen wurde. An der Stelle des Gartens findet Tobias einen Parkplatz und legt den Schlüssel am Ende in den Briefkasten zurück."},
+        {p:1},
+        {t:"Erzählt wird in der dritten Person aus der Sicht von Tobias: Seine Gedanken werden direkt wiedergegeben („dachte er“, Z. 3 und Z. 18), die Erwachsenen bleiben dagegen undurchsichtig, etwa Frau Kovač, die zunächst „nichts“ sagt (Z. 9). "},
+        {m:"Die Lesenden wissen daher nur, was Tobias weiß, und rätseln mit ihm — das erzeugt Nähe zur Figur und Spannung.", w:"Erzählweise wird nicht nur benannt (personales Erzählverhalten), sondern an ihrer Wirkung erklärt."},
+        {t:" Die Handlung ist in drei Tage gegliedert („Am Montag“, „Am Dienstag“, „Am Mittwoch“, Z. 1, 8 und 13). "},
+        {m:"Die Raffung lässt die Suche wie eine kleine Reise mit klaren Stationen wirken, an deren Ende die Ernüchterung steht.", w:"Zeitgestaltung mit Beleg und Wirkung: Die Gliederung wird für die Deutung genutzt."},
+        {p:1},
+        {t:"Die Sprache ist schlicht und besteht überwiegend aus kurzen Hauptsätzen. "},
+        {m:"Der knappe Satz „Er passte nirgends.“ (Z. 7) betont Tobias’ Ratlosigkeit und wirkt wie ein Schlusspunkt unter dem ergebnislosen Ausprobieren.", w:"Ein einzelner Satz wird zitiert, seine Kürze erklärt. Zeilenangabe (Z.) nicht vergessen."},
+        {t:" Auffällig ist der Kontrast zwischen dem Garten, den Frau Kovač beschreibt (Z. 11), und dem Parkplatz, „grau und glatt, mit weißen Linien“ (Z. 14). "},
+        {m:"Die nüchternen Wörter machen den Verlust zum Bild: Wo Lebendiges war, ist nun etwas Kühles und Zweckmäßiges.", w:"Gegenüberstellung zweier Textstellen: Analyse und Deutung greifen ineinander."},
+        {p:1},
+        {m:"Der Schlüssel lässt sich als Symbol der Erinnerung deuten: Er öffnet nichts mehr und bleibt doch der Beweis, dass es diesen Ort gab.", w:"Symbolgehalt: Das Symbol wird nicht nur behauptet, sondern mit seiner Bedeutung im Text begründet."},
+        {t:" Dass Tobias ihn in die Luft hält, „als könnte er etwas aufsperren“ (Z. 15), zeigt den Wunsch, Vergangenes zugänglich zu machen. Die Gegenwart nimmt darauf keine Rücksicht: „Ein Auto fuhr vorbei, ohne zu bremsen“ (Z. 16)."},
+        {p:1},
+        {m:"Das offene Ende, in dem Tobias den Schlüssel zurücklegt, weil ihn „jemand anderer dringender“ brauchen könnte (Z. 17–18), gibt dem Titel eine zweite Bedeutung: Der Schlüssel ist nicht nur ein Gegenstand, sondern der Schlüssel zum Verstehen von Verlust — Erinnerung muss geteilt werden, um zu bestehen.", w:"Schluss: knappe Zusammenfassung der Deutung, Rückbezug auf Titel und Ende. Keine neuen Argumente mehr."},
+      ]},
+    check:[
+      "Einleitung nennt Form (z. B. Kurzgeschichte), Titel, Autor:in, Jahr und Thema.",
+      "Inhalt kurz, im Präsens und in eigenen Worten (höchstens ein Sechstel der Arbeit).",
+      "Erzählform, Erzählverhalten und Zeitgestaltung benannt und in ihrer Wirkung erklärt.",
+      "Figuren und Wendepunkt beschrieben; Handeln der Figuren gedeutet.",
+      "Sprache untersucht (Satzbau, Wortwahl, Bilder) — mit Wirkung, nicht als Liste.",
+      "Symbole, Titel und Ende in die Deutung einbezogen.",
+      "Jede Deutung ist mit kurzem Zitat und Zeilenangabe (Z.) belegt; Erzähler:in und Autor:in nicht verwechselt.",
+      "Absätze mit Leerzeilen markiert; 540–660 Wörter eingehalten.",
+    ],
+  },
+  ti_gedicht:{
+    umfang:"540–660 Wörter",
+    aufgaben:[
+      {titel:"Romantisches Naturgedicht", auftrag:"Interpretieren Sie ein Gedicht der Romantik (z. B. von Eichendorff, Novalis oder Brentano). Geben Sie den Inhalt kurz wieder, analysieren Sie die formale und sprachliche Gestaltung und deuten Sie das Verhältnis von Natur und lyrischem Ich (540–660 Wörter)."},
+      {titel:"Lyrik der Moderne", auftrag:"Interpretieren Sie ein Gedicht der Moderne, z. B. Rainer Maria Rilke, „Der Panther“. Entwickeln Sie eine begründete Deutungshypothese und überprüfen Sie diese an Form und Sprache (540–660 Wörter)."},
+      {titel:"Großstadtlyrik", auftrag:"Interpretieren Sie ein Gedicht des Expressionismus zur Großstadt, z. B. Jakob van Hoddis, „Weltende“. Zeigen Sie, wie Form und Sprache die Weltsicht des lyrischen Ichs ausdrücken (540–660 Wörter)."},
+      {titel:"Gegenwartslyrik", auftrag:"Wählen Sie ein Ihnen unbekanntes Gedicht der Gegenwart (z. B. aus einer Anthologie oder aus den früheren Matura-Klausuren) und interpretieren Sie es nach dem Schema Inhalt – Form – Sprache – Deutung (540–660 Wörter).", linklabel:"Echte Aufgaben: ", artikel:[
+        {href:"https://www.matura.gv.at/downloads?tx_solr%5Bfilter%5D%5B0%5D=documentType%3A%2FFr%C3%BChere+Pr%C3%BCfungsaufgaben%2FKlausuren%2F&tx_solr%5Bfilter%5D%5B1%5D=subject%3A%2FUnterrichtssprache%2FDeutsch%2F", quelle:"matura.gv.at: Klausuren mit Kommentierung"},
+      ]},
+    ],
+    muster:{
+      aufgabe:"Interpretieren Sie das Gedicht „Mondnacht“ von Joseph von Eichendorff (1837). Geben Sie den Inhalt kurz wieder, analysieren Sie Form und Sprache und deuten Sie das Gedicht. (Gekürzter Modelltext, in der Prüfung 540–660 Wörter.)",
+      grundlagen:[{titel:"„Mondnacht“", quelle:"Joseph von Eichendorff, 1837 (gemeinfrei)", nummeriert:"V.", strophen:true, zeilen:[
         "Es war, als hätt der Himmel",
         "Die Erde still geküßt,",
         "Daß sie im Blütenschimmer",
@@ -1384,7 +1494,7 @@ const TRAINING = {
         "Und meine Seele spannte",
         "Weit ihre Flügel aus,",
         "Flog durch die stillen Lande,",
-        "Als flöge sie nach Haus."]},
+        "Als flöge sie nach Haus."]}],
       teile:[
         {m:"Das Gedicht „Mondnacht“ von Joseph von Eichendorff, 1837 erschienen, gehört zur Epoche der Romantik und thematisiert die Verbindung von Natur und Seele in einer nächtlichen Stimmung.", w:"Einleitung: Textsorte, Titel, Autor, Entstehungs-/Erscheinungsjahr, Thema (und Epoche als Kontext)."},
         {p:1},
@@ -1401,14 +1511,80 @@ const TRAINING = {
         {m:"Insgesamt zeigt das Gedicht typische Merkmale der Romantik: die Verklärung der Natur, die Sehnsucht der Seele und die Überwindung der Grenze zwischen Innen und Außen.", w:"Schluss: knappe Zusammenfassung der Interpretationsergebnisse."},
       ]},
     check:[
-      "Einleitung nennt Textsorte, Titel, Autor:in, Entstehungs-/Erscheinungsjahr.",
-      "Thema bzw. Handlung nachvollziehbar zusammengefasst (kurz!).",
-      "Formale, sprachliche und inhaltliche Elemente analysiert (z. B. Reimschema, Erzählperspektive).",
-      "Jede Deutung ist durch Zitate mit Vers- oder Zeilenangabe belegt.",
-      "Symbolgehalt bzw. mehrere Bedeutungsebenen erkannt und erklärt.",
-      "Autor:in, Erzähler:in und lyrisches Ich nicht verwechselt.",
-      "Fachbegriffe korrekt, eigener Ausdruck statt Stilübernahme; Zitate gekennzeichnet.",
-      "Schluss fasst die Deutungsergebnisse knapp zusammen; Wortzahl eingehalten.",
+      "Einleitung nennt Gattung, Titel, Autor:in, Entstehungs-/Erscheinungsjahr und Thema.",
+      "Inhalt kurz, strophenweise oder in Gedankenschritten, im Präsens.",
+      "Form untersucht (Strophe, Vers, Reim, Metrum, Enjambement) — jeweils mit Wirkung.",
+      "Sprache untersucht (Bilder, Wortfelder, Klang, Satzbau) — mit Beleg und Deutung.",
+      "Lyrisches Ich beschrieben und nicht mit der Autorin/dem Autor gleichgesetzt.",
+      "Jede Deutung ist mit Zitat und Versangabe (V.) belegt.",
+      "Deutungshypothese entwickelt und am Text überprüft; Symbolgehalt erklärt.",
+      "Absätze mit Leerzeilen markiert; 540–660 Wörter eingehalten.",
+    ],
+  },
+  ti_vergleich:{
+    umfang:"540–660 Wörter",
+    aufgaben:[
+      {titel:"Naturgedichte im Vergleich", auftrag:"Vergleichen Sie Goethes „Ein Gleiches“ („Über allen Gipfeln …“) mit Eichendorffs „Mondnacht“. Geben Sie kurz den Inhalt beider Gedichte wieder, analysieren Sie die formale und sprachliche Gestaltung und deuten Sie vergleichend, welche Beziehung zwischen Mensch und Natur vermittelt wird (540–660 Wörter)."},
+      {titel:"Städter und Stadt (Matura 2016)", auftrag:"Vergleichen Sie Alfred Wolfensteins „Städter“ mit Georg Heyms „Die Stadt“ (Aufgabe der Reifeprüfung Mai 2016). Arbeiten Sie heraus, wie das Leben in der Stadt jeweils dargestellt wird, und prüfen Sie Ihre Lösung anschließend an der amtlichen Kommentierung (540–660 Wörter).", linklabel:"Amtlich: ", artikel:[
+        {href:"https://www.matura.gv.at/index.php?eID=dumpFile&t=f&f=188&token=1c4eab92e1f2a520c47f3ccdf22ea540b0c3b8fa", quelle:"matura.gv.at: Kommentierung Mai 2016 (PDF)"},
+      ]},
+      {titel:"Das Ich im Gedicht (Matura 2025)", auftrag:"Bearbeiten Sie die Aufgabe der Reifeprüfung Mai 2025 (Thema 1, Aufgabe 1) zu Jürg Halter, „Der Bahnhof“, und Hans Magnus Enzensberger, „Identitätsnachweis“: Inhalt kurz wiedergeben, formale und sprachliche Gestaltung analysieren, vergleichend deuten, welche Vorstellung vom Ich vermittelt wird (540–660 Wörter).", linklabel:"Aufgabenheft: ", artikel:[
+        {href:"https://www.matura.gv.at/index.php?eID=dumpFile&t=f&f=8035&token=5a5895715f2b25a1a9bfd8316d9084b61c525326", quelle:"matura.gv.at: Klausur 7. Mai 2025 (PDF)"},
+      ]},
+      {titel:"Jahreszeiten im Gedicht", auftrag:"Vergleichen Sie zwei Gedichte zu einer Jahreszeit (z. B. Bertolt Brecht, „Über das Frühjahr“, und Marie Luise Kaschnitz, „Juni“). Legen Sie zuerst ein Vergleichsraster an und deuten Sie dann vergleichend die Stimmung und das Naturbild (540–660 Wörter)."},
+    ],
+    muster:{
+      aufgabe:"Vergleichen Sie die Gedichte „Ein Gleiches“ von Johann Wolfgang von Goethe (1780) und „Mondnacht“ von Joseph von Eichendorff (1837). Geben Sie kurz den Inhalt wieder, analysieren Sie Form und Sprache und deuten Sie vergleichend, welche Beziehung zwischen dem lyrischen Ich und der Natur vermittelt wird. (Gekürzter Modelltext, in der Prüfung 540–660 Wörter.)",
+      grundlagen:[
+        {titel:"„Ein Gleiches“ („Wandrers Nachtlied“)", quelle:"Johann Wolfgang von Goethe, 1780 (gemeinfrei)", nummeriert:"V.", zeilen:[
+          "Über allen Gipfeln",
+          "Ist Ruh,",
+          "In allen Wipfeln",
+          "Spürest du",
+          "Kaum einen Hauch;",
+          "Die Vögelein schweigen im Walde.",
+          "Warte nur, balde",
+          "Ruhest du auch."]},
+        {titel:"„Mondnacht“", quelle:"Joseph von Eichendorff, 1837 (gemeinfrei)", nummeriert:"V.", strophen:true, zeilen:[
+          "Es war, als hätt der Himmel",
+          "Die Erde still geküßt,",
+          "Daß sie im Blütenschimmer",
+          "Von ihm nun träumen müßt.",
+          "Die Luft ging durch die Felder,",
+          "Die Ähren wogten sacht,",
+          "Es rauschten leis die Wälder,",
+          "So sternklar war die Nacht.",
+          "Und meine Seele spannte",
+          "Weit ihre Flügel aus,",
+          "Flog durch die stillen Lande,",
+          "Als flöge sie nach Haus."]},
+      ],
+      teile:[
+        {m:"Die Gedichte „Ein Gleiches“ von Johann Wolfgang von Goethe (1780) und „Mondnacht“ von Joseph von Eichendorff (1837) schildern beide eine stille Nacht in der Natur; verglichen wird, welche Beziehung zwischen dem lyrischen Ich und der Natur jeweils entsteht.", w:"Einleitung: beide Gedichte mit Autor und Jahr, gemeinsames Thema und der Vergleichsaspekt aus dem Arbeitsauftrag."},
+        {p:1},
+        {t:"Bei Goethe beschreibt das lyrische Ich die Ruhe auf den Gipfeln und in den Wipfeln, in der sogar die Vögel schweigen, und wendet sich dann an ein „du“: Bald werde auch dieses Du ruhen (V. 7–8). Bei Eichendorff bringt eine sternklare Nacht Himmel und Erde einander nahe; am Ende breitet die Seele des lyrischen Ichs ihre Flügel aus und fliegt „nach Haus“ (V. 9–12)."},
+        {p:1},
+        {t:"Formal unterscheiden sich die Gedichte deutlich. Goethes acht Verse sind unterschiedlich lang, reimen sich aber (abab cddc); auf den langen sechsten Vers folgen zwei kurze (V. 7–8). "},
+        {m:"Das Kürzerwerden am Schluss ahmt das Zur-Ruhe-Kommen nach und lässt die letzten Worte „Ruhest du auch“ endgültig klingen.", w:"Formbeobachtung bei Gedicht 1 mit Wirkung. Der Vergleich folgt im nächsten Satz."},
+        {t:" Eichendorffs Gedicht ist dagegen streng gebaut: drei Strophen zu je vier Versen im Kreuzreim. "},
+        {m:"Die Regelmäßigkeit wirkt wie ein beruhigendes Wiegen, während bei Goethe gerade die Unregelmäßigkeit den Gedanken an ein Ende verstärkt.", w:"Vergleichssatz: Gleicher Aspekt (Form), aber unterschiedliche Funktion. Vergleichssignale wie „dagegen“ und „während“ zeigen die Struktur."},
+        {p:1},
+        {t:"Auch sprachlich gehen die Gedichte verschiedene Wege. Goethe verwendet kurze, fast nüchterne Sätze; die Beobachtung „Die Vögelein schweigen im Walde“ (V. 6) mündet in die Aufforderung „Warte nur, balde / Ruhest du auch“ (V. 7–8). Eichendorff arbeitet dagegen mit Bildern und dem Konjunktiv: Der Himmel habe die Erde „still geküßt“ (V. 1–2), die Seele „spannte / Weit ihre Flügel aus“ (V. 9–10). "},
+        {m:"Bei Goethe bleibt die Natur ein stiller Gegenüber, bei Eichendorff wird sie durch Personifikation und Metapher zu einer beseelten Welt, in der das Ich aufgehoben ist.", w:"Sprachanalyse beider Gedichte in einem Absatz, verbunden durch einen Vergleichssatz. Belege mit Versangabe, damit klar ist, aus welchem Gedicht sie stammen."},
+        {p:1},
+        {m:"Daraus ergibt sich das Verhältnis von Ich und Natur: Beide Gedichte erleben die Nacht als Augenblick der Stille, in dem das Ich zur Ruhe kommen soll. Bei Goethe bleibt das Ich jedoch Betrachter; die Ruhe der Natur verweist auf die Ruhe des Todes, die sich zugleich als tröstlich lesen lässt. Bei Eichendorff verschmilzt das Ich mit der Natur, und „nach Haus“ (V. 12) deutet Geborgenheit an, sei es in der Natur, im Glauben oder in der Heimat der Seele.", w:"Vergleichende Deutung: Gemeinsamkeit (Stille, Ruhe) und Unterschied (Betrachter und Tod bei Goethe, Verschmelzung und Geborgenheit bei Eichendorff) am gemeinsamen Aspekt. Deutung mit Belegstelle abgesichert."},
+        {p:1},
+        {m:"Während Goethes Gedicht die Ruhe der Natur als Vorzeichen des Endes liest, gestaltet Eichendorff sie als Weg der Seele nach Hause. Beide machen die Natur zum Spiegel des Ichs, deuten diesen Spiegel aber gegensätzlich.", w:"Schluss: Die Vergleichsergebnisse werden in zwei Sätzen zusammengeführt. Keine neuen Gedanken."},
+      ]},
+    check:[
+      "Einleitung nennt beide Gedichte (Titel, Autor:in, Jahr), das gemeinsame Thema und den Vergleichsaspekt.",
+      "Inhalt beider Gedichte kurz und ausgewogen wiedergegeben.",
+      "Analyse ist vergleichend aufgebaut (aspektgeleitet), nicht als zwei getrennte Interpretationen.",
+      "Gemeinsamkeiten und Unterschiede benannt und belegt.",
+      "Jedes Zitat mit Versangabe und erkennbarem Gedicht; Zitate kurz.",
+      "Form und Sprache mit Wirkung erklärt, nicht nur aufgezählt.",
+      "Vergleichende Deutung zum Vergleichsaspekt aus dem Arbeitsauftrag (z. B. Vorstellung vom Ich).",
+      "Absätze mit Leerzeilen markiert; 540–660 Wörter eingehalten.",
     ],
   },
 };
@@ -1438,7 +1614,7 @@ function renderMuster(tr){
   const wc = wordCountOf(m.teile);
   return '<div class="muster-body">' +
     '<div class="m-aufgabe"><span class="g-label">Aufgabe</span>' + esc(m.aufgabe) + '</div>' +
-    renderGrundlage(m.grundlage) +
+    (m.grundlagen || (m.grundlage ? [m.grundlage] : [])).map(renderGrundlage).join('') +
     '<div class="m-modell"><span class="g-label">Modelltext</span>' +
       (m.titel ? '<div class="muster-title">' + esc(m.titel) + '</div>' : '') +
       '<div class="tt-text muster-text">' + body + '</div>' +
@@ -1448,9 +1624,9 @@ function renderMuster(tr){
   '</div>';
 }
 
-function renderArtikelLinks(artikel){
+function renderArtikelLinks(artikel, label){
   if (!artikel || !artikel.length) return '';
-  return '<span class="artikel-links"><b>Artikel dazu: </b>' +
+  return '<span class="artikel-links"><b>' + esc(label || 'Artikel dazu: ') + '</b>' +
     artikel.map(a => `<a href="${a.href}" target="_blank" rel="noopener noreferrer">${esc(a.quelle)}</a>`).join('') +
     '</span>';
 }
@@ -1466,7 +1642,7 @@ function renderTraining(t){
       <div class="train-block">
         <h5>Übungsaufträge <small>Umfang laut Textsortenkatalog: ${esc(tr.umfang)}</small></h5>
         <ul class="auftraege">
-          ${tr.aufgaben.map(a => `<li><b>${esc(a.titel)}</b><span>${esc(a.auftrag)}</span>${renderArtikelLinks(a.artikel)}</li>`).join('')}
+          ${tr.aufgaben.map(a => `<li><b>${esc(a.titel)}</b><span>${esc(a.auftrag)}</span>${renderArtikelLinks(a.artikel, a.linklabel)}</li>`).join('')}
         </ul>
       </div>
 
@@ -1717,39 +1893,309 @@ const TEXTSORTEN = [
   },
   {
     id:"textinterpretation", gruppe:"Literarisch & analytisch", tag:"Literarisch-analytisch",
-    name:"Textinterpretation", kurz:"Analyse und Deutung eines literarischen Textes hinsichtlich Inhalt, Form und Bedeutung.",
-    meta:["Perspektive: analytisch, deutend","Belegpflicht: Zeilen-/Versangabe","Umfang: 540–660 Wörter"],
-    merkmale:[
-      "Präsens, sachlich-distanzierter Grundton — Deutung ist ausdrücklich gefordert",
-      "Zitate mit Zeilen- oder Versangabe als Beleg",
-      "Verbindung von Inhalt, Form und Deutung statt getrennter Blöcke",
-      "Bei Gedichten: Aufbau, Metrum, Reimschema, Sprachbilder einbeziehen",
-      "Klare Trennung von Autor:in, Erzähler:in und lyrischem Ich"
-    ],
-    aufbau:[
-      {b:"Einleitungssatz", t:"Autor:in, Titel, Gattung, Erscheinungsjahr, Thema."},
-      {b:"Kurze Inhaltsangabe", t:"Knapp, im Präsens — nicht der Schwerpunkt der Arbeit."},
-      {b:"Formale Analyse", t:"Erzählperspektive bzw. lyrisches Ich, Aufbau, Sprache, Stilmittel."},
-      {b:"Interpretation", t:"Deutung im Hinblick auf Thema, Symbolik, Figurenkonstellation."},
-      {b:"Einordnung", t:"Literaturgeschichtlich oder thematisch, falls gefordert."},
-      {b:"Schluss", t:"Zusammenfassende Deutung und Einschätzung der Wirkung."}
-    ],
-    formulierung:[
-      {l:"Einleitung", p:["Die vorliegende Kurzgeschichte/das Gedicht „…“ von …, erschienen …, behandelt …"]},
-      {l:"Deutung", p:["Dies lässt sich als … deuten.","Die Wortwahl … verweist auf …","Das lyrische Ich bringt … zum Ausdruck."]},
-      {l:"Beleg", p:["…, wie die Formulierung „…“ (Z./V. …) zeigt."]},
-      {l:"Schluss", p:["Insgesamt lässt sich der Text als … lesen, der …"]}
-    ],
-    entwurf:[
-      "Die vorliegende [Kurzgeschichte/das Gedicht] „[Titel]“ von [Autor:in], erschienen [Jahr], behandelt [Thema].",
-      "Formal fällt auf, dass [Erzählperspektive/Aufbau/Stilmittel], was sich etwa an „[Zitat]“ (Z./V. [Zeile]) zeigt. Dies lässt sich als [Deutung] lesen, da [Begründung der Deutung].",
-      "Insgesamt lässt sich der Text als [zusammenfassende Deutung] lesen, der [Aussage/Wirkung über das Werk hinaus]."
-    ],
-    problemfelder:[
-      {t:"Nur Nacherzählung", x:"Der Inhalt wird wiedergegeben, eine eigenständige Deutung fehlt."},
-      {t:"Deutung ohne Beleg", x:"Interpretation wirkt frei erfunden, weil kein Zitat sie stützt."},
-      {t:"Ich-Verwechslung", x:"Autor:in, Erzähler:in und lyrisches Ich werden gleichgesetzt."},
-      {t:"Form ohne Deutung", x:"Reim oder Metrum werden benannt, aber ihre Bedeutung nicht erschlossen."}
+    name:"Textinterpretation", kurz:"Analyse und Deutung eines literarischen Textes — in der Matura bisher entweder als Kurzprosa oder als Lyrik (Gedicht bzw. Gedichtvergleich).",
+    meta:["Perspektive: analytisch, deutend","Zeit: Präsens","Umfang: 540–660 Wörter"],
+    matura:{
+      titel:"Was in der Matura bisher vorkam",
+      text:"Jedes Aufgabenpaket kann eine literarische Aufgabe enthalten: eine Textinterpretation mit 540–660 Wörtern, Absätze mit Leerzeilen markiert. In den geprüften Klausuren und Übungsmaterialien waren es zwei Bereiche, die sich stark unterscheiden — deshalb gibt es hier zwei getrennte Anleitungen. Spezielle Werkkenntnis wird nicht vorausgesetzt: Der Text liegt vor, entscheidend ist, wie genau du ihn untersuchst und deutest.",
+      kurzprosa:[
+        "Kurzgeschichte, z. B. Manfred Hausmann, „Die Schnecke“ (1947)",
+        "Prosatext, z. B. Teresa Präauer, „Fünf Mädchen“ (2021)",
+        "Amtliche Übung: Wolfdietrich Schnurre, „Auf der Flucht“ (Kurzgeschichte)",
+      ],
+      lyrik:[
+        "Gedichtvergleich: Alfred Wolfenstein, „Städter“ — Georg Heym, „Die Stadt“ (Mai 2016)",
+        "Gedichtvergleich: Jürg Halter, „Der Bahnhof“ — Hans Magnus Enzensberger, „Identitätsnachweis“ (Mai 2025)",
+        "Gedichtvergleich: Hans Sahl, „Das letzte Tau“ und „Epilog“ (2026)",
+        "Gedichtvergleich: Bertolt Brecht, „Über das Frühjahr“ — Marie Luise Kaschnitz, „Juni“",
+      ],
+      hinweis:"Auswahl aus amtlichen Aufgabenheften, Übungsmaterialien und Medienberichten — kein vollständiges Verzeichnis. Alle bisherigen Klausuren mit Kommentierung stehen kostenlos auf matura.gv.at.",
+      arbeitsauftraege:[
+        "Geben Sie kurz den Inhalt wieder. → Inhaltsangabe im Präsens, in eigenen Worten",
+        "Analysieren Sie die formale und sprachliche Gestaltung. → Analyse, immer mit Wirkung und Beleg",
+        "Deuten Sie … / Deuten Sie vergleichend … → Interpretation als begründete Hypothese",
+        "Charakterisieren Sie die Personen … → nur bei Kurzprosa",
+        "Bewerten Sie … in Hinblick auf Titel und Gesamtaussage → Schluss der Arbeit",
+      ],
+    },
+    varianten:[
+      {
+        id:"ti_kurzprosa", tab:"A · Kurzprosa",
+        kurz:"Kurzgeschichte, Anekdote, Fabel, Parabel, Kalendergeschichte, Prosaminiatur oder ein kurzer Prosatext. Die Deutung entsteht aus Handlung, Erzählweise, Figuren und Sprache.",
+        meta:["Belegpflicht: Zeilenangabe (Z.)","Umfang: 540–660 Wörter","Schwerpunkt: Erzählweise, Figuren, Symbolik"],
+        formen:[
+          {n:"Kurzgeschichte", t:"Kurz, mit unmittelbarem Einstieg und meist offenem Ende; ein Wendepunkt verändert die Situation. Alltägliche Figuren, knappe Sprache, Bedeutung oft in Symbolen und Andeutungen (typisch: Nachkriegsliteratur, z. B. Borchert, Böll, Schnurre)."},
+          {n:"Anekdote", t:"Kurze Erzählung über eine bekannte Person oder ein Ereignis, die auf eine Pointe zuläuft und einen Charakterzug oder eine Haltung schlaglichtartig zeigt. Frage: Was zeigt die Pointe?"},
+          {n:"Fabel", t:"Tiere (oder Dinge) handeln wie Menschen, am Ende steht eine Lehre oder sie ergibt sich aus der Handlung. Frage: Wofür steht das Tier?"},
+          {n:"Parabel", t:"Gleichnishafte Erzählung: Die Handlung (Bildebene) lässt sich auf einen allgemeinen Gedanken (Sachebene) übertragen, der nicht ausdrücklich genannt wird (z. B. Kafka, „Vor dem Gesetz“)."},
+          {n:"Kalendergeschichte", t:"Volkstümliche, unterhaltsame und zugleich belehrende Erzählung in schlichter Sprache mit pointiertem Schluss (z. B. Hebel, Brecht)."},
+          {n:"Prosaminiatur", t:"Sehr kurzer, verdichteter, oft rätselhafter oder paradoxer Text (z. B. Kafka, Brechts Geschichten vom Herrn Keuner). Jedes Detail zählt."},
+        ],
+        formenTipp:"Bestimme die Form, bevor du schreibst: Sie lenkt die Deutung. Anekdote → Pointe und Charakter. Fabel und Parabel → Übertragung auf die Sachebene. Kurzgeschichte → Wendepunkt, Symbole, offenes Ende.",
+        merkmale:[
+          "Präsens und sachlich-distanzierter Ton; die Deutung wird als begründete Lesart formuliert („lässt sich deuten als …“)",
+          "Jede Aussage über den Text mit kurzem Zitat und Zeilenangabe (Z.) belegen und in den eigenen Satz einbauen",
+          "Erzähler:in und Autor:in strikt trennen",
+          "Inhaltsangabe kurz (höchstens ein Sechstel), der Rest ist Analyse und Deutung",
+          "Erzählweise nie nur benennen — immer ihre Wirkung erklären",
+          "Symbole, Motive, Titel und Ende in die Deutung einbeziehen"
+        ],
+        aufbau:[
+          {b:"Einleitung", t:"Form, Titel, Autor:in, Jahr, Thema in ein bis zwei Sätzen; auf Wunsch eine erste Deutungsidee."},
+          {b:"Inhalt", t:"Handlung in eigenen Worten: Situation, Wendepunkt, Ende. Keine Zitate, keine Wertung."},
+          {b:"Erzählweise", t:"Erzählform, Erzählverhalten, Zeit, Raum, Redeformen — jeweils mit Wirkung."},
+          {b:"Figuren und Handlung", t:"Figuren charakterisieren (direkt/indirekt), Konflikt und Wendepunkt deuten."},
+          {b:"Sprache und Symbolik", t:"Satzbau, Wortwahl, Bilder, Symbole und Motive — mit Wirkung und Deutung."},
+          {b:"Schluss", t:"Deutungsergebnis, Titel und Ende, Wirkung oder Aktualität; ggf. Bewertung laut Arbeitsauftrag."}
+        ],
+        formulierung:[
+          {l:"Einleitung", p:["Die Kurzgeschichte/Parabel/Anekdote „[Titel]“ von [Autor:in], [Jahr], handelt von [Thema].","In dem Prosatext „[Titel]“ ([Jahr]) von [Autor:in] geht es um [Thema]; dabei rückt [Deutungsidee] in den Mittelpunkt."]},
+          {l:"Inhalt", p:["Zu Beginn wird [Figur] in [Situation] gezeigt.","Einen Wendepunkt bringt [Ereignis].","Die Geschichte endet [offen/mit einer Pointe], indem [Schluss]."]},
+          {l:"Erzählweise", p:["Erzählt wird in der [dritten/ersten] Person aus der Sicht von [Figur], wodurch die Lesenden [Wirkung].","Die kurzen, parataktischen Sätze („[Zitat]“, Z. [Zeile]) wirken [Wirkung].","Durch die [Zeitraffung/Rückblende] entsteht [Wirkung]."]},
+          {l:"Figuren", p:["[Figur] wirkt [Eigenschaft], wie ihr Verhalten „[Zitat]“ (Z. [Zeile]) zeigt.","Indirekt charakterisiert wird [Figur] durch [Handeln/Sprechen]."]},
+          {l:"Deutung", p:["[Symbol] lässt sich als Symbol für [Bedeutung] deuten.","Diese Deutung wird gestützt durch „[Zitat]“ (Z. [Zeile]).","Damit rückt [Thema] in den Mittelpunkt."]},
+          {l:"Schluss", p:["Insgesamt zeigt der Text, dass [Aussage].","Der Titel „[Titel]“ erhält dadurch eine zweite Bedeutung: [Bedeutung]."]}
+        ],
+        werkzeuge:[
+          {l:"Erzählform und -verhalten", w:"Ich-Erzähler:in · Er-/Sie-Erzähler:in · auktorial (allwissend, kommentierend) · personal (aus der Sicht einer Figur) · neutral (nur Außensicht)"},
+          {l:"Zeit", w:"zeitdeckend · zeitdehnend · zeitraffend · Rückblende · Vorausdeutung · Erzählzeit und erzählte Zeit"},
+          {l:"Raum und Atmosphäre", w:"Ort, Wetter, Landschaft als Stimmungsträger · Kontraste zwischen Räumen"},
+          {l:"Figuren", w:"direkte Charakterisierung (der Text sagt es) · indirekte Charakterisierung (Handeln, Sprechen, Aussehen) · Entwicklung · Figurenkonstellation"},
+          {l:"Redeformen", w:"direkte Rede · indirekte Rede · erlebte Rede · Gedankenrede/innerer Monolog · Erzählerbericht"},
+          {l:"Aufbau", w:"Ausgangssituation · Konflikt · Wendepunkt · Höhepunkt/Pointe · offenes oder geschlossenes Ende"},
+          {l:"Sprache", w:"Satzbau (Parataxe, Hypotaxe, Ellipse) · Wortwahl und Wortfelder · Sprachebene · Bilder (Metapher, Vergleich, Personifikation) · Wiederholung · Symbol, Motiv, Leitmotiv"},
+          {l:"Titel und Ende", w:"Was verspricht der Titel? Wie verändert das Ende seine Bedeutung? Bleibt etwas offen?"},
+        ],
+        schritte:[
+          {t:"Vorbereitung: lesen und markieren", w:"ca. 25–30 Minuten für die Aufgabe", tun:[
+            "Text zweimal lesen; beim zweiten Mal Zeilen zählen bzw. Zeilenangaben prüfen.",
+            "Form bestimmen (Kurzgeschichte, Parabel, Anekdote …) und Handlung in drei Sätzen notieren.",
+            "Wendepunkt und Ende markieren; Auffälliges (Wiederholung, Bilder, Satzbau, Titel) mit Farbe kennzeichnen.",
+            "Deutungsidee in einem Satz formulieren („Der Text zeigt …“) — sie ist deine Leitlinie.",
+            "Gliederung mit Wortbudget notieren (siehe Aufbau); Arbeitsaufträge abhaken."]},
+          {t:"Einleitung", w:"ca. 40–60 Wörter", tun:[
+            "Ein bis zwei Sätze: Form, Titel, Autor:in, Jahr, Thema.",
+            "Optional eine erste Deutungsidee andeuten."],
+            bsp:"Die Kurzgeschichte „[Titel]“ von [Autor:in] ([Jahr]) erzählt, wie [Figur] [Ereignis] erlebt, und stellt dabei [Thema] in den Mittelpunkt."},
+          {t:"Inhalt", w:"ca. 80–110 Wörter", tun:[
+            "Im Präsens, in eigenen Worten: Situation, Wendepunkt, Ende.",
+            "Keine Zitate, keine Wertung, keine Nebensächlichkeiten."]},
+          {t:"Analyse und Deutung (Hauptteil)", w:"ca. 320–380 Wörter, 3–4 Absätze", tun:[
+            "Jeder Absatz behandelt einen Aspekt: Erzählweise, Figuren und Handlung, Sprache, Symbolik.",
+            "Schreibe in der Kette Beobachtung → Beleg (Zitat, Z.) → Wirkung → Deutung.",
+            "Vermeide Listen von Fachbegriffen: ein Begriff pro Beleg, dafür mit Deutung.",
+            "Verbinde Absätze durch die Deutungsidee, nicht durch „außerdem“."],
+            bsp:"Erzählt wird aus der Sicht von Tobias („dachte er“, Z. 3). Die Lesenden wissen daher nur, was er weiß, und rätseln mit ihm: So entsteht Nähe zur Figur, und der Verlust am Ende trifft auch die Lesenden."},
+          {t:"Schluss", w:"ca. 50–80 Wörter", tun:[
+            "Deutungsergebnis in zwei bis drei Sätzen zusammenfassen.",
+            "Titel und Ende aufgreifen; ggf. bewerten, wie der Text wirkt (wenn im Arbeitsauftrag verlangt).",
+            "Keine neuen Argumente."]},
+          {t:"Überarbeiten", w:"ca. 15 Minuten", tun:[
+            "Wörter zählen (540–660); Absätze mit Leerzeilen markieren.",
+            "Alle Aussagen belegt? Zeilenangaben (Z.) vollständig?",
+            "Präsens durchgängig? Erzähler:in und Autor:in nicht verwechselt?",
+            "Rechtschreibung, Zeichensetzung, Fachbegriffe kontrollieren."]},
+        ],
+        zuordnung:[
+          {a:"Geben Sie den Inhalt mit eigenen Worten kurz wieder.", s:"Kurzer Inhaltsabsatz im Präsens, ohne Zitate. Nicht mehr als etwa 100 Wörter."},
+          {a:"Analysieren Sie den Text nach sprachlichen Auffälligkeiten und setzen Sie diese zum Inhalt in Beziehung.", s:"Hauptteil: Aus jeder Auffälligkeit (Satzbau, Bilder, Wiederholung) folgt eine Wirkung und eine Deutung."},
+          {a:"Charakterisieren Sie die Personen und ihre Handlungsweisen.", s:"Eigenschaften mit Belegen (direkt/indirekt); Handeln im Zusammenhang mit dem Konflikt deuten."},
+          {a:"Bewerten Sie den Text in Hinblick auf Titel und Gesamtaussage.", s:"Schlussabsatz: Titel deuten, Gesamtaussage benennen, Wirkung begründet einschätzen."},
+        ],
+        entwurf:[
+          "Die [Kurzgeschichte/Parabel/Anekdote] „[Titel]“ von [Autor:in], [Jahr], erzählt, wie [Figur] [Ereignis] erlebt, und stellt dabei [Thema] in den Mittelpunkt.",
+          "Zu Beginn wird [Figur] in [Situation] gezeigt. Einen Wendepunkt bringt [Ereignis] (Z. [Zeile]). Die Geschichte endet [offen/mit einer Pointe], indem [Schluss].",
+          "Erzählt wird in der [dritten/ersten] Person aus der Sicht von [Figur] („[Zitat]“, Z. [Zeile]). Dadurch [Wirkung auf die Lesenden]. Dies lässt sich als [Deutung] lesen.",
+          "Sprachlich fallen [Merkmal, z. B. kurze Sätze/Bilder] auf, etwa „[Zitat]“ (Z. [Zeile]). Sie wirken [Wirkung] und unterstreichen [Aussage]. [Symbol] lässt sich als Symbol für [Bedeutung] deuten.",
+          "Insgesamt zeigt der Text, dass [Aussage]. Der Titel „[Titel]“ erhält dadurch eine zweite Bedeutung: [Bedeutung]."
+        ],
+        problemfelder:[
+          {t:"Nacherzählung statt Interpretation", x:"Der Inhalt nimmt mehr als ein Sechstel ein; eine eigene Deutung fehlt."},
+          {t:"Erzählweise nur aufgezählt", x:"„Es gibt einen personalen Erzähler.“ — ohne Wirkung und ohne Bezug zur Deutung."},
+          {t:"Erzähler und Autor verwechselt", x:"„Der Autor findet den Krieg schrecklich.“ — Aussagen gehören der Erzählinstanz, nicht der Person des Autors."},
+          {t:"Zitate zu lang oder ohne Zeile", x:"Ganze Sätze werden abgeschrieben, die Zeilenangabe (Z.) fehlt."},
+          {t:"Symbol behauptet, nicht begründet", x:"„Der Schlüssel ist ein Symbol.“ — ohne zu zeigen, woran man das im Text erkennt."},
+          {t:"Titel und Ende vergessen", x:"Die Deutung bleibt in der Mitte des Textes stehen; der Schluss bezieht sich nicht auf Titel und Ende."},
+          {t:"Keine Absätze", x:"In der Matura sind Absätze mittels Leerzeilen zu markieren."}
+        ]
+      },
+      {
+        id:"ti_gedicht", tab:"B · Gedichtinterpretation",
+        kurz:"Ein einzelnes Gedicht: Inhalt erfassen, Form und Sprache untersuchen, die Bedeutung des lyrischen Ichs deuten — mit Versangabe (V.).",
+        meta:["Belegpflicht: Versangabe (V.)","Umfang: 540–660 Wörter","Schwerpunkt: Form – Sprache – lyrisches Ich"],
+        merkmale:[
+          "Lyrisches Ich, nicht „der Dichter“: Das Ich im Gedicht ist eine Sprechinstanz",
+          "Form und Inhalt gehören zusammen: Jede Beobachtung zu Reim, Metrum oder Strophe bekommt eine Wirkung",
+          "Zitieren mit Versangabe: (V. 3) bzw. (V. 3–4)",
+          "Präsens; die Deutung wird als begründete Hypothese formuliert und am Text überprüft",
+          "Kontext (Epoche, Biografie) nur knapp und nur, wenn er die Deutung stützt",
+          "Titel, Zeichensetzung, Zeilensprünge (Enjambement) und Schlussvers beachten"
+        ],
+        aufbau:[
+          {b:"Einleitung", t:"Gattung, Titel, Autor:in, Jahr, Thema bzw. Situation des lyrischen Ichs; erste Deutungsidee."},
+          {b:"Inhalt", t:"Strophenweise oder in Gedankenschritten; Sprechsituation und Adressat."},
+          {b:"Form", t:"Strophen, Verse, Reim, Metrum, Kadenz, Enjambement — jeweils mit Funktion."},
+          {b:"Sprache", t:"Wortfelder, Bilder, Klang, Satzbau, Stilmittel — jeweils mit Wirkung."},
+          {b:"Deutung", t:"Hypothese, Symbole, Bedeutungsebenen; ggf. Kontext knapp."},
+          {b:"Schluss", t:"Ergebnis der Deutung, Wirkung des Gedichts."}
+        ],
+        formulierung:[
+          {l:"Einleitung", p:["Das Gedicht „[Titel]“ von [Autor:in], [Jahr], gestaltet [Thema/Situation] aus der Sicht eines lyrischen Ichs.","Im Zentrum des [Sonetts/Gedichts] „[Titel]“ steht [Thema]; das lyrische Ich [Haltung]."]},
+          {l:"Inhalt", p:["In der ersten Strophe (V. [Verse]) beschreibt das lyrische Ich [Inhalt].","In der [dritten] Strophe vollzieht sich ein Bruch: [Wendung]."]},
+          {l:"Form", p:["Das Gedicht besteht aus [Zahl] Strophen mit je [Zahl] Versen im [Kreuzreim/Paarreim] (Schema: [abab]).","Das überwiegend [jambische] Metrum verleiht dem Gedicht [Wirkung].","Der Zeilensprung in V. [Verse] betont [Wort/Gedanke]."]},
+          {l:"Sprache", p:["Die Metapher „[Zitat]“ (V. [Vers]) verdeutlicht [Bedeutung].","Die Alliteration „[Zitat]“ (V. [Vers]) unterstreicht [Wirkung].","Auffällig ist die Wiederholung von „[Wort]“ (V. [Verse])."]},
+          {l:"Deutung", p:["Dies lässt sich als [Deutung] verstehen.","Das lyrische Ich erscheint dadurch als [Eigenschaft/Haltung].","Der Schlussvers (V. [Vers]) gibt dem Gedicht eine neue Wendung: [Bedeutung]."]},
+          {l:"Schluss", p:["Insgesamt gestaltet das Gedicht [Thema], wobei Form und Sprache [Zusammenspiel]."]}
+        ],
+        werkzeuge:[
+          {l:"Gedichtform", w:"Strophe (Vierzeiler, Terzett, Quartett) · Sonett · Volksliedstrophe · freie Verse · Prosagedicht"},
+          {l:"Reim", w:"Paarreim aabb · Kreuzreim abab · umarmender Reim abba · Schweifreim aabccb · Haufenreim aaaa · reimlos · unreiner Reim"},
+          {l:"Metrum und Kadenz", w:"Jambus · Trochäus · Daktylus · Anapäst · Hebungen zählen · männliche Kadenz (betonte Endsilbe) · weibliche Kadenz (unbetonte Endsilbe) · freie Rhythmen"},
+          {l:"Vers und Strophe", w:"Enjambement (Zeilensprung) · Zäsur · Refrain · Strophenbruch · Schlussvers"},
+          {l:"Klang", w:"Alliteration · Assonanz · Lautmalerei · Klangwirkung des Reims"},
+          {l:"Bilder", w:"Metapher · Vergleich · Personifikation · Symbol · Allegorie · Oxymoron · Paradoxon"},
+          {l:"Satzbau und Wortwahl", w:"Parataxe · Hypotaxe · Inversion · Ellipse · Anapher · Ausruf und Frage · Wortfelder · Zeitform"},
+          {l:"Sprechhaltung", w:"lyrisches Ich (explizit „ich“ oder implizit) · lyrisches Du · Stimmung (klagend, hoffnungsvoll, ironisch) · Adressat"},
+          {l:"Epochen (nur knapp einsetzen)", w:"Barock: Vergänglichkeit · Sturm und Drang: Gefühl · Klassik: Maß, Harmonie · Romantik: Sehnsucht, Natur, Seele · Realismus · Expressionismus: Großstadt, Krieg, Angst · Moderne und Gegenwart: freie Formen, Zweifel am Ich"},
+        ],
+        schritte:[
+          {t:"Vorbereitung: lesen und markieren", w:"ca. 25–30 Minuten für die Aufgabe", tun:[
+            "Gedicht mindestens zweimal laut oder leise lesen; Verse mit Nummern versehen (falls keine da sind, alle fünf Verse eine Nummer).",
+            "Wer spricht? Zu wem? In welcher Situation? Stimmung notieren.",
+            "Strophen, Reimschema und ungefähres Metrum bestimmen (nur, was sicher ist).",
+            "Wiederholungen, Bilder, Brüche (Strophenwechsel, Zeitform, Satzzeichen) und den Schlussvers markieren.",
+            "Deutungshypothese in einem Satz formulieren und Gliederung mit Wortbudget notieren."]},
+          {t:"Einleitung", w:"ca. 40–60 Wörter", tun:[
+            "Gattung, Titel, Autor:in, Jahr, Thema bzw. Situation des lyrischen Ichs.",
+            "Optional die Deutungshypothese andeuten."],
+            bsp:"Das Gedicht „[Titel]“ von [Autor:in] ([Jahr]) gestaltet [Thema] aus der Sicht eines lyrischen Ichs, das [Haltung]."},
+          {t:"Inhalt", w:"ca. 70–100 Wörter", tun:[
+            "Strophe für Strophe oder in Gedankenschritten zusammenfassen.",
+            "Im Präsens, ohne Zitate, ohne Deutung."]},
+          {t:"Analyse und Deutung (Hauptteil)", w:"ca. 330–400 Wörter, 3–4 Absätze", tun:[
+            "Gliedere nach Aspekten oder nach Strophen; jeder Absatz verbindet Form/Sprache und Inhalt mit Deutung.",
+            "Schreibe in der Kette Beobachtung → Beleg (Zitat, V.) → Wirkung → Deutung.",
+            "Metrum nur nennen, wenn du es sicher bestimmen kannst („überwiegend jambisch“); wichtiger ist die Wirkung.",
+            "Beachte Brüche: Wo ändert sich Ton, Zeitform oder Bild — und warum?"],
+            bsp:"Der Zeilensprung zwischen V. 9 und V. 10 („spannte / Weit ihre Flügel aus“) lässt die Bewegung buchstäblich über den Vers hinausfliegen und macht die Sehnsucht des Ichs sinnlich erfahrbar."},
+          {t:"Schluss", w:"ca. 40–70 Wörter", tun:[
+            "Deutung in zwei bis drei Sätzen zusammenfassen; Wirkung des Gedichts benennen.",
+            "Keine neuen Argumente."]},
+          {t:"Überarbeiten", w:"ca. 15 Minuten", tun:[
+            "Wörter zählen (540–660); Absätze mit Leerzeilen markieren.",
+            "Jede Deutung mit Zitat und Versangabe (V.)? Lyrisches Ich statt „der Dichter“?",
+            "Form ohne Wirkung gestrichen oder ergänzt?",
+            "Rechtschreibung, Zeichensetzung, Fachbegriffe kontrollieren."]},
+        ],
+        zuordnung:[
+          {a:"Geben Sie kurz den Inhalt des Gedichts wieder.", s:"Kurzer Inhaltsabsatz im Präsens, strophenweise oder in Gedankenschritten; keine Zitate."},
+          {a:"Analysieren Sie die formale und die sprachliche Gestaltung des Gedichts.", s:"Form (Strophe, Reim, Metrum, Enjambement) und Sprache (Bilder, Wortfelder, Klang, Satzbau) — jeweils mit Beleg und Wirkung."},
+          {a:"Deuten Sie das Gedicht (z. B. hinsichtlich der Vorstellung vom Ich / des Verhältnisses von Natur und Ich).", s:"Deutungshypothese formulieren, an Form und Sprache prüfen, Symbolgehalt erklären."},
+        ],
+        entwurf:[
+          "Das Gedicht „[Titel]“ von [Autor:in], [Jahr], gestaltet [Thema/Situation] aus der Sicht eines lyrischen Ichs, das [Haltung].",
+          "In der ersten Strophe (V. [Verse]) [Inhalt], in der [zweiten] [Inhalt]; ein Bruch vollzieht sich in [Strophe/Vers]: [Wendung].",
+          "Formal besteht das Gedicht aus [Zahl] Strophen im [Reimschema]. [Formmerkmal] wirkt [Wirkung] und verstärkt [Inhalt].",
+          "Sprachlich fällt [Bild/Wiederholung/Satzbau] auf, etwa „[Zitat]“ (V. [Vers]). Dies lässt sich als [Deutung] verstehen, da [Begründung].",
+          "Insgesamt gestaltet das Gedicht [Thema], wobei Form und Sprache [Zusammenspiel]; das lyrische Ich erscheint als [Ergebnis der Deutung]."
+        ],
+        problemfelder:[
+          {t:"Formalien ohne Wirkung", x:"„Kreuzreim, jambisch, vier Strophen“ — aber nicht erklärt, was das für die Aussage bedeutet."},
+          {t:"Strophen-Nacherzählung", x:"Das Gedicht wird in Prosa nacherzählt statt gedeutet."},
+          {t:"Lyrisches Ich = Dichter", x:"Aussagen über die Biografie statt über die Sprechinstanz im Gedicht."},
+          {t:"Stilmittel-Sammlung", x:"Viele Fachbegriffe in einer Liste, aber ohne Beleg und ohne Deutung."},
+          {t:"Unsicheres Metrum als Tatsache", x:"Ein Versmaß wird behauptet, ohne die Verse zu skandieren; besser: nur benennen, was sicher ist."},
+          {t:"Belege ohne Versangabe", x:"Zitate ohne (V. …) — Aussage nicht überprüfbar."},
+          {t:"Kontext überbetont", x:"Epochenwissen oder Biografie ersetzen die Analyse des Gedichts."}
+        ]
+      },
+      {
+        id:"ti_vergleich", tab:"B · Gedichtvergleich",
+        kurz:"Zwei Gedichte werden analysiert und im Hinblick auf einen Vergleichsaspekt (z. B. Vorstellung vom Ich, Naturbild, Stimmung) vergleichend gedeutet. Der Vergleich ist die Hauptleistung.",
+        meta:["Belegpflicht: Versangabe je Gedicht","Umfang: 540–660 Wörter","Schwerpunkt: Vergleichsaspekt, Gemeinsamkeiten und Unterschiede"],
+        merkmale:[
+          "Der Vergleich ist die Hauptsache: Jeder Absatz vergleicht — nicht zwei Interpretationen hintereinander",
+          "Ein Vergleichsaspekt steuert alles (aus dem Arbeitsauftrag, z. B. „Vorstellung vom Ich“; sonst selbst wählen)",
+          "Gemeinsamkeiten und Unterschiede benennen und belegen; bei jedem Zitat klar machen, aus welchem Gedicht es stammt",
+          "Beide Gedichte fair behandeln: etwa gleicher Raum",
+          "Vergleichssignale nutzen (während, hingegen, ähnlich, im Gegensatz zu …)",
+          "Form- und Sprachanalyse dient der vergleichenden Deutung"
+        ],
+        aufbau:[
+          {b:"Einleitung", t:"Beide Gedichte (Autor:in, Titel, Jahr), gemeinsames Thema und der Vergleichsaspekt."},
+          {b:"Inhalt beider Gedichte", t:"Je zwei bis vier Sätze; Sprechsituation nennen."},
+          {b:"Vergleich der Form", t:"Strophen, Reim, Metrum, Enjambement — im Vergleich mit Wirkung."},
+          {b:"Vergleich der Sprache", t:"Bilder, Wortfelder, Klang, Satzbau — im Vergleich mit Wirkung."},
+          {b:"Vergleichende Deutung", t:"Gemeinsamkeiten und Unterschiede am Vergleichsaspekt; begründetes Ergebnis."},
+          {b:"Schluss", t:"Vergleichsergebnis in zwei bis drei Sätzen."}
+        ],
+        formulierung:[
+          {l:"Einleitung", p:["Die Gedichte „[Titel 1]“ von [Autor:in 1] ([Jahr]) und „[Titel 2]“ von [Autor:in 2] ([Jahr]) behandeln beide [Thema], gestalten es aber unterschiedlich.","Im Folgenden wird verglichen, welche Vorstellung von [Aspekt] in den Gedichten jeweils vermittelt wird."]},
+          {l:"Inhalt", p:["Während „[Titel 1]“ [Inhalt], geht es in „[Titel 2]“ um [Inhalt]."]},
+          {l:"Gemeinsamkeit", p:["Beide Gedichte [Gemeinsamkeit].","Ähnlich wie in „[Titel 1]“ (V. [Vers]) zeigt sich auch in „[Titel 2]“ (V. [Vers]) [Gemeinsamkeit].","Gemeinsam ist beiden [Merkmal]."]},
+          {l:"Unterschied", p:["Im Gegensatz zu „[Titel 1]“ [Unterschied] in „[Titel 2]“.","„[Titel 1]“ [Merkmal], „[Titel 2]“ hingegen [Merkmal].","Anders als [Autor:in 1] setzt [Autor:in 2] [Merkmal] ein."]},
+          {l:"Deutung", p:["Daraus ergibt sich ein grundlegender Unterschied in der Vorstellung von [Aspekt]: [Unterschied].","Beide Gedichte deuten [Aspekt] als [Deutung], unterscheiden sich aber darin, dass [Unterschied]."]},
+          {l:"Schluss", p:["Zusammenfassend zeigt der Vergleich, dass [Ergebnis]."]}
+        ],
+        werkzeuge:[
+          {l:"Vergleichsraster (vorher skizzieren)", w:"Aspekt · Gedicht 1 · Gedicht 2 · Gemeinsamkeit / Unterschied — Zeilen: Thema und Situation · lyrisches Ich · Form · Sprache und Bilder · Stimmung · Bruch und Schluss"},
+          {l:"Aspektmethode (empfohlen)", w:"Ein Absatz pro Aspekt: Gedicht 1 (Beleg) – Gedicht 2 (Beleg) – Vergleichssatz. Der Vergleich bleibt dadurch in jedem Absatz sichtbar."},
+          {l:"Blockmethode (riskant)", w:"Erst Gedicht 1 ganz, dann Gedicht 2 ganz, dann Vergleich. Bei 540–660 Wörtern kommt der Vergleich meist zu kurz."},
+          {l:"Signale für Gemeinsamkeiten", w:"ebenso · auch · ähnlich wie · beide · gemeinsam ist · entsprechend · in gleicher Weise"},
+          {l:"Signale für Unterschiede", w:"während · hingegen · dagegen · im Gegensatz zu · anders als · wohingegen · demgegenüber"},
+          {l:"Vergleichsaspekte", w:"Vorstellung vom Ich · Naturbild · Zeit und Vergänglichkeit · Stadt und Moderne · Stimmung · Sprechhaltung · Verhältnis von Form und Inhalt"},
+        ],
+        schritte:[
+          {t:"Vorbereitung: lesen, markieren, Raster", w:"ca. 30 Minuten für die Aufgabe", tun:[
+            "Beide Gedichte lesen; Verse nummerieren; Titel, Autor:in, Jahr notieren.",
+            "Vergleichsaspekt aus dem Arbeitsauftrag herausschreiben (z. B. „Vorstellung vom Ich“).",
+            "Vergleichsraster anlegen: Thema/Situation · lyrisches Ich · Form · Sprache/Bilder · Stimmung · Bruch/Schluss — je Gedicht stichwortartig eintragen.",
+            "In jeder Zeile Gemeinsamkeit oder Unterschied markieren; drei bis vier stärkste Aspekte auswählen.",
+            "Deutungshypothese zum Vergleich in einem Satz formulieren; Gliederung mit Wortbudget notieren."]},
+          {t:"Einleitung", w:"ca. 60–80 Wörter", tun:[
+            "Beide Gedichte mit Autor:in, Titel und Jahr nennen.",
+            "Gemeinsames Thema und Vergleichsaspekt benennen; optional Ergebnis andeuten."],
+            bsp:"Die Gedichte „[Titel 1]“ von [Autor:in 1] ([Jahr]) und „[Titel 2]“ von [Autor:in 2] ([Jahr]) handeln beide von [Thema]; verglichen wird, welche Vorstellung von [Aspekt] jeweils entsteht."},
+          {t:"Inhalt beider Gedichte", w:"ca. 90–120 Wörter", tun:[
+            "Je zwei bis vier Sätze im Präsens; Reihenfolge wie in der Einleitung.",
+            "Kein Zitat, keine Deutung; Unterschiede in der Situation bereits andeuten (Während … geht es in … um …)."]},
+          {t:"Vergleichende Analyse und Deutung (Hauptteil)", w:"ca. 300–360 Wörter, 3–4 Absätze", tun:[
+            "Ein Aspekt pro Absatz: Gedicht 1 mit Beleg (V.), Gedicht 2 mit Beleg (V.), dann ein Vergleichssatz.",
+            "Bei jedem Zitat Gedicht kenntlich machen (Kurztitel oder Autor:in), z. B. (Halter, V. 3).",
+            "Form und Sprache immer mit Wirkung; Deutung am Vergleichsaspekt orientieren.",
+            "Gemeinsamkeiten und Unterschiede — nicht nur eines von beiden."],
+            bsp:"Während Gedicht 1 durch regelmäßige Verse ein beruhigendes Wiegen erzeugt (V. 1–4), verstärkt in Gedicht 2 gerade die Unregelmäßigkeit den Gedanken an ein Ende (V. 6–8)."},
+          {t:"Schluss", w:"ca. 40–60 Wörter", tun:[
+            "Vergleichsergebnis in zwei bis drei Sätzen; Bezug zum Vergleichsaspekt.",
+            "Keine neuen Argumente."]},
+          {t:"Überarbeiten", w:"ca. 15 Minuten", tun:[
+            "Wörter zählen (540–660); Absätze mit Leerzeilen markieren.",
+            "Ist jeder Absatz ein Vergleich? Beide Gedichte etwa gleich stark behandelt?",
+            "Jedes Zitat mit Versangabe und erkennbarem Gedicht?",
+            "Rechtschreibung, Zeichensetzung, Fachbegriffe kontrollieren."]},
+        ],
+        zuordnung:[
+          {a:"Geben Sie kurz den Inhalt der beiden Gedichte wieder.", s:"Ein kurzer Absatz mit je zwei bis vier Sätzen pro Gedicht; keine Zitate, keine Deutung."},
+          {a:"Analysieren Sie die formale und die sprachliche Gestaltung der Gedichte.", s:"Aspektgeleitet und vergleichend: Form (Strophe, Reim, Metrum) und Sprache (Bilder, Satzbau, Wortfelder) jeweils in beiden Gedichten mit Belegen."},
+          {a:"Deuten Sie vergleichend, welche Vorstellung vom Ich in den Gedichten jeweils vermittelt wird.", s:"Vergleichende Deutung am Aspekt „Ich“: Gemeinsamkeiten und Unterschiede, begründet an den Analyseergebnissen."},
+        ],
+        entwurf:[
+          "Die Gedichte „[Titel 1]“ von [Autor:in 1] ([Jahr]) und „[Titel 2]“ von [Autor:in 2] ([Jahr]) behandeln beide [Thema], gestalten es aber unterschiedlich. Verglichen wird, welche Vorstellung von [Aspekt] jeweils vermittelt wird.",
+          "In „[Titel 1]“ [Inhalt]; in „[Titel 2]“ hingegen [Inhalt].",
+          "Formal [Vergleich der Form mit Belegen]: In „[Titel 1]“ [Merkmal] (V. [Vers]), in „[Titel 2]“ hingegen [Merkmal] (V. [Vers]). Dadurch [Wirkung].",
+          "Sprachlich zeigt sich [Vergleich der Sprache mit Belegen]. Während [Titel 1] [Merkmal] („[Zitat]“, V. [Vers]), [Titel 2] [Merkmal] („[Zitat]“, V. [Vers]).",
+          "Daraus ergibt sich ein Unterschied in der Vorstellung von [Aspekt]: [Deutung]. Beide Gedichte [Gemeinsamkeit]. Zusammenfassend zeigt der Vergleich, dass [Ergebnis]."
+        ],
+        problemfelder:[
+          {t:"Zwei getrennte Interpretationen", x:"Gedicht 1 ganz, dann Gedicht 2 ganz — der Vergleich kommt nur im letzten Satz."},
+          {t:"Nur Gemeinsamkeiten oder nur Unterschiede", x:"Ein Vergleich braucht beides, begründet am Vergleichsaspekt."},
+          {t:"Kein Vergleichsaspekt", x:"Alles Mögliche wird verglichen, aber ohne Leitfrage aus dem Arbeitsauftrag."},
+          {t:"Ungleichgewicht", x:"Ein Gedicht ausführlich, das andere kaum behandelt."},
+          {t:"Belege verwechselt", x:"Zitate ohne Angabe des Gedichts — die Lesenden wissen nicht, aus welchem Text V. 5 stammt."},
+          {t:"Form ohne Wirkung", x:"Reim und Metrum werden aufgezählt, aber nicht für die vergleichende Deutung genutzt."},
+          {t:"Zu viel Inhalt", x:"Bei 540–660 Wörtern darf die Inhaltsangabe höchstens ein Fünftel der Arbeit ausmachen."}
+        ]
+      }
     ]
   },
 ];
@@ -1844,18 +2290,51 @@ document.getElementById('rail').innerHTML = groups.map(g => `
 `).join('');
 
 // Textsorten cards
-document.getElementById('tslist').innerHTML = TEXTSORTEN.map((t, i) => `
-  <details class="ts" id="${t.id}" ${i === 0 ? 'open' : ''}>
-    <summary>
-      <div class="ts-head-l">
-        <div class="ts-tag">${esc(t.tag)}</div>
-        <h3>${esc(t.name)}</h3>
-        <p class="ts-kurz">${esc(t.kurz)}</p>
-      </div>
-      <div class="ts-chevron">+</div>
-    </summary>
-    <div class="ts-body">
+function renderSchritte(steps){
+  return `
+      <div class="panel" style="margin-top:18px;">
+        <h4><span class="dot"></span>Schreibanweisung Schritt für Schritt</h4>
+        <ol class="steps">${steps.map((st, i) => `
+          <li class="step-card">
+            <div class="step-head"><span class="num">${String(i+1).padStart(2,'0')}</span><b>${esc(st.t)}</b><span class="wz">${esc(st.w)}</span></div>
+            <ul class="step-do">${st.tun.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+            ${st.bsp ? `<p class="step-bsp"><span>Beispiel</span>${withPlaceholders(st.bsp)}</p>` : ''}
+          </li>`).join('')}</ol>
+      </div>`;
+}
+
+function renderZuordnung(z){
+  return `
+      <div class="panel" style="margin-top:18px;">
+        <h4><span class="dot"></span>So erfüllst du die Arbeitsaufträge</h4>
+        <div class="az-list">${z.map(x => `<div class="az"><b>„${esc(x.a)}“</b><span>${esc(x.s)}</span></div>`).join('')}</div>
+      </div>`;
+}
+
+function renderMatura(m){
+  return `
+      <div class="panel matura-panel">
+        <h4><span class="dot"></span>${esc(m.titel)}</h4>
+        <p class="matura-text">${esc(m.text)}</p>
+        <div class="matura-cols">
+          <div><div class="g-label">A · Kurzprosa</div><ul>${m.kurzprosa.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+          <div><div class="g-label">B · Lyrik</div><ul>${m.lyrik.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+        </div>
+        <div class="g-label" style="margin-top:16px;">Typische Arbeitsaufträge</div>
+        <ul class="matura-az">${m.arbeitsauftraege.map(x => { const p = x.split(' → '); return `<li><b>${esc(p[0])}</b>${p[1] ? ' — ' + esc(p[1]) : ''}</li>`; }).join('')}</ul>
+        <p class="link-note">${esc(m.hinweis)}</p>
+      </div>`;
+}
+
+function renderTsBody(t){
+  return `
       <div class="ts-meta">${t.meta.map(m => `<span class="meta-pill">${esc(m)}</span>`).join('')}</div>
+      ${t.formen ? `
+      <div class="panel" style="margin-bottom:18px;">
+        <h4><span class="dot"></span>Textformen der Kurzprosa</h4>
+        <div class="formen-grid">${t.formen.map(f => `<div class="form-card"><b>${esc(f.n)}</b><span>${esc(f.t)}</span></div>`).join('')}</div>
+        ${t.formenTipp ? `<p class="form-tipp"><b>Tipp:</b> ${esc(t.formenTipp)}</p>` : ''}
+      </div>` : ''}
       <div class="ts-grid">
         <div class="panel">
           <h4><span class="dot"></span>Merkmale &amp; Aufbau</h4>
@@ -1875,6 +2354,13 @@ document.getElementById('tslist').innerHTML = TEXTSORTEN.map((t, i) => `
             </div>`).join('')}
         </div>
       </div>
+      ${t.schritte ? renderSchritte(t.schritte) : ''}
+      ${t.zuordnung ? renderZuordnung(t.zuordnung) : ''}
+      ${t.werkzeuge ? `
+      <div class="panel" style="margin-top:18px;">
+        <h4><span class="dot"></span>Analysewerkzeuge</h4>
+        <div class="wordbank">${t.werkzeuge.map(w => `<div class="wordbank-card"><div class="lbl">${esc(w.l)}</div><div class="words">${esc(w.w)}</div></div>`).join('')}</div>
+      </div>` : ''}
       <div class="panel" style="margin-top:18px;">
         <h4><span class="dot"></span>Schreibentwurf</h4>
         <div class="entwurf">${t.entwurf.map(p => `<p>${withPlaceholders(p)}</p>`).join('')}</div>
@@ -1889,10 +2375,39 @@ document.getElementById('tslist').innerHTML = TEXTSORTEN.map((t, i) => `
             </div>`).join('')}
         </div>
       </div>
-      ${renderTraining(t)}
+      ${renderTraining(t)}`;
+}
+
+function renderVarianten(t){
+  return renderMatura(t.matura) +
+    `<div class="var-tabs" role="tablist" aria-label="Textart der Interpretation">${t.varianten.map((v, i) =>
+      `<button type="button" role="tab" class="fchip var-tab${i === 0 ? ' active' : ''}" id="tab-${v.id}" aria-controls="var-${v.id}" aria-selected="${i === 0}" data-v="${v.id}">${esc(v.tab)}</button>`).join('')}</div>` +
+    t.varianten.map((v, i) =>
+      `<section class="var-panel" id="var-${v.id}" role="tabpanel" aria-labelledby="tab-${v.id}"${i === 0 ? '' : ' hidden'}><p class="var-kurz">${esc(v.kurz)}</p>${renderTsBody(v)}</section>`).join('');
+}
+
+document.getElementById('tslist').innerHTML = TEXTSORTEN.map((t, i) => `
+  <details class="ts" id="${t.id}" ${i === 0 ? 'open' : ''}>
+    <summary>
+      <div class="ts-head-l">
+        <div class="ts-tag">${esc(t.tag)}</div>
+        <h3>${esc(t.name)}</h3>
+        <p class="ts-kurz">${esc(t.kurz)}</p>
+      </div>
+      <div class="ts-chevron">+</div>
+    </summary>
+    <div class="ts-body">
+      ${t.varianten ? renderVarianten(t) : renderTsBody(t)}
     </div>
   </details>
 `).join('');
+
+document.querySelectorAll('.var-tabs').forEach(bar => bar.addEventListener('click', e => {
+  const b = e.target.closest('.var-tab');
+  if (!b) return;
+  bar.querySelectorAll('.var-tab').forEach(x => { const on = x === b; x.classList.toggle('active', on); x.setAttribute('aria-selected', String(on)); });
+  bar.parentElement.querySelectorAll('.var-panel').forEach(p => { p.hidden = p.id !== 'var-' + b.dataset.v; });
+}));
 
 // Selbstcheck-Zähler
 document.querySelectorAll('.selfcheck').forEach(ul => {
