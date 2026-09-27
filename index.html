@@ -430,6 +430,8 @@
   .mode-tabs{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px; }
   .mode-hint{ font-size:.85rem; color:var(--ink-soft); margin-bottom:14px; }
   .quiz-options.one{ grid-template-columns:minmax(0,1fr); }
+  .vers-scan{ letter-spacing:.02em; }
+  .vers-scan b{ color:var(--accent-strong); }
   .quiz-progress .stil-select{ text-transform:none; letter-spacing:0; font-size:.8rem; padding:5px 10px; }
 
   .flash{
@@ -1048,6 +1050,43 @@ const TEXTTRAINING = [
     {t:". "},
     {m:"Ich will gar nicht davon sprechen, wie viel Geld in Ausreden fließt,", a:"Praeteritio", w:"Der Redner behauptet, etwas zu übergehen, und nennt es dabei trotzdem — dadurch wird es besonders betont."},
     {t:" sondern davon, was wir jetzt tun können."}]},
+];
+
+const REIMSCHEMEN = [
+  {zeilen:["Der Regen fällt aufs Fensterglas,","ich sitze still und lese was.","Die Uhr tickt leise durch den Raum,","ich folge ihr wie halb im Traum."], schema:"aabb", label:"Paarreim (aabb)", erklaerung:"„Fensterglas“ reimt sich mit „was“ (a a), „Raum“ mit „Traum“ (b b) — zwei aufeinanderfolgende Reimpaare."},
+  {zeilen:["Der Wind trägt Blätter übers Feld,","sie tanzen leicht im letzten Licht.","Ein Vogel ruft durch weite Welt,","und niemand hört sein Lied nicht."], schema:"abab", label:"Kreuzreim (abab)", erklaerung:"„Feld“ reimt sich mit „Welt“ (Vers 1 und 3), „Licht“ mit „nicht“ (Vers 2 und 4) — die Reime kreuzen sich."},
+  {zeilen:["Ich stehe still am Fensterrand","und schau hinaus in graue Zeit.","Die Straße liegt so menschenweit,","verloren wie ein fremdes Land."], schema:"abba", label:"Umarmender Reim (abba)", erklaerung:"„Fensterrand“ reimt sich mit „Land“ (Vers 1 und 4), „Zeit“ mit „menschenweit“ (Vers 2 und 3) — die äußeren Reime umschließen die inneren."},
+  {zeilen:["Der Abend sinkt, die Farben schwinden,","kaum ist ein Weg noch zu finden.","Die Amsel sucht ihr altes Nest.","Der Himmel hält den Tag gefangen,","bis erste Sterne ihn durchdrangen","und langsam wird die Welt zum Fest."], schema:"aabccb", label:"Schweifreim (aabccb)", erklaerung:"Zwei Reimpaare („schwinden“/„finden“, „gefangen“/„durchdrangen“) werden von einem Reim umschlossen, der über den Block hinweg verbindet: „Nest“ (Vers 3) reimt sich mit „Fest“ (Vers 6)."},
+  {zeilen:["Die Nacht verhüllt die weite Zeit,","der Mond steht fern und ist bereit,","kein Ton durchbricht die Einsamkeit,","und alles ruht in Ewigkeit."], schema:"aaaa", label:"Haufenreim (aaaa)", erklaerung:"Alle vier Verse enden auf denselben Reimklang („Zeit“, „bereit“, „Einsamkeit“, „Ewigkeit“) — ein Haufen- bzw. Blockreim."},
+  {zeilen:["Die Straße ist leer.","Ein Blatt fällt vom Baum.","Irgendwo bellt ein Hund.","Die Nacht beginnt."], schema:"reimlos", label:"Reimlos (freie Verse)", erklaerung:"Keines der Versenden reimt sich auf ein anderes — die Verse sind reimlos, wie oft in freien Versen."},
+];
+const SCHEMA_OPTIONEN = ["Paarreim (aabb)","Kreuzreim (abab)","Umarmender Reim (abba)","Schweifreim (aabccb)","Haufenreim (aaaa)","Reimlos (freie Verse)"];
+
+const METRUM = [
+  {silben:[["und",0],["lei",1],["se",0],["sinkt",1],["die",0],["Nacht",1],["he",0],["rab",1]], takt:"x X x X x X x X", muster:"Jambus", erklaerung:"Unbetont–betont im ständigen Wechsel (x X): ein Jambus, hier vierhebig."},
+  {silben:[["A",1],["bend",0],["senkt",1],["sich",0],["still",1],["ins",0],["Tal",1]], takt:"X x X x X x X", muster:"Trochäus", erklaerung:"Betont–unbetont im ständigen Wechsel (X x): ein Trochäus. Der Vers endet betont (männliche Kadenz), der letzte Versfuß ist daher unvollständig."},
+  {silben:[["Wun",1],["der",0],["bar",0],["leuch",1],["tet",0],["die",0],["Son",1],["ne",0],["am",0],["Mor",1],["gen",0]], takt:"X x x  X x x  X x x  X x", muster:"Daktylus", erklaerung:"Betont–unbetont–unbetont (X x x): ein Daktylus. Der letzte Versfuß ist verkürzt."},
+  {silben:[["und",0],["im",0],["Wald",1],["da",0],["er",0],["klingt",1],["ein",0],["Ge",0],["sang",1]], takt:"x x X  x x X  x x X", muster:"Anapäst", erklaerung:"Unbetont–unbetont–betont (x x X): ein Anapäst — die Umkehrung des Daktylus."},
+];
+const METRUM_OPTIONEN = ["Jambus","Trochäus","Daktylus","Anapäst"];
+
+const VERSGLOSSAR = [
+  {kat:"Reim", name:"Paarreim", schema:"aabb", def:"Zwei aufeinanderfolgende Verse reimen sich, dann das nächste Paar."},
+  {kat:"Reim", name:"Kreuzreim", schema:"abab", def:"Der erste und dritte, der zweite und vierte Vers reimen sich."},
+  {kat:"Reim", name:"Umarmender Reim", schema:"abba", def:"Der erste und vierte, der zweite und dritte Vers reimen sich — die äußeren Reime umschließen die inneren."},
+  {kat:"Reim", name:"Schweifreim", schema:"aabccb", def:"Zwei Reimpaare, deren dritte Verse sich über den Block hinweg reimen."},
+  {kat:"Reim", name:"Haufenreim", schema:"aaaa", def:"Mehrere aufeinanderfolgende Verse enden auf denselben Reimklang (auch Blockreim)."},
+  {kat:"Reim", name:"Reiner Reim", def:"Die Reimwörter stimmen ab dem letzten betonten Vokal vollständig im Klang überein, z. B. „Nacht“ – „Macht“."},
+  {kat:"Reim", name:"Unreiner Reim", def:"Die Reimwörter klingen ähnlich, aber nicht exakt gleich, z. B. „Herzen“ – „scherzen“ vs. „Herzen“ – „Schmerzen“."},
+  {kat:"Vers", name:"Jambus", schema:"x X", def:"Unbetont–betont im Wechsel; steigender Versfuß."},
+  {kat:"Vers", name:"Trochäus", schema:"X x", def:"Betont–unbetont im Wechsel; fallender Versfuß."},
+  {kat:"Vers", name:"Daktylus", schema:"X x x", def:"Betont–unbetont–unbetont; dreisilbig fallend."},
+  {kat:"Vers", name:"Anapäst", schema:"x x X", def:"Unbetont–unbetont–betont; dreisilbig steigend."},
+  {kat:"Vers", name:"Männliche Kadenz", def:"Der Vers endet auf einer betonten Silbe."},
+  {kat:"Vers", name:"Weibliche Kadenz", def:"Der Vers endet auf einer unbetonten Silbe."},
+  {kat:"Vers", name:"Enjambement", def:"Ein Satz läuft über das Versende hinaus in den nächsten Vers (Zeilensprung)."},
+  {kat:"Vers", name:"Zäsur", def:"Deutlicher Einschnitt innerhalb eines Verses, oft durch ein Satzzeichen markiert."},
+  {kat:"Vers", name:"Refrain", def:"Ein Vers oder eine Versgruppe, die regelmäßig wiederkehrt."},
 ];
 
 const M = "https://www.matura.gv.at/downloads/download/";
@@ -2396,6 +2435,14 @@ function renderTsBody(t){
         <h4><span class="dot"></span>Analysewerkzeuge</h4>
         <div class="wordbank">${t.werkzeuge.map(w => `<div class="wordbank-card"><div class="lbl">${esc(w.l)}</div><div class="words">${esc(w.w)}</div></div>`).join('')}</div>
       </div>` : ''}
+      ${t.id === 'ti_gedicht' ? `
+      <div class="panel" style="margin-top:18px;">
+        <h4><span class="dot"></span>Reimschema &amp; Metrum üben</h4>
+        <p class="var-kurz" style="margin:0 0 16px;">Kurze, eigens erstellte Beispielverse zum Erkennen von Reimschema und Versmaß — unabhängig vom Gedicht, das du gerade interpretierst.</p>
+        <div class="mode-tabs" id="vmModeTabs" role="tablist" aria-label="Übungsform"></div>
+        <p class="mode-hint" id="vmModeHint"></p>
+        <div class="quiz-panel" id="vmPanel"></div>
+      </div>` : ''}
       <div class="panel" style="margin-top:18px;">
         <h4><span class="dot"></span>Schreibentwurf</h4>
         <div class="entwurf">${t.entwurf.map(p => `<p>${withPlaceholders(p)}</p>`).join('')}</div>
@@ -2689,6 +2736,131 @@ document.querySelectorAll('details.ts').forEach(el => observer.observe(el));
       });
     }
     render();
+  }
+
+  renderTabs(); mount();
+})();
+
+// Reimschema & Metrum: Übungen zur Gedichtinterpretation
+(function initVersUebung(){
+  const $ = id => document.getElementById(id);
+  const panel = $('vmPanel');
+  if (!panel) return;
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  const MODES = [
+    {id:'reim', label:'Reimschema', hint:'Zu jeder Strophe das passende Reimschema wählen.'},
+    {id:'metrum', label:'Metrum', hint:'Betonte Silben sind fett gesetzt — welches Versmaß liegt vor?'},
+    {id:'karten', label:'Karteikarten', hint:'Begriffe zu Reim und Vers wiederholen.'},
+  ];
+  let mode = 'reim';
+
+  function renderTabs(){
+    $('vmModeTabs').innerHTML = MODES.map(m => '<button type="button" role="tab" aria-selected="' + (m.id === mode) + '" class="fchip mode-tab' + (m.id === mode ? ' active' : '') + '" data-m="' + m.id + '">' + m.label + '</button>').join('');
+    $('vmModeTabs').querySelectorAll('.mode-tab').forEach(b => b.addEventListener('click', () => { mode = b.dataset.m; renderTabs(); mount(); }));
+    $('vmModeHint').textContent = MODES.find(m => m.id === mode).hint;
+  }
+  function mount(){
+    ({reim: mountReim, metrum: mountMetrum, karten: mountKarten})[mode]();
+  }
+
+  // Generische Multiple-Choice-Runde (eigenständige Kopie, unabhängig vom Stilmittel-Modul)
+  function mountChoice(items, again){
+    let qi = 0, score = 0, answered = false;
+    function render(){
+      if (qi >= items.length){
+        panel.innerHTML = `<div class="quiz-done"><div class="big">${score} / ${items.length}</div><p>richtig.</p><button class="quiz-restart" id="vqAgain" type="button" style="margin-top:14px;">Neue Runde</button></div>`;
+        $('vqAgain').addEventListener('click', again);
+        return;
+      }
+      const it = items[qi]; answered = false;
+      panel.innerHTML = `
+        <div class="quiz-progress"><span>Frage ${qi + 1} von ${items.length}</span><span id="vqScore">${score} richtig bisher</span></div>
+        ${it.prompt}
+        <div class="quiz-options one">${it.options.map((o, i) => `<button class="quiz-option" type="button" data-i="${i}">${o}</button>`).join('')}</div>
+        <div class="quiz-feedback" id="vqFb"></div>
+        <div class="quiz-actions"><button class="quiz-restart" id="vqReset" type="button">Von vorn</button><button class="quiz-next" id="vqNext" type="button" disabled>Weiter →</button></div>`;
+      const btns = Array.from(panel.querySelectorAll('.quiz-option'));
+      btns.forEach(b => b.addEventListener('click', () => {
+        if (answered) return; answered = true;
+        const chosen = it.options[parseInt(b.dataset.i, 10)];
+        btns.forEach(x => { x.disabled = true; if (it.options[parseInt(x.dataset.i, 10)] === it.correct) x.classList.add('correct'); });
+        const ok = chosen === it.correct;
+        if (ok) score++; else b.classList.add('wrong');
+        $('vqFb').innerHTML = '<b>' + (ok ? 'Richtig.' : 'Nicht ganz.') + '</b> ' + it.feedback;
+        $('vqFb').classList.add('show');
+        $('vqNext').disabled = false;
+        $('vqScore').textContent = score + ' richtig bisher';
+      }));
+      $('vqNext').addEventListener('click', () => { qi++; render(); });
+      $('vqReset').addEventListener('click', again);
+    }
+    render();
+  }
+
+  function mountReim(){
+    const pick = shuffle(REIMSCHEMEN);
+    mountChoice(pick.map(r => ({
+      prompt: '<div class="quiz-sentence">' + r.zeilen.map(z => esc(z)).join('<br>') + '</div><p class="quiz-question">Welches Reimschema liegt hier vor?</p>',
+      options: shuffle(SCHEMA_OPTIONEN),
+      correct: r.label,
+      feedback: esc(r.erklaerung),
+    })), mountReim);
+  }
+
+  function mountMetrum(){
+    const pick = shuffle(METRUM);
+    mountChoice(pick.map(m => {
+      const line = m.silben.map(([s, b]) => b ? '<b>' + esc(s) + '</b>' : esc(s)).join('·');
+      return {
+        prompt: '<div class="quiz-sentence vers-scan">' + line + '</div><p class="quiz-question">Welches Versmaß (Metrum) liegt hier vor? (Betonte Silben sind fett.)</p>',
+        options: shuffle(METRUM_OPTIONEN),
+        correct: m.muster,
+        feedback: esc(m.erklaerung),
+      };
+    }), mountMetrum);
+  }
+
+  // Karteikarten
+  function mountKarten(){
+    let kat = 'alle', deck = [], flipped = false, known = 0, total = 0;
+    function build(){
+      deck = shuffle(VERSGLOSSAR.map((v, i) => i).filter(i => kat === 'alle' || VERSGLOSSAR[i].kat === kat));
+      total = deck.length; known = 0; flipped = false; render();
+    }
+    function render(){
+      const opts = '<option value="alle">Reim und Vers</option><option value="Reim"' + (kat === 'Reim' ? ' selected' : '') + '>Nur Reim</option><option value="Vers"' + (kat === 'Vers' ? ' selected' : '') + '>Nur Vers und Metrum</option>';
+      let body;
+      if (!deck.length){
+        body = `<div class="quiz-done"><div class="big">${known} / ${total}</div><p>Alle Karten gewusst.</p><button class="quiz-restart" id="vkAgain" type="button" style="margin-top:14px;">Nochmal mischen</button></div>`;
+      } else {
+        const v = VERSGLOSSAR[deck[0]];
+        body = flipped
+          ? `<div class="flash back" id="vflash" role="button" tabindex="0"><div class="fkat">${esc(v.kat)}${v.schema ? ' · ' + esc(v.schema) : ''}</div><div class="fname">${esc(v.name)}</div><div class="def">${esc(v.def)}</div></div>
+             <div class="quiz-actions"><button class="quiz-restart" id="vkNo" type="button">Nochmal</button><button class="quiz-next" id="vkYes" type="button">Gewusst</button></div>`
+          : `<div class="flash" id="vflash" role="button" tabindex="0"><div class="fkat">${esc(v.kat)}</div><div class="fname">${esc(v.name)}</div><div class="fhint">Was bedeutet das? Zum Umdrehen klicken.</div></div>`;
+      }
+      panel.innerHTML = `<div class="quiz-progress"><span>${deck.length ? 'Noch ' + deck.length + ' von ' + total + ' Karten' : 'Fertig'}</span><select id="vKat" class="stil-select" aria-label="Bereich">${opts}</select></div>${body}`;
+      $('vKat').addEventListener('change', e => { kat = e.target.value; build(); });
+      if ($('vkAgain')) $('vkAgain').addEventListener('click', build);
+      const fl = $('vflash');
+      if (fl){
+        const flip = () => { flipped = !flipped; render(); };
+        fl.addEventListener('click', flip);
+        fl.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+      }
+      if ($('vkYes')) $('vkYes').addEventListener('click', () => { deck.shift(); known++; flipped = false; render(); });
+      if ($('vkNo')) $('vkNo').addEventListener('click', () => { deck.push(deck.shift()); flipped = false; render(); });
+    }
+    build();
   }
 
   renderTabs(); mount();
