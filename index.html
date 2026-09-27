@@ -1052,6 +1052,46 @@ const TEXTTRAINING = [
     {t:" sondern davon, was wir jetzt tun können."}]},
 ];
 
+const ERZAEHLSITUATIONEN = [
+  {text:["Was Frau Berger nicht ahnte: Ihr Sohn hatte den Brief längst gelesen.","Es sollte nicht das letzte Geheimnis zwischen den beiden bleiben."], erzform:"Auktorialer Erzähler", erklaerung:"Der Erzähler weiß mehr, als die Figur in diesem Moment wissen kann, und deutet die Zukunft voraus („sollte nicht … bleiben“) — das ist auktoriales Erzählen."},
+  {text:["Der alte Mann, so viel sei vorausgeschickt, würde die Reise nicht mehr antreten.","Doch davon wusste an diesem Morgen noch niemand."], erzform:"Auktorialer Erzähler", erklaerung:"Der Erzähler greift der Handlung vor und wendet sich mit einem Einschub direkt an die Lesenden („so viel sei vorausgeschickt“) — typisch auktorial."},
+  {text:["Er starrte auf die Uhr.","Warum meldete sie sich nicht?","Seine Hände wurden feucht."], erzform:"Personaler Erzähler", erklaerung:"Erzählt wird in der dritten Person, aber ganz aus der Innensicht einer Figur (Gedanken, Gefühle, unausgesprochene Frage) — ohne Kommentar von außen: personales Erzählen."},
+  {text:["Lena blieb an der Tür stehen.","Sollte sie wirklich hineingehen?","Ihr Magen zog sich zusammen."], erzform:"Personaler Erzähler", erklaerung:"Die Lesenden erfahren nur, was Lena denkt und fühlt — die Perspektive ist an eine Figur gebunden, ohne Ich-Form: personal."},
+  {text:["Ich blieb vor der Tür stehen und wusste nicht, ob ich klopfen sollte.","Mein Herz schlug schneller als sonst."], erzform:"Ich-Erzähler", erklaerung:"Die Ich-Form zeigt einen Ich-Erzähler, der das Geschehen aus der eigenen Perspektive schildert."},
+  {text:["Ich hörte die Schritte hinter mir und beschleunigte meinen Gang, ohne mich umzudrehen."], erzform:"Ich-Erzähler", erklaerung:"„Ich“ als grammatisches Subjekt der Wahrnehmung — ein Ich-Erzähler, der nur weiß, was er selbst erlebt."},
+  {text:["Die Tür ging auf.","Ein Mann trat ein, schloss sie leise und setzte sich ans Fenster."], erzform:"Neutraler Erzähler", erklaerung:"Geschildert wird nur äußerlich beobachtbares Verhalten, keine Gedanken oder Gefühle einer Figur — ein neutraler, kameraartiger Erzähler."},
+  {text:["Das Licht ging aus.","Im Zimmer wurde es still.","Draußen fuhr ein Auto vorbei."], erzform:"Neutraler Erzähler", erklaerung:"Reine Außensicht ohne jede Wertung oder Innensicht — neutrales Erzählen, wie eine Kamera, die nur registriert."},
+];
+const ERZFORM_OPTIONEN = ["Auktorialer Erzähler","Personaler Erzähler","Ich-Erzähler","Neutraler Erzähler"];
+
+const SATZBAUBEISPIELE = [
+  {satz:"Der Regen fiel, der Wind blies, die Blätter wirbelten durch die Luft.", form:"Parataxe", erklaerung:"Drei gleichrangige Hauptsätze werden nur durch Kommas gereiht, keiner ist dem anderen untergeordnet — eine Parataxe (Reihung). Das wirkt schnell und unruhig."},
+  {satz:"Sie packte die Tasche, sie schloss die Tür, sie ging.", form:"Parataxe", erklaerung:"Wieder eine Reihung gleichrangiger Hauptsätze ohne Unterordnung — eine Parataxe. Die knappen Sätze erzeugen Tempo und Entschlossenheit."},
+  {satz:"Als der Regen einsetzte, suchten die Kinder, die gerade noch gespielt hatten, überstürzt Schutz unter dem alten Baum, dessen Äste kaum noch Halt boten.", form:"Hypotaxe", erklaerung:"Ein Hauptsatz wird von mehreren Nebensätzen umschlossen und unterbrochen (Temporalsatz, zwei Relativsätze) — eine Hypotaxe (Schachtelsatz). Das wirkt verschachtelt und verlangsamt das Lesetempo."},
+  {satz:"Weil der Zug Verspätung hatte, wartete er auf dem Bahnsteig, obwohl er wusste, dass niemand mehr kommen würde.", form:"Hypotaxe", erklaerung:"Der Hauptsatz ist von einem Kausalsatz und einem Konzessivsatz (mit eingebettetem dass-Satz) abhängig — mehrfache Unterordnung: eine Hypotaxe."},
+  {satz:"Keine Zeit, kein Geld, keine Ausreden mehr.", form:"Ellipse", erklaerung:"Das Verb fehlt in allen drei Gliedern, lässt sich aber aus dem Zusammenhang ergänzen („Es gibt …“) — eine Ellipse. Das wirkt knapp und nachdrücklich."},
+  {satz:"Je später der Abend, desto stiller das Haus.", form:"Ellipse", erklaerung:"In beiden Satzteilen fehlt das Verb („wird“), das mitgedacht werden muss — eine typische elliptische Vergleichskonstruktion."},
+];
+const SATZBAU_OPTIONEN = ["Parataxe","Hypotaxe","Ellipse"];
+
+const ERZGLOSSAR = [
+  {kat:"Erzählsituation", name:"Auktorialer Erzähler", def:"Erzählinstanz, die mehr weiß als die Figuren, kommentiert, wertet oder vorausdeutet."},
+  {kat:"Erzählsituation", name:"Personaler Erzähler", def:"Erzählt in der dritten Person, aber ganz aus der Innensicht einer Figur, ohne Kommentar von außen."},
+  {kat:"Erzählsituation", name:"Ich-Erzähler", def:"Erzählt in der ersten Person und weiß nur, was diese Figur selbst erlebt, denkt oder erfährt."},
+  {kat:"Erzählsituation", name:"Neutraler Erzähler", def:"Schildert nur äußerlich Beobachtbares, ohne Einblick in Gedanken oder Gefühle — wie eine Kamera."},
+  {kat:"Erzählsituation", name:"Erzählzeit und erzählte Zeit", def:"Erzählzeit: wie lange das Lesen/Erzählen dauert. Erzählte Zeit: wie lange das Geschehen in der Handlung dauert."},
+  {kat:"Erzählsituation", name:"Zeitraffung", def:"Die erzählte Zeit ist länger als die Erzählzeit — viel Handlung wird knapp zusammengefasst."},
+  {kat:"Erzählsituation", name:"Zeitdehnung", def:"Die Erzählzeit ist länger als die erzählte Zeit — ein kurzer Moment wird ausführlich geschildert."},
+  {kat:"Erzählsituation", name:"Rückblende", def:"Die Erzählung unterbricht die Chronologie und springt zu einem früheren Zeitpunkt zurück."},
+  {kat:"Erzählsituation", name:"Direkte Rede", def:"Wörtlich wiedergegebene Rede einer Figur, meist in Anführungszeichen."},
+  {kat:"Erzählsituation", name:"Indirekte Rede", def:"Wiedergegebene Rede im Konjunktiv, ohne wörtliches Zitat."},
+  {kat:"Erzählsituation", name:"Erlebte Rede", def:"Gedanken oder Worte einer Figur werden ohne Redeeinleitung in der Erzählerrede wiedergegeben, meist im Präteritum und in der dritten Person."},
+  {kat:"Erzählsituation", name:"Innerer Monolog", def:"Unmittelbare Wiedergabe der Gedanken einer Figur in der Ich-Form, ohne Erzählerkommentar."},
+  {kat:"Satzbau", name:"Parataxe", def:"Reihung gleichrangiger Hauptsätze, oft nur durch Kommas oder „und“ verbunden; wirkt knapp und schnell."},
+  {kat:"Satzbau", name:"Hypotaxe", def:"Ein Satzgefüge mit Haupt- und mehreren Nebensätzen (Unterordnung); wirkt komplex und verlangsamt."},
+  {kat:"Satzbau", name:"Ellipse", def:"Auslassung von Satzteilen (meist des Verbs), die sich aus dem Zusammenhang erschließen lassen; wirkt knapp und pointiert."},
+];
+
 const REIMSCHEMEN = [
   {zeilen:["Der Regen fällt aufs Fensterglas,","ich sitze still und lese was.","Die Uhr tickt leise durch den Raum,","ich folge ihr wie halb im Traum."], schema:"aabb", label:"Paarreim (aabb)", erklaerung:"„Fensterglas“ reimt sich mit „was“ (a a), „Raum“ mit „Traum“ (b b) — zwei aufeinanderfolgende Reimpaare."},
   {zeilen:["Der Wind trägt Blätter übers Feld,","sie tanzen leicht im letzten Licht.","Ein Vogel ruft durch weite Welt,","und niemand hört sein Lied nicht."], schema:"abab", label:"Kreuzreim (abab)", erklaerung:"„Feld“ reimt sich mit „Welt“ (Vers 1 und 3), „Licht“ mit „nicht“ (Vers 2 und 4) — die Reime kreuzen sich."},
@@ -2435,6 +2475,14 @@ function renderTsBody(t){
         <h4><span class="dot"></span>Analysewerkzeuge</h4>
         <div class="wordbank">${t.werkzeuge.map(w => `<div class="wordbank-card"><div class="lbl">${esc(w.l)}</div><div class="words">${esc(w.w)}</div></div>`).join('')}</div>
       </div>` : ''}
+      ${t.id === 'ti_kurzprosa' ? `
+      <div class="panel" style="margin-top:18px;">
+        <h4><span class="dot"></span>Erzählsituation &amp; Satzbau üben</h4>
+        <p class="var-kurz" style="margin:0 0 16px;">Kurze, eigens erstellte Beispieltexte und -sätze zum Erkennen von Erzählsituation und Satzbau — unabhängig vom Text, den du gerade interpretierst.</p>
+        <div class="mode-tabs" id="esModeTabs" role="tablist" aria-label="Übungsform"></div>
+        <p class="mode-hint" id="esModeHint"></p>
+        <div class="quiz-panel" id="esPanel"></div>
+      </div>` : ''}
       ${t.id === 'ti_gedicht' ? `
       <div class="panel" style="margin-top:18px;">
         <h4><span class="dot"></span>Reimschema &amp; Metrum üben</h4>
@@ -2736,6 +2784,128 @@ document.querySelectorAll('details.ts').forEach(el => observer.observe(el));
       });
     }
     render();
+  }
+
+  renderTabs(); mount();
+})();
+
+// Erzählsituation & Satzbau: Übungen zur Kurzprosa-Interpretation
+(function initErzaehlUebung(){
+  const $ = id => document.getElementById(id);
+  const panel = $('esPanel');
+  if (!panel) return;
+
+  function shuffle(arr){
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  const MODES = [
+    {id:'erzform', label:'Erzählsituation', hint:'Zu jedem Textausschnitt die passende Erzählsituation wählen.'},
+    {id:'satzbau', label:'Satzbau', hint:'Zu jedem Satz die passende Satzbauform wählen.'},
+    {id:'karten', label:'Karteikarten', hint:'Begriffe zu Erzählsituation und Satzbau wiederholen.'},
+  ];
+  let mode = 'erzform';
+
+  function renderTabs(){
+    $('esModeTabs').innerHTML = MODES.map(m => '<button type="button" role="tab" aria-selected="' + (m.id === mode) + '" class="fchip mode-tab' + (m.id === mode ? ' active' : '') + '" data-m="' + m.id + '">' + m.label + '</button>').join('');
+    $('esModeTabs').querySelectorAll('.mode-tab').forEach(b => b.addEventListener('click', () => { mode = b.dataset.m; renderTabs(); mount(); }));
+    $('esModeHint').textContent = MODES.find(m => m.id === mode).hint;
+  }
+  function mount(){
+    ({erzform: mountErzform, satzbau: mountSatzbau, karten: mountKarten})[mode]();
+  }
+
+  // Generische Multiple-Choice-Runde (eigenständige Kopie, unabhängig von den anderen Übungsmodulen)
+  function mountChoice(items, again){
+    let qi = 0, score = 0, answered = false;
+    function render(){
+      if (qi >= items.length){
+        panel.innerHTML = `<div class="quiz-done"><div class="big">${score} / ${items.length}</div><p>richtig.</p><button class="quiz-restart" id="eqAgain" type="button" style="margin-top:14px;">Neue Runde</button></div>`;
+        $('eqAgain').addEventListener('click', again);
+        return;
+      }
+      const it = items[qi]; answered = false;
+      panel.innerHTML = `
+        <div class="quiz-progress"><span>Frage ${qi + 1} von ${items.length}</span><span id="eqScore">${score} richtig bisher</span></div>
+        ${it.prompt}
+        <div class="quiz-options one">${it.options.map((o, i) => `<button class="quiz-option" type="button" data-i="${i}">${o}</button>`).join('')}</div>
+        <div class="quiz-feedback" id="eqFb"></div>
+        <div class="quiz-actions"><button class="quiz-restart" id="eqReset" type="button">Von vorn</button><button class="quiz-next" id="eqNext" type="button" disabled>Weiter →</button></div>`;
+      const btns = Array.from(panel.querySelectorAll('.quiz-option'));
+      btns.forEach(b => b.addEventListener('click', () => {
+        if (answered) return; answered = true;
+        const chosen = it.options[parseInt(b.dataset.i, 10)];
+        btns.forEach(x => { x.disabled = true; if (it.options[parseInt(x.dataset.i, 10)] === it.correct) x.classList.add('correct'); });
+        const ok = chosen === it.correct;
+        if (ok) score++; else b.classList.add('wrong');
+        $('eqFb').innerHTML = '<b>' + (ok ? 'Richtig.' : 'Nicht ganz.') + '</b> ' + it.feedback;
+        $('eqFb').classList.add('show');
+        $('eqNext').disabled = false;
+        $('eqScore').textContent = score + ' richtig bisher';
+      }));
+      $('eqNext').addEventListener('click', () => { qi++; render(); });
+      $('eqReset').addEventListener('click', again);
+    }
+    render();
+  }
+
+  function mountErzform(){
+    const pick = shuffle(ERZAEHLSITUATIONEN);
+    mountChoice(pick.map(e => ({
+      prompt: '<div class="quiz-sentence">' + e.text.map(z => esc(z)).join('<br>') + '</div><p class="quiz-question">Welche Erzählsituation liegt hier vor?</p>',
+      options: shuffle(ERZFORM_OPTIONEN),
+      correct: e.erzform,
+      feedback: esc(e.erklaerung),
+    })), mountErzform);
+  }
+
+  function mountSatzbau(){
+    const pick = shuffle(SATZBAUBEISPIELE);
+    mountChoice(pick.map(s => ({
+      prompt: '<div class="quiz-sentence">' + esc(s.satz) + '</div><p class="quiz-question">Welche Satzbauform liegt hier vor?</p>',
+      options: shuffle(SATZBAU_OPTIONEN),
+      correct: s.form,
+      feedback: esc(s.erklaerung),
+    })), mountSatzbau);
+  }
+
+  // Karteikarten
+  function mountKarten(){
+    let kat = 'alle', deck = [], flipped = false, known = 0, total = 0;
+    function build(){
+      deck = shuffle(ERZGLOSSAR.map((v, i) => i).filter(i => kat === 'alle' || ERZGLOSSAR[i].kat === kat));
+      total = deck.length; known = 0; flipped = false; render();
+    }
+    function render(){
+      const opts = '<option value="alle">Erzählsituation und Satzbau</option><option value="Erzählsituation"' + (kat === 'Erzählsituation' ? ' selected' : '') + '>Nur Erzählsituation</option><option value="Satzbau"' + (kat === 'Satzbau' ? ' selected' : '') + '>Nur Satzbau</option>';
+      let body;
+      if (!deck.length){
+        body = `<div class="quiz-done"><div class="big">${known} / ${total}</div><p>Alle Karten gewusst.</p><button class="quiz-restart" id="ekAgain" type="button" style="margin-top:14px;">Nochmal mischen</button></div>`;
+      } else {
+        const v = ERZGLOSSAR[deck[0]];
+        body = flipped
+          ? `<div class="flash back" id="eflash" role="button" tabindex="0"><div class="fkat">${esc(v.kat)}</div><div class="fname">${esc(v.name)}</div><div class="def">${esc(v.def)}</div></div>
+             <div class="quiz-actions"><button class="quiz-restart" id="ekNo" type="button">Nochmal</button><button class="quiz-next" id="ekYes" type="button">Gewusst</button></div>`
+          : `<div class="flash" id="eflash" role="button" tabindex="0"><div class="fkat">${esc(v.kat)}</div><div class="fname">${esc(v.name)}</div><div class="fhint">Was bedeutet das? Zum Umdrehen klicken.</div></div>`;
+      }
+      panel.innerHTML = `<div class="quiz-progress"><span>${deck.length ? 'Noch ' + deck.length + ' von ' + total + ' Karten' : 'Fertig'}</span><select id="eKat" class="stil-select" aria-label="Bereich">${opts}</select></div>${body}`;
+      $('eKat').addEventListener('change', e => { kat = e.target.value; build(); });
+      if ($('ekAgain')) $('ekAgain').addEventListener('click', build);
+      const fl = $('eflash');
+      if (fl){
+        const flip = () => { flipped = !flipped; render(); };
+        fl.addEventListener('click', flip);
+        fl.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+      }
+      if ($('ekYes')) $('ekYes').addEventListener('click', () => { deck.shift(); known++; flipped = false; render(); });
+      if ($('ekNo')) $('ekNo').addEventListener('click', () => { deck.push(deck.shift()); flipped = false; render(); });
+    }
+    build();
   }
 
   renderTabs(); mount();
