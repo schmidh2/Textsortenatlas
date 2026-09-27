@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="Mag. Harald Schmidt, Gymnasium Sacré Coeur Pressbaum">
 <title>Textsortenatlas</title>
+<script>
+  // Seite immer ganz oben öffnen — auch bei erneutem Aufruf, Reload oder zurück/vor im Browser,
+  // unabhängig von einem Anker (#…) in der Adresse oder der vom Browser gemerkten Scrollposition.
+  // Anker aus der Adresse entfernen, bevor der Browser versucht, dorthin zu scrollen (die Zielelemente
+  // entstehen erst später per JS; ein direkter Klick auf die Navigation funktioniert davon unberührt weiter).
+  if (location.hash) { history.replaceState(null, '', location.pathname + location.search); }
+  if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+  window.addEventListener('pageshow', () => window.scrollTo(0, 0));
+</script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&family=Caveat:wght@500;600;700&display=swap');
 
