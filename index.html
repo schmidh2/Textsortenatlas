@@ -2057,6 +2057,12 @@ const TEXTSORTEN = [
       {b:"Sender, Adressat, Intention", t:"Wer spricht zu wem, mit welchem Ziel."},
       {b:"Fazit", t:"Zusammenfassende Einschätzung der Gesamtwirkung — auch die Funktion des Ausgangstextes benennen: Informations-, Meinungsbildungs- oder Unterhaltungsfunktion (auch als Mischform möglich)."}
     ],
+    textfunktionen:[
+      {l:"Informationsfunktion", w:"Sachlich über Fakten berichten, ohne zu werten. Beispiel: eine Nachrichtenmeldung."},
+      {l:"Meinungsbildungsfunktion", w:"Eine Haltung vertreten, zu einer Position überzeugen. Beispiel: ein Kommentar."},
+      {l:"Unterhaltungsfunktion", w:"Lesevergnügen bieten, unterhalten. Beispiel: eine Glosse oder ein Feature."},
+      {l:"Mischformen", w:"Die Regel, nicht die Ausnahme — z. B. ein Bericht mit unterhaltsamen Formulierungen oder ein Kommentar, der zugleich informiert. Dann die überwiegende Funktion benennen und am Text festmachen."},
+    ],
     formulierung:[
       {l:"Einleitung", p:["Der vorliegende [Textsorte] „…“ von …, erschienen am … in …, thematisiert …"]},
       {l:"Beleg", p:["Dies zeigt sich in Zeile …, in der …","Der Autor/Die Autorin verwendet …, um … zu verdeutlichen (Z. …)."]},
@@ -2535,6 +2541,11 @@ function renderTsBody(t){
             </div>`).join('')}
         </div>
       </div>
+      ${t.textfunktionen ? `
+      <div class="panel" style="margin-top:18px;">
+        <h4><span class="dot"></span>Funktion des Ausgangstextes</h4>
+        <div class="wordbank">${t.textfunktionen.map(w => `<div class="wordbank-card"><div class="lbl">${esc(w.l)}</div><div class="words">${esc(w.w)}</div></div>`).join('')}</div>
+      </div>` : ''}
       ${t.schritte ? renderSchritte(t.schritte) : ''}
       ${t.zuordnung ? renderZuordnung(t.zuordnung) : ''}
       ${t.werkzeuge ? `
