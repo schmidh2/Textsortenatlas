@@ -6,8 +6,8 @@ name: Homepage-Variante synchronisieren
 # immer denselben Stand haben.
 #
 # Voraussetzung: Secret HOMEPAGE_SITE_TOKEN (Personal Access Token mit
-# Schreibrechten auf schmidh2/Textsortenatlas-Homepage) unter
-# Settings → Secrets and variables → Actions anlegen.
+# Schreibrechten auf schmidh2/Textsortenatlas-Homepage, Scope "repo"
+# genügt) unter Settings → Secrets and variables → Actions anlegen.
 
 on:
   push:
@@ -35,11 +35,19 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          if ! git merge --no-edit origin/main; then
+          if ! git merge --no-commit --no-ff origin/main; then
             git merge --abort
             echo "::error::Merge-Konflikt zwischen main und homepage. Bitte manuell lösen (z. B. Claude bitten, den Konflikt im Branch 'homepage' aufzulösen)."
             exit 1
           fi
+          # .github/workflows gehört nicht zur Homepage-Variante (nur main
+          # braucht die CI) und würde ohne "workflow"-Scope im PAT den
+          # Cross-Repo-Push unten verhindern.
+          if [ -d .github ]; then
+            git rm -r --cached .github >/dev/null
+            rm -rf .github
+          fi
+          git commit --no-edit
 
       - name: homepage-Branch zurückpushen
         run: git push origin homepage
