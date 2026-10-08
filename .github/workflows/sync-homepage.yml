@@ -52,4 +52,7 @@ jobs:
             echo "::error::Secret HOMEPAGE_SITE_TOKEN fehlt – kann schmidh2/Textsortenatlas-Homepage nicht aktualisieren."
             exit 1
           fi
-          git push "https://x-access-token:${TOKEN}@github.com/schmidh2/Textsortenatlas-Homepage.git" homepage:main
+          # actions/checkout hinterlegt einen Basic-Auth-Header für github.com
+          # mit dem repo-eigenen GITHUB_TOKEN; der würde sonst den PAT unten
+          # überschreiben. Für diesen Push explizit leeren.
+          git -c http.https://github.com/.extraheader= push "https://x-access-token:${TOKEN}@github.com/schmidh2/Textsortenatlas-Homepage.git" homepage:main
